@@ -94,9 +94,10 @@ class CategoriesApp{
                 $html .= $this->product(
                     $name,
                     $value[$i]['img'],
-                    $value[$i]['description'],
+                    $value[$i]['description_short'],
                     $value[$i]['price'],
-                    $categories
+                    $categories,
+                    $value[$i]['showpage']
                 );
             }
         }

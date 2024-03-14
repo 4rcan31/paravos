@@ -29,10 +29,10 @@ class ProductsViewController extends BaseController{
             $categoryName = $product['category_name'];
             $result[$categoryName][] = [
                 "name" => $product['name'],
-                "description" => $product['description'],
-                "img" => "aun no se guarda en la db creo", // No estoy seguro de dónde se obtiene la imagen
+                "description_short" => $product['description_short'],
+                "img" => $product['url_img'], // No estoy seguro de dónde se obtiene la imagen
                 "price" => $product["price"],
-                "showpage" => "http://test/id/".$product['id']
+                "showpage" =>  server()->RouteAbsolute("show/".$product['id'])
             ];
     
             return $result;

@@ -17,4 +17,11 @@ Route::get("/products", function(){
     Redirect::to("/products/1");
 });
 
+Route::get("/show/%id", function($request){
+    controller("Views/ShowProductViewController", "show", $request);
+});
+
+Route::get("/show", function($request){
+   Redirect::to("/products/1");
+});
 

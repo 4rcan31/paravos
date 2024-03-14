@@ -12,6 +12,7 @@ function headPrincipal($title){
 
         <title><?php echo $title ?></title>
         <?php requiresStaticFiles([
+            routePublic('vendor/tailwind/tailwind.min.css'),
             routePublic('vendor/bootstrap/css/bootstrap.min.css'),
             routePublic('assets/fonts/fontawesome.css'),
             routePublic('assets/css/store.css'),

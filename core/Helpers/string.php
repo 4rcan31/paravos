@@ -17,3 +17,26 @@ function token($length = 32) {
         random_bytes(ceil($length / 2))
     ), 0, $length);
 }
+
+
+class StringBuilder {
+    private $string;
+
+    public function __construct($string = '') {
+        $this->string = $string;
+    }
+
+    public function append($string) {
+        $this->string .= $string;
+        return $this;
+    }
+
+    public function toString() {
+        return $this->string;
+    }
+
+    public function clear() {
+        $this->string = '';
+        return $this;
+    }
+}

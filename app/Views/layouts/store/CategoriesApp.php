@@ -4,11 +4,22 @@
 class CategoriesApp{
 
     public array $data;
+    public array $products;
     public string $html;
+    public int $page;
+    public string $uriRedirection;
+    public int $totalpages;
+    public int $maxButtonsShow;
+    public bool $scroll;
 
-    function __construct($data)
-    {
+    function __construct($data, $uri, $scroll = false){
         $this->data = $data;
+        $this->products = $this->data['products'];
+        $this->page = $this->data['page'];
+        $this->uriRedirection = $uri;
+        $this->totalpages = $data['totalpages'];
+        $this->maxButtonsShow = $data['maxButtonsShow'];
+        $this->scroll = $scroll;
     }
 
     function start()
@@ -20,39 +31,51 @@ class CategoriesApp{
     }
 
     private function end(){
+        $js = '
+        <script>
+            scrollToElement("scrolling-show-products"); //creo que esto no esta funcionando xd
+        </script>
+        ';
         return '    </div>
         </div>
-      </div>';
+      </div>'.$js;
     }
 
-    private function pagination(){
-        $html = '         <div class="col-md-12">
-        <ul class="pages">
-          <li><a href="#">1</a></li>
-          <li class="active"><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-        </ul>
-      </div>';
-
-      $html .= "
-        <script>
-            // Como puedo controlar la paginacion desde javascript
-        </script>
-      ";
-
-      return $html;
+    private function pagination() {
+        $totalPages = $this->totalpages;
+        $currentPage = $this->page;
+        $html = '<div class="col-md-12">';
+        $html .= '<ul class="pages">';
+        $startPage = max(1, $currentPage - floor($this->maxButtonsShow / 2));
+        $endPage = min($totalPages, $startPage + $this->maxButtonsShow - 1);
+        if ($currentPage > 1) {
+            $html .= '<li><a href="' . $this->pageUrl(1) . '"><i class="fa fa-angle-double-left"></i></a></li>';
+        }
+        for ($i = $startPage; $i <= $endPage; $i++) {
+            $class = ($i == $currentPage) ? 'class="active"' : '';
+            $html .= '<li ' . $class . '><a href="' . $this->pageUrl($i) . '">' . $i . '</a></li>';
+        }
+        if ($currentPage < $totalPages) {
+            $html .= '<li><a href="' . $this->pageUrl($totalPages) . '"><i class="fa fa-angle-double-right"></i></a></li>';
+        }
+    
+        $html .= '</ul>';
+        $html .= '</div>';
+        return $html;
     }
+    
 
+    private function pageUrl($page) {
+        return $this->uriRedirection . "/" . $page;
+    }
 
     private function buildSearcher(): string
     {
-        $html = '<div class="col-md-12">';
+        $html = '<div class="col-md-12" id="scrolling-show-products">';
         $html .= ' <div class="filters">';
         $html .= '<ul>';
         $html .= '<li class="active" data-filter="*">Todos los productos</li>';
-        foreach ($this->data as $categories => $value) {
+        foreach ($this->products as $categories => $value) {
             $html .= '<li data-filter=".' . $categories . '">' . $categories . '</li>';
         }
         $html .= '</ul>
@@ -65,8 +88,7 @@ class CategoriesApp{
         $html = '          <div class="col-md-12">
         <div class="filters-content">
             <div class="row grid">';
-
-        foreach ($this->data as $categories => $value) {
+        foreach ($this->products as $categories => $value) {
             for($i = 0; $i < count($value); $i++){
                 $name = $value[$i]['name'];
                 $html .= $this->product(
@@ -95,6 +117,11 @@ class CategoriesApp{
 
     public function get(){
         return $this->html;
+    }
+
+    public function render(){
+        $this->build();
+        echo $this->get();
     }
 
 

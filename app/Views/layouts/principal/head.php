@@ -16,7 +16,7 @@ function headPrincipal($title){
             routePublic('assets/fonts/fontawesome.css'),
             routePublic('assets/css/store.css'),
             routePublic('vendor/owl/owl.css'),
-        ]) ?>
+        ]);   requireCore(); ?>
        </head> 
     <?php
 }

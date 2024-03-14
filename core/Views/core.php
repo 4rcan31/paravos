@@ -77,7 +77,8 @@ function requires(array $requires, string $type = 'text/javascript'){
         routePublic('core/send.js'),
         routePublic('core/cookies.js'),
         routePublic('core/server.js'),
-        routePublic('core/string.js')
+        routePublic('core/string.js'),
+        routePublic('core/animations.js')
     ]);
  }
 

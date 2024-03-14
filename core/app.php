@@ -29,6 +29,7 @@ class Sao{
  
     //Start app Http
     private function runAppHttp(){
+        $this->runAppRedirect();
         $this->runAppRequest();
         $this->runAppResponse();
         $this->runAppCookies();
@@ -42,6 +43,9 @@ class Sao{
     }
     private function runAppCookies(){
         import('Http/cookies.php', false, '/core');
+    }
+    private function runAppRedirect(){
+        import("Http/Redirect.php", false, "/core");
     }
     //End app Http
 

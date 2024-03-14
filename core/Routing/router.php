@@ -234,7 +234,7 @@ class Route extends Request{
             $dataView = Route::$routes[$i]['data'];
             !empty($prefixs) ? $route = Route::doPrefix($prefixs).$route : null;
             strpos($route, '%') !== false ? $route = preg_replace('/\%\w+/', '(\w+)', $route) : null;
-            if(preg_match("@^" . $route . "$@", Request::$uri, $matches)){
+            if (preg_match("@^" . $route . "(/(\w+))?$@", Request::$uri, $matches)) {
                 $err = false;
                 if($method == Request::$method){
                     array_shift($matches); 

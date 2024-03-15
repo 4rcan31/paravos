@@ -19,8 +19,8 @@ function headerBarPrincipal($currentPage)
                         <li class="nav-item <?php echo $currentPage === 'products' ? 'active' : ''; ?>">
                             <a class="nav-link" href="<?php echo route("/products", false) ?>">Productos</a>
                         </li>
-                        <li class="nav-item <?php echo $currentPage === 'about' ? 'active' : ''; ?>">
-                            <a class="nav-link" href="about.html">About Us</a>
+                        <li class="nav-item <?php echo $currentPage === 'aboutus' ? 'active' : ''; ?>">
+                            <a class="nav-link" href="<?php echo route("/aboutus", false) ?>">About Us</a>
                         </li>
                         <li class="nav-item <?php echo $currentPage === 'contact' ? 'active' : ''; ?>">
                             <a class="nav-link" href="contact.html">Contact Us</a>

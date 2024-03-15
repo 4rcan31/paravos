@@ -25,3 +25,8 @@ Route::get("/show", function($request){
    Redirect::to("/products/1");
 });
 
+
+Route::get("/aboutus", function(){
+    view("aboutus");
+});
+

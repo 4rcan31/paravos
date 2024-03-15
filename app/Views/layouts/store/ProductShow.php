@@ -51,10 +51,11 @@ class ProductShow{
 
     private function description(){
         $builder = new StringBuilder();
-
         if(isset($this->description['short'])){
             $builder->append('<p class="leading-relaxed">'.$this->description['short'].'</p>');
-        }else if(isset($this->description['large'])){
+        }
+        
+        if(isset($this->description['large'])){
             $builder->append('<div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">')
                     ->append($this->description['large'])
                     ->append('</div>');

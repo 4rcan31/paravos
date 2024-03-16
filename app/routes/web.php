@@ -30,3 +30,11 @@ Route::get("/aboutus", function(){
     view("aboutus");
 });
 
+Route::get('/contact', function(){
+    view('contact');
+});
+
+
+Route::get("/login", function(){
+    view('login');
+});

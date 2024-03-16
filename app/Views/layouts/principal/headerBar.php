@@ -23,7 +23,10 @@ function headerBarPrincipal($currentPage)
                             <a class="nav-link" href="<?php echo route("/aboutus", false) ?>">About Us</a>
                         </li>
                         <li class="nav-item <?php echo $currentPage === 'contact' ? 'active' : ''; ?>">
-                            <a class="nav-link" href="contact.html">Contact Us</a>
+                            <a class="nav-link" href="<?php echo route("/contact", false) ?>">Contact Us</a>
+                        </li>
+                        <li class="nav-item <?php echo $currentPage === 'login' ? 'active' : ''; ?>">
+                            <a class="nav-link" href="<?php echo route("/login", false) ?>">Login</a>
                         </li>
                     </ul>
                 </div>

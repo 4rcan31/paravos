@@ -8,8 +8,12 @@ class ShowProductViewController extends BaseController{
         return model('ProductsModel');
     }
 
+    private function user() : UsersModel{
+        return model('UsersModel');
+    }
+
     public function show($request){
-        $idProduct = $request[0]; //esto hay que validarlo por si al caso xd
+        $idProduct = $request[0]; //esto hay que validarlo por si al caso xd (es el id del producto)
         view("show", $this->buildData(
             $this->productsModel()->getDataProductById($idProduct)
         ));
@@ -36,7 +40,23 @@ class ShowProductViewController extends BaseController{
         $return['name'] = $data['product_name']; // Cambiado de 'Esto es el nombre' a $data['product_name']
         $return['price'] = $data['price'];
         $return['stock'] = $data['stock'];
+        $return['partner_name'] = $data['partner_name'];
+        $return['user'] = [
+            "data" => $this->buildDataUser()
+        ];
         return $return;
     }
     
+
+    private function buildDataUser(){
+        if(!Sauth::exitsClientAutheticated()){
+            return arrayToObject([]);
+        }
+
+        $row = $this->user()->getAllById(
+            $this->clientAuth()->id
+        );
+
+        return arrayToObject($row);
+    }
 }

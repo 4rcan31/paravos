@@ -2,7 +2,7 @@
 
 
 Route::root(function($request){ // localhost:8080/
-   controller("ViewsStore", "home");
+    view("index");
 });
 
 Route::get("/products/%pages", function($request){

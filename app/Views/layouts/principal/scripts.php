@@ -3,9 +3,6 @@
 
 
 function scriptsPrincipal(){
-  Form::print(); 
-  Form::setValuesInputs();
-  Form::destroyData();
   echo requiresStaticFiles([
     routePublic('vendor/jquery/jquery.min.js'),
     routePublic('vendor/bootstrap/js/bootstrap.bundle.min.js'),
@@ -15,4 +12,7 @@ function scriptsPrincipal(){
     routePublic('vendor/isotope/isotope.js'),   
     routePublic('vendor/accordions/accordions.js'),   
   ]);
+  Form::print(); 
+  Form::setValuesInputs();
+  Form::destroyData();
 }

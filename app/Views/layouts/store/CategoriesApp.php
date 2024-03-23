@@ -31,11 +31,7 @@ class CategoriesApp{
     }
 
     private function end(){
-        $js = '
-        <script>
-            scrollToElement("scrolling-show-products"); //creo que esto no esta funcionando xd
-        </script>
-        ';
+        $js = '';
         return '    </div>
         </div>
       </div>'.$js;

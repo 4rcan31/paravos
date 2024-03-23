@@ -14,7 +14,7 @@
 - [ ] Mostrar los últimos 6 productos en la vista principal.  
 - [ ] Diseñar vistas para los socios (tanto individuales como todos).  
 - [ ] Implementar registro de usuario.  
-- [] Considerar la implementación de la funcionalidad "Olvidé mi contraseña" (para futuras iteraciones).  
+- [ ] Considerar la implementación de la funcionalidad "Olvidé mi contraseña" (para futuras iteraciones).  
 - [ ] Implementar inicio de sesión para administradores.  
 - [ ] Comenzar a desarrollar las vistas para el panel de administración.  
 

@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 import('Auth/token.php', false, '/core');
 
 class Sauth {
@@ -37,7 +40,23 @@ class Sauth {
         );
     }
 
-
+    public static function client($cookie = 'session', $key = null){
+        $cookie = Request::$cookies[$cookie] ?? null;
+        if ($cookie === null) {
+            return null; 
+        }
+        return Sauth::getPayLoadTokenClient(
+            $cookie, 
+            $key ?? $_ENV['APP_KEY']
+        );
+    }
+    
+    public static function exitsClientAutheticated($cookie = 'session') : bool {
+        $client = Sauth::client($cookie);
+        return $client !== null && $client !== false;
+    }
+    
+    
 
     public static function getPayLoadTokenClient(string $tokenRequest, string $key, string $input = '') {
         try {

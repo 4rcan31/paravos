@@ -87,24 +87,8 @@ class BaseController{
         ]);
     }
     
-    
-    
-
-
-    public function clientAuth($cookie = 'session', $key = null) {
-        $cookie = Request::$cookies[$cookie] ?? null;
-        if ($cookie === null) {
-            return false;
-        }
-        return Sauth::getPayLoadTokenClient(
-            $cookie, 
-            $key ?? $_ENV['APP_KEY']
-        );
+    public function clientAuth($cookie = 'session', $key = null) : null|object {
+        return Sauth::client($cookie, $key);
     }
 
-
-    
-    
-    
-    
 }

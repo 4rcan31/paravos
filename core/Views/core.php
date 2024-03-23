@@ -7,6 +7,20 @@ function add($p, $etiqueta, $attributes = []){
     }
 }
 
+function br(int $num = 1, bool $print = true){
+    $html = '';
+    for($i = 0; $i < $num; $i++){
+        $html .= "<br>";
+    }
+
+    if($print){
+        echo $html;
+        return "";
+    }
+
+    return $html;
+}
+
 
 function attributes($attributes = []){
     if(empty($attributes)){

@@ -5,11 +5,13 @@ class Form{
 
     public static $inputs;
     public static $data;
+    public static int $showTime = 5000;
 
     public static function send(string $rute, array $data, $type){
         $data = base64_encode(json_encode([
             'header' => [
-                'type' => $type
+                'type' => $type,
+                'time' => self::$showTime
             ],
             'body' => $data
         ]));
@@ -18,6 +20,9 @@ class Form{
         exit;
     }
     
+    public static function setTimeShow(int $time){
+        self::$showTime = $time;
+    }
     
 
     public static function isThere(){
@@ -38,14 +43,15 @@ class Form{
     public static function print(){
         if(self::isThere()){
             $type = self::get()->header->type;
+            $showTime = self::get()->header->time;
             $body = self::get()->body;
-            $delay = 300; // Milisegundos de retraso entre toasts
+            $delay = floor($showTime/3); // Milisegundos de retraso entre toasts
             $verticalOffset = 0;
             $i = 0;
             foreach($body as $data){
                 $i++;
                 $toastHeight = self::getToastHeight($data); // Obtener la altura de la notificación
-                echo self::toast($type, $data, $i, $delay * ($i/5), $verticalOffset, $toastHeight);
+                echo self::toast($type, $data, $i, $delay * ($i/5), $showTime, $verticalOffset, $toastHeight);
                 $verticalOffset += $toastHeight + 20; // Incrementar el offset vertical según la altura de la notificación
             }
         }
@@ -82,31 +88,41 @@ class Form{
         return 0;
     }
     
-    public static function toast(string $title, string $body, $id, $delay, $verticalOffset, $toastHeight, $time = 'now', $img = ''){
-        if(!empty($img)){ $img = '<img src="'.$img.'" class="rounded me-2">'; }
-        $toastId = 'toast_' . $id; // Generar un ID único
+    public static function toast(string $title, string $body, $id, $delay, $timeShow, $verticalOffset, $toastHeight, $time = 'now', $img = ''){
+        if(!empty($img)){ 
+            $img = '<img src="'.$img.'" class="rounded me-2">'; 
+        }
+        $toastId = 'toast_' . $id; 
+        $closeButtonId = 'toast_close_' . $id;
     
-        return '<div class="toast-container" style="position: fixed; top:'.$verticalOffset.'px; right: 0; margin: 10px;">
-            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="'.$toastId.'">
-              <div class="toast-header">
-                '.$img.'
-                <strong class="me-auto">'.$title.'</strong>
-                <small class="text-muted">'.$time.'</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-              <div class="toast-body" style="max-height: '.$toastHeight.'px; overflow-y: auto;">
-                '.$body.'
-              </div>
+        return '<div class="toast-container" style="position: fixed; top:'.$verticalOffset.'px; right: 0; margin: 10px; z-index: 100000;"> 
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="'.$toastId.'" style="z-index: 100000;"> 
+                <div class="toast-header">
+                    '.$img.'
+                    <strong class="me-auto">'.$title.'</strong>
+                    <small class="text-muted">'.$time.'</small>
+                    <button type="button" class="btn-close" id="'.$closeButtonId.'" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" style="max-height: '.$toastHeight.'px; overflow-y: auto;">
+                    '.$body.'
+                </div>
             </div>
-          </div>
-          <script>
-          setTimeout(function() {
-              var myAlert = document.getElementById("'.$toastId.'"); 
-              var bsAlert = new bootstrap.Toast(myAlert); 
-              bsAlert.show(); 
-          }, '.$delay.');
-          </script>';
+        </div>
+        <script>
+            setTimeout(function() {
+                const myAlert = document.getElementById("'.$toastId.'");
+                const closeButton = document.getElementById("'.$closeButtonId.'");
+                const bsAlert = new bootstrap.Toast(myAlert, {delay: '.$timeShow.'});
+                bsAlert.show();
+                closeButton.addEventListener("click", function() {
+                    bsAlert.hide();
+                });
+            }, '.$delay.');
+        </script>';
     }
+    
+    
+    
     
     public static function getToastHeight($content){
         if(strlen($content) > 50){

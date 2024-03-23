@@ -35,15 +35,20 @@ class ProductsModel extends BaseModel{
             products.price,
             categories.name AS category_name,
             products.name as product_name,
-            products.stock
+            products.stock,
+            partners.name AS partner_name,
+            partners.description AS partner_description
         FROM 
             products
         JOIN 
             categories ON products.category_id = categories.id
+        LEFT JOIN 
+            partners ON products.partners_id = partners.id
         WHERE 
             products.id = ?';
-    
+        
         return $this->query($query, [$id])->fetchAll(PDO::FETCH_ASSOC);
     }
+    
     
 }

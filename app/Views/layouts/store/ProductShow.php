@@ -3,7 +3,7 @@
 
 class ProductShow{
 
-    private string $image, $categorie, $name, $price, $stock, $html;
+    private string $image, $categorie, $name, $price, $stock, $html, $idButtonAddToCard, $partnerName;
     private array $socialMedia, $description, $button;
     
     function __construct(array $productData){
@@ -15,8 +15,14 @@ class ProductShow{
         $this->description = $productData['descriptions'];
         $this->stock = $productData['stock'];
         $this->button = $productData['button'];
+        $this->partnerName = $productData['partner_name'];
+        $this->idButtonAddToCard = $this->generateId();
     }
     
+
+    private function generateId() {
+        return "button_add_to_card_" . uniqid();
+    }
 
     private function start(){
         $html = '<div class="pt-20">'; 
@@ -34,8 +40,12 @@ class ProductShow{
     }
 
     private function categorie(){
-        return '<h2 class="text-sm title-font text-gray-500 tracking-widest">'.$this->categorie.'</h2>';
+        return '<div class="mb-4">
+                    <h2 class="text-lg font-medium text-gray-700">' . $this->categorie . '</h2>
+                    <p class="text-sm text-gray-500">Powered by <b>' . $this->partnerName . '</b></p>
+                </div>';
     }
+    
     
     private function name(){
         return '<h1 class="text-gray-900 text-3xl title-font font-medium mb-1">'.$this->name.'</h1>';
@@ -104,23 +114,28 @@ class ProductShow{
     }
     
 
-    private function button(string $string, string $redirect){
-        $builder = new StringBuilder('<a href="'.$redirect.'" class="flex mt-4 lg:mt-0 text-white bg-gradient-to-r ');
+    private function button(string $string,  string $modalId){
+        $builder = new StringBuilder('<button class="flex mt-4 lg:mt-0 text-white bg-gradient-to-r ');
         $builder->append('from-purple-500 to-purple-600 border-0 py-2 px-6 focus:outline-none ')
-                ->append('hover:bg-purple-600 rounded-md shadow-md">'.$string.'</a>');
+                ->append('hover:bg-purple-600 rounded-md shadow-md" data-bs-toggle="modal" data-bs-target="#'.$modalId.'">'.$string.'</button>');
         return $builder->toString();
     }
+    
 
     private function buttonOrder(){
         $builder = new StringBuilder();
-        if(isset($this->button['order']['redirect']) && isset($this->button['order']['string'])){
+        if(isset($this->button['order']['modalId']) && isset($this->button['order']['string'])){
             $builder->append($this->button(
                 $this->button['order']['string'],
-                $this->button['order']['redirect']
+                $this->button['order']['modalId']
             ));
         }
 
         return $builder->toString();
+    }
+
+    private function buttonAddToCart(){
+        return $this->button("Agregar al carrito", $this->idButtonAddToCard);
     }
 
     private function end(){

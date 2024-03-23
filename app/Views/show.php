@@ -9,6 +9,7 @@ layout("store/features");
 layout("store/cards");
 layout("store/footer");
 layout("store/ProductShow");
+layout("principal/Modal");
 $data = ViewData::get();
 ?>
 
@@ -16,12 +17,12 @@ $data = ViewData::get();
 
 <!DOCTYPE html>
 <html>
-<?php headPrincipal("home") ?>
+<?php headPrincipal("Producto") ?>
 
 
 <body>
 
-    <?php headerBarPrincipal("home") ?>
+    <?php headerBarPrincipal("Producto") ?>
 
 
 
@@ -42,8 +43,7 @@ $data = ViewData::get();
         ],
         "button" => [
             "order" => [
-                "string" => "nobre botom",
-                "redirect" => "http://google.com"
+                "string" => "Ordenar",
             ]
         ],
         "category" => "Esto es la categoria",
@@ -51,17 +51,41 @@ $data = ViewData::get();
         "price" => "344",
         "stock" => "3"
     ];
+    br(3);
+    
+    $dataUser = ($data['user']['data']);
+
+    //prettyPrint($dataUser);
+
+  
+
+   // prettyPrint($dataUser->id);
+
+
+
+    
+    
+    $modal = new Modal("Orden", "/action");
+    $form = $modal->input("Nombre completo*", 'name', $dataUser->row->name ?? "");
+    $form .= $modal->input("Correo electrónico", "email", $dataUser->row->email ?? "");
+    $form .= $modal->input("Número de teléfono*", "phoneNumber", $dataUser->phones->principal->number_phone ?? "");
+    $form .= $modal->input("Dirección de entrega*", "addressDelivery", $dataUser->address->principal->address_line ?? "");
+    $form .= $modal->input("Referencia", "reference");
+    $form .= $modal->input("Fecha de entrega*", "deliveryDate", "", "date");
+    $form .= $modal->input("Hora aproximada de entrega*", "deliveryTime", "", "time");
+    $form .= $modal->input("Cantidad*", "amount", "1", "number");
+    $form .= $modal->textarea("Comentario", "comment", "");
+    
+
+
+
+    $modal->setHtmlToRender($form);
+    $data['button']['order']['modalId'] = $modal->getId();
 
     $productShow = new ProductShow($data);
     $productShow->render();
-
+    $modal->render();
     ?>
-
-
-
-
-
-
 
 
     <?Php scriptsPrincipal() ?>

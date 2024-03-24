@@ -50,5 +50,11 @@ class ProductsModel extends BaseModel{
         return $this->query($query, [$id])->fetchAll(PDO::FETCH_ASSOC);
     }
     
+
+    public function existsProductById(string $id){
+        $this->prepare();
+        $this->select(['*'])->from("products")->where("id", $id);
+        return $this->execute()->exists();
+    }
     
 }

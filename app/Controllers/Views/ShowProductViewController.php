@@ -1,5 +1,5 @@
 <?php
-
+Form();
 
 class ShowProductViewController extends BaseController{
 
@@ -14,6 +14,9 @@ class ShowProductViewController extends BaseController{
 
     public function show($request){
         $idProduct = $request[0]; //esto hay que validarlo por si al caso xd (es el id del producto)
+        if(!$this->productsModel()->existsProductById($idProduct)){
+            Form::send("/products", ["El producto solicitado parece no existir"], "Error");
+        }
         view("show", $this->buildData(
             $this->productsModel()->getDataProductById($idProduct)
         ));

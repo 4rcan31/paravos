@@ -25,6 +25,14 @@ class Validate{
             array_push($this->validates, $this->numeric($fields));
         }else if($rule == 'phone'){
             array_push($this->validates, $this->phoneNumber($fields));
+        }else if($rule == "date"){
+            $otros === null ?
+            array_push($this->validates, $this->validateDates($fields)) :
+            array_push($this->validates, $this->validateDates($fields, $otros));  
+        }else if($rule === 'time'){
+            $otros === null ?
+            array_push($this->validates, $this->validateTimes($fields)) :
+            array_push($this->validates, $this->validateTimes($fields, $otros));  
         }else{
             res('Not validate named: '.$rule);
         }
@@ -100,27 +108,95 @@ class Validate{
     }
 
 
+
     function phoneNumber($phones) {
-        $cleanedPhones = array_map(function($index) {
+        $cleanedPhones = array();
+        
+        foreach ($phones as $index) {
             $phone = $this->input($index);
             if (!$phone) {
                 return false;
             }
-            // Elimina todos los caracteres que no sean números o el signo "+"
+            
             $cleanPhone = preg_replace('/[^0-9+]/', '', $phone);
-            return $cleanPhone;
-        }, $phones);
+            $cleanedPhones[] = $cleanPhone;
+        }
     
-        // Verifica si todos los números de teléfono son válidos
-        $isValid = array_reduce($cleanedPhones, function($isValid, $cleanPhone) {
-            if ($cleanPhone === false) {
-                return false; // Si uno de los números no se pudo obtener, consideramos que no es válido.
+        $isValid = true;
+        
+        foreach ($cleanedPhones as $cleanPhone) {
+            if ($cleanPhone === false || preg_match('/^\+?[0-9]+$/', $cleanPhone) !== 1) {
+                array_push($this->msg, "El número de teléfono ".$phone." no es válido. Debe contener solo números y opcionalmente el signo '+' al inicio.");
+                $isValid = false;
+                break;
             }
-            // Comprueba si el número de teléfono tiene el formato correcto
-            return $isValid && preg_match('/^\+?[0-9]+$/', $cleanPhone) === 1;
-        }, true);
+        }
     
         return $isValid;
+    }
+    
+    
+    
+
+    public function validateDate($date, $dateFormat = 'Y-m-d', $posterior = true) {
+        $currentDate = date($dateFormat);
+        if (!strtotime($date) || ($posterior && $date < $currentDate) || (!$posterior && $date > $currentDate)) {
+            return false; 
+        }
+    
+        return true;
+    }
+
+    public function validateDates(array $fields, array $data = [
+        "format" => 'Y-m-d',
+        "post" => true
+    ]) {
+        if(!isset($data['format']) || !isset($data['post'])){
+            throw new Exception("Missing config in validates date: format or post");
+        }
+        foreach($fields as $field){
+            $date = $this->input($field);
+            if(!$date){
+                array_push($this->msg, "No existe el campo ".$field);
+                return false;
+            }
+            if(!$this->validateDate($date, $data['format'], $data['post'])){
+                $message = ($data['post']) ? "La fecha ".$date." debe ser posterior a la fecha actual y estar en el formato ".$data['format']."." : "La fecha ".$date." debe estar en el formato ".$data['format'].".";
+                array_push($this->msg, $message);
+                return false;
+            }
+            
+            
+        }
+        return true;
+    }
+
+    public function validateTime($time, $formatTime = 'H:i:s') {
+        $timestamp = strtotime($time);
+        if ($timestamp === false || date($formatTime, $timestamp) !== $time) {
+            return false; 
+        }
+        return true; 
+    }
+    
+    public function validateTimes(array $fields, array $data = [
+        "format" => 'H:i' //antes estaba como H:i:s pero el navegador lo envia como H:i
+    ]) {
+        if(!isset($data['format'])){
+            throw new Exception("Configuración faltante en validación de tiempos: formato");
+        }
+        foreach($fields as $field){
+            $time = $this->input($field);
+            if(!$time){
+                array_push($this->msg, "El campo ".$field." no existe");
+                return false;
+            }
+            if(!$this->validateTime($time, $data['format'])){
+                array_push($this->msg, "La hora ".$time." no cumple con el formato esperado ".$data['format'].".");
+                return false;
+            }            
+        }
+        return true;
     }
     
 
@@ -139,8 +215,7 @@ class Validate{
         if(isset($this->datos[$index])){
             return $this->datos[$index];
         }
-        return false;
-       /*  throw new Exception('El indice: "'.$index.'" no existe.');  */
+        return false; 
     }  
 
     public function err(){

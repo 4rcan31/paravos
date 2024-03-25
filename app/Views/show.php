@@ -65,7 +65,7 @@ $data = ViewData::get();
 
     
     
-    $modal = new Modal("Orden", "/action");
+    $modal = new Modal("Orden", route("/api/v1/order", false));
     $form = $modal->input("Nombre completo*", 'name', $dataUser->row->name ?? "");
     $form .= $modal->input("Correo electrónico", "email", $dataUser->row->email ?? "");
     $form .= $modal->input("Número de teléfono*", "phoneNumber", $dataUser->phones->principal->number_phone ?? "");
@@ -75,7 +75,9 @@ $data = ViewData::get();
     $form .= $modal->input("Hora aproximada de entrega*", "deliveryTime", "", "time");
     $form .= $modal->input("Cantidad*", "amount", "1", "number");
     $form .= $modal->textarea("Comentario", "comment", "");
-    
+    $form .= '<input type="hidden" name="idProduct" value="' . htmlspecialchars($data['id']) . '">';
+    $form .= TokenCsrf::getInput();
+
 
 
 

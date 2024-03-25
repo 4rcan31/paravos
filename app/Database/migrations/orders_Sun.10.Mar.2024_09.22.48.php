@@ -7,25 +7,23 @@ class orders extends Migration {
             $this->query('CREATE TABLE orders (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 product_id INT NOT NULL,
-                user_id INT DEFAULT 1, -- Uno por que el cliente por default sera "1"
-                address_id INT,
+                user_id INT DEFAULT NULL, -- Uno por que el cliente por default sera "1"
+                is_client BOOLEAN DEFAULT TRUE,
+                address TEXT NOT NULL,
                 reference TEXT DEFAULT NULL,
                 email VARCHAR(255),
                 phone VARCHAR(20) NOT NULL,
                 payment_status VARCHAR(20),
                 tracking_number VARCHAR(255),
                 shipping_date DATE,
-                delivery_date DATE,
                 delivery_time TIME,
                 notes TEXT DEFAULT NULL,
-                payment_method VARCHAR(50),
+                payment_method VARCHAR(50) DEFAULT "Efectivo", -- por el momento todo sera efectivo xd
                 order_status VARCHAR(20),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (product_id) REFERENCES products(id),
-                FOREIGN KEY (user_id) REFERENCES users(id), -- Clave foránea para 
-                FOREIGN KEY (address_id) REFERENCES addresses(id)
+                FOREIGN KEY (user_id) REFERENCES users(id) -- Clave foránea para 
             )');
-            
             /* 
                 Tanto user_id como client_id pueden ser nulos.
 Si el pedido es realizado por un cliente registrado, entonces el user_id se asigna, mientras que el client_id se deja nulo.

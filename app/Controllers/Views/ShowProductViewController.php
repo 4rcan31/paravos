@@ -18,11 +18,11 @@ class ShowProductViewController extends BaseController{
             Form::send("/products", ["El producto solicitado parece no existir"], "Error");
         }
         view("show", $this->buildData(
-            $this->productsModel()->getDataProductById($idProduct)
+            $this->productsModel()->getDataProductById($idProduct), $idProduct
         ));
     }
 
-    public function buildData(array $data) {
+    public function buildData(array $data, string $idProduct) {
         $data = $data[0]; // Considera si realmente necesitas esta línea, depende de cómo esté estructurado tu conjunto de datos.
         $return = [];
     
@@ -45,8 +45,9 @@ class ShowProductViewController extends BaseController{
         $return['stock'] = $data['stock'];
         $return['partner_name'] = $data['partner_name'];
         $return['user'] = [
-            "data" => $this->buildDataUser()
+            "data" => $this->buildDataUser(),
         ];
+        $return['id'] = $idProduct;
         return $return;
     }
     

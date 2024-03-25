@@ -211,7 +211,7 @@ class Validate{
         return true;
     }
 
-    public function input($index){
+    public function input($index) : bool|string{
         if(isset($this->datos[$index])){
             return $this->datos[$index];
         }

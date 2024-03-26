@@ -11,10 +11,10 @@ class BaseController{
         }
     }
 
-    public function validateFieldsWithRedirection(Array $errors, $redirectTo, $validator){
+    public function validateFieldsWithRedirection(string $redirectTo, Validate $validator){
         Form();
         if(!$validator->validate()){
-            Form::send($redirectTo, $errors, 'Error');
+            Form::send($redirectTo, $validator->err(), 'Error');
             exit;
         }
     }

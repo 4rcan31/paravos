@@ -43,5 +43,22 @@ class UsersModel extends BaseModel{
         ]
        ];
     }
+
+    public function new(string $email, string $name, string $user, bool $isClient, string $password){
+        $this->prepare();
+        $this->insert("users")->values([
+            "email" => $email,
+            "name" => $name,
+            "user" => $user,
+            "is_client" => $isClient,
+            "password" => $password
+        ]);
+        return $this->execute()->lastId();
+    }
     
+    public function existsByEmailInUserWithAcount(string $email){
+        $this->prepare();
+        $this->select(['*'])->from("users")->where("email", $email)->and("is_client", false);
+        return $this->execute()->exists(); 
+    }
 }

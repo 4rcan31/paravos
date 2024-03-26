@@ -16,8 +16,6 @@ class users extends Migration {
                 is_client BOOLEAN DEFAULT FALSE,
                 password VARCHAR(255) NOT NULL, -- esto se creara con una contrasena ramdon
                 remember_token VARCHAR(255),
-                phone_number VARCHAR(255) DEFAULT NULL,
-                address TEXT DEFAULT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )');

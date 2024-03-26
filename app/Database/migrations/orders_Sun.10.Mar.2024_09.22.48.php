@@ -8,7 +8,6 @@ class orders extends Migration {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 product_id INT NOT NULL,
                 user_id INT DEFAULT NULL, -- Uno por que el cliente por default sera "1"
-                is_client BOOLEAN DEFAULT TRUE,
                 address TEXT NOT NULL,
                 reference TEXT DEFAULT NULL,
                 email VARCHAR(255),

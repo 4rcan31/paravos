@@ -5,8 +5,7 @@ class OrdersModel extends BaseModel{
 
     public function new(
         int $productId,
-        int $userId,
-        bool $isClient,
+        int|null $userId,
         string $address,
         string $phone,
         string $reference = null,
@@ -20,7 +19,6 @@ class OrdersModel extends BaseModel{
         $this->insert("orders")->values([
             'product_id' => $productId,
             'user_id' => $userId,
-            'is_client' => $isClient,
             'address' => $address,
             'reference' => $reference,
             'email' => $email,

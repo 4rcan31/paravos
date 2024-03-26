@@ -56,5 +56,19 @@ class ProductsModel extends BaseModel{
         $this->select(['*'])->from("products")->where("id", $id);
         return $this->execute()->exists();
     }
+
+    public function updateStock(int $id, int $newValueStock) : void{
+        $this->prepare();
+        $this->update("products", [
+            "stock" => $newValueStock
+        ])->where("id", $id);
+        $this->execute();
+    }
     
+    public function stockById(string $id) : int{
+        $this->prepare();
+        $this->select(['stock'])->from("products")->where("id", $id);
+        $result = $this->execute()->all();
+        return $result ? $result->stock : -1;
+    }
 }

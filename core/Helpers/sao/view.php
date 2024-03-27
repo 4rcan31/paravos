@@ -13,11 +13,11 @@ function view($html, $data = [], $route = '', $format = 'php'){
         ");
         core('Views', false);
         ViewData::setData($data);
-        // Asegúrate de que $route esté configurado correctamente según tus necesidades.
         $viewPath = empty($route) ? "Views/$html.$format" : "$route/$html.$format";
         import($viewPath, false);
         return true;
-    } catch (\Throwable $th) {
+    } catch (Exception $e) {
+        print($e->getMessage());
         return false;
     }
 }

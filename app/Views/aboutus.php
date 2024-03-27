@@ -10,6 +10,7 @@ layout("store/cards");
 layout("store/footer");
 layout("store/CategoriesApp");
 layout("principal/ImageWithText");
+$data = ViewData::get();
 ?>
 
 
@@ -25,6 +26,32 @@ layout("principal/ImageWithText");
     
 
     
+
+
+
+    <div class="best-features about-features">
+        <div class="container">
+            <div class="row">
+            <?php sectionHeading("Parners") ?>
+                <?php 
+                    foreach($data['partners'] as $partners){
+                        echo cardmd4(
+                            $partners->name,
+                            $partners->img,
+                            strlen($partners->description) > $data['maxcharacters'] ? 
+                            substr($partners->description, 0, $data['maxcharacters'])."..." : 
+                            $partners->description,
+                            route("/partner/".$partners->id, false)
+                        );
+                        
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="best-features about-features">
         <div class="container">
             <div class="row">
@@ -38,11 +65,11 @@ layout("principal/ImageWithText");
                     "google" => "test"
                 ]
                 ); ?>
-
+                
+               
             </div>
         </div>
     </div>
-
 
     <?php footerStore(); ?>
 

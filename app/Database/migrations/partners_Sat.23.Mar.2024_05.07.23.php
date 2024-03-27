@@ -7,6 +7,7 @@ class partners extends Migration {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(255) NOT NULL,
                 description VARCHAR(255) NOT NULL,
+                img TEXT NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )');
@@ -16,6 +17,7 @@ class partners extends Migration {
             $this->insert('partners')->values([
                 'name' => "Para vos (Interno)",
                 'description' => "Ecommers se productos variados",
+                "img" => "https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png"
             ]);
             $this->execute();
         });

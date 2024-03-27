@@ -27,7 +27,7 @@ Route::get("/show", function($request){
 
 
 Route::get("/aboutus", function(){
-    view("aboutus");
+    controller("Views/AboutusController", "view");
 });
 
 Route::get('/contact', function(){

@@ -26,6 +26,15 @@ Route::get("/show", function($request){
 });
 
 
+Route::get("/partner/%id", function($request){
+    controller("Views/ShowPartnerViewController", "show", $request);
+});
+
+Route::get("/partner", function(){
+    Redirect::to("/aboutus");
+});
+
+
 Route::get("/aboutus", function(){
     controller("Views/AboutusController", "view");
 });

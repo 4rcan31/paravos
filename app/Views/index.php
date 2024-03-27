@@ -8,6 +8,7 @@ layout("store/product");
 layout("store/features");
 layout("store/cards");
 layout("store/footer");
+$data = ViewData::get();
 ?>
 
 
@@ -27,14 +28,20 @@ layout("store/footer");
     <div class="latest-products">
         <div class="container">
             <div class="row">
-
                 <?php sectionHeading("Ultimos productos", "Ver todos los productos", route("/products", false)) ?>
-
                 <?php
-                product("Audifonos", "https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png", "Son audifnos", "45.5");
-                product("hahkasjkasj", "https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png", "Son audifnos", "45.5");
+                foreach($data as $product){
+                    $product = arrayToObject($product);
+                    product(
+                        $product->name,
+                        $product->url_img,
+                        $product->description_short,
+                        $product->price,
+                        $product->category_id,
+                        route("/show/".$product->id, false)
+                    );
+                }
                 ?>
-
             </div>
         </div>
     </div>

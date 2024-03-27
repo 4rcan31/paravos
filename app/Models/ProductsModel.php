@@ -71,4 +71,10 @@ class ProductsModel extends BaseModel{
         $result = $this->execute()->all();
         return $result ? $result->stock : -1;
     }
+
+    public function getXProductsLasted(string $limit){
+        return $this->query("SELECT * FROM products
+        ORDER BY created_at DESC
+        LIMIT ?", [$limit])->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

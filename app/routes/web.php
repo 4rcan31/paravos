@@ -1,8 +1,8 @@
 <?php
 
 
-Route::root(function($request){ // localhost:8080/
-    view("index");
+Route::root(function(){ // localhost:8080/
+    controller("Views/HomeViewController", "show");
 });
 
 Route::get("/products/%pages", function($request){

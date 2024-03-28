@@ -10,6 +10,7 @@ layout("store/cards");
 layout("store/footer");
 layout("store/CategoriesApp");
 layout("principal/MapsWithText");
+layout("principal/Maps");
 ?>
 
 
@@ -28,9 +29,7 @@ layout("principal/MapsWithText");
         <div class="container">
             <div class="row">
                 <?php sectionHeading("Nuestra ubicacion") ?>
-                <?Php MapsWithText("ubicationlink", "titulo", "description", [
-                    'facebook' => "test"
-                ]) ?>
+                <?Php MapsWithText(generateGoogleMapsURI(1232, 3234)) ?>
 
 
             </div>

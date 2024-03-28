@@ -58,7 +58,7 @@ class BaseController{
         return Form::setInputs($request);
     }
 
-    public function redirectWithBoolCondition(bool $condition, string $redirectTo, array $messages = [], string $type = "") {
+    public function redirectWithBoolCondition(bool $condition, string $redirectTo, array $messages = [], string $type = "Mensaje") {
         Form();
         if ($condition) {
             Form::send($redirectTo, $messages, $type);

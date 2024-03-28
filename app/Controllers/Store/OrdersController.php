@@ -71,8 +71,8 @@ class OrdersController extends BaseController{
                 */
                 $this->redirectWithBoolCondition(
                     $this->user()->existsByEmailInUserWithAcount($email),
-                    "/login",
-                    ['El correo que pusiste ya tiene una cuenta, asi que puedes registrarte!'],
+                    "/register",
+                    ['El correo que pusiste ya tiene una cuenta, asi que puedes iniciar session!'],
                     "Notice"
                 );
 

@@ -41,7 +41,7 @@ layout("principal/MapsWithText");
             </form>
             <div class="mt-6 text-sm text-center"> 
                 <p class="text-gray-600">¿No tienes una cuenta?</p>
-                <a href="#" class="block mt-2 text-indigo-600 hover:text-indigo-800 transition duration-300">Registrarse</a>
+                <a href="<?php route("/register") ?>" class="block mt-2 text-indigo-600 hover:text-indigo-800 transition duration-300">Registrarse</a>
                 <div class="mt-4 border-t border-gray-200 pt-4">
                     <a href="#" class="text-sm text-gray-600 hover:text-gray-800 transition duration-300">¿Olvidaste tu contraseña?</a> 
                 </div>

@@ -13,7 +13,7 @@
 - [ ] Desarrollar el carrito de compras (también quiza solo llamarlo "Órdenes" para los pedidos registrados).  
 - [X] Mostrar los últimos 6 productos en la vista principal.  
 - [X] Diseñar vistas para los socios (tanto individuales como todos).  
-- [ ] Implementar registro de usuario.  
+- [X] Implementar registro de usuario.  
 - [ ] Considerar la implementación de la funcionalidad "Olvidé mi contraseña" (para futuras iteraciones).  
 - [ ] Implementar inicio de sesión para administradores.  
 - [ ] Comenzar a desarrollar las vistas para el panel de administración.  

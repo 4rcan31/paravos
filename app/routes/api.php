@@ -15,5 +15,8 @@ Route::group(function(){
        controller("Store/OrdersController", 'makeOrder', $request);
     });
 
+    Route::post("register", function($request){
+        controller("Auth/Register", "register", $request);
+    });
 
 })->prefix("/api/v1");

@@ -1,7 +1,7 @@
 <?php 
 
-//import('/Database/ORM/orm.php', false, '/core');
-core('DataBase/ORM/orm.php', false);
+import('Database/ORM/orm.php', false, '/core', false);
+//core('DataBase/ORM/orm.php', false, false);
 class BaseModel extends DataBase{
 
 

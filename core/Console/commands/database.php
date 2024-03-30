@@ -30,13 +30,13 @@ Jenu::command('make:migration', function(){
 
 
 Jenu::command('execute:migrations', function(){
-    if (!empty((new Database)->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN))) {
+    if (!empty((new Database(true))->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN))) {
         Jenu::warn("Your database has pre-installed tables, executing migrations:fresh");
         Jenu::execute('migrations:fresh');
         return;
     }
     
-    $database = new Database();
+    $database = new Database(true);
     try {
         $database->query("SET GLOBAL FOREIGN_KEY_CHECKS=0");
         $alreadyExecutedClasses = [];
@@ -77,7 +77,7 @@ Jenu::command('migrations:fresh', function(){
         return;
     }
 
-    $db = new Database;
+    $db = new Database(true);
     try{
         $db->query("SET GLOBAL FOREIGN_KEY_CHECKS=0");
         $db->query("SET FOREIGN_KEY_CHECKS=0");
@@ -101,7 +101,7 @@ Jenu::command('migrations:fresh', function(){
 
 
 Jenu::command('drop:tables', function(){
-    $db = new Database;
+    $db = new Database(true);
     $tablesQuery = $db->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN);
     if(empty($tablesQuery)){ Jenu::error("The database does not have tables");}
     $confirmation = Jenu::condition("Are you sure you want to delete all tables from the database? (type YES or NO)");
@@ -121,20 +121,23 @@ Jenu::command('drop:tables', function(){
 
 Jenu::command('check:connection:mysql', function(){
     try {
-        $db = new Database;
+        $db = new Database(true);
         $db->query('SHOW DATABASES');
         Jenu::success("The database connection is successful to ". $db->nameDataBase());
     } catch (\PDOException $e) {
         Jenu::error("Database error: " . $e->getMessage());
     } catch (\Throwable $th) {
         Jenu::error("An unexpected error occurred: " . $th->getMessage());
+    } catch (Exception $e){
+        Jenu::error("alfo fallo xd");
+        var_dump($e);
     }
 }, 'Check MySQL database connection', 'Sao:Data Base');
 
 
 Jenu::command('backup:database', function(){
     $return = '';
-    $database = new DataBase;
+    $database = new DataBase(true);
     $namedb = $database->nameDataBase();
     $tables = $database->query('SHOW TABLES')->fetchAll();
 
@@ -180,7 +183,7 @@ Jenu::command('upload:database', function(){
     $sqlContent = file_get_contents($filePath);
 
     try {
-        $database = new DataBase;
+        $database = new DataBase(true);
         $pdo = $database->pdo();
 
         // Ejecuta las consultas SQL sin iniciar explícitamente una transacción

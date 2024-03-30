@@ -1,5 +1,5 @@
 <?php
-import('DataBase/connection.php', false, '/core');
+import('DataBase/connection.php', false, '/core', false);
 
 
 class DataBase extends Connection{

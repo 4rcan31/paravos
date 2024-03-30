@@ -89,7 +89,7 @@ class Sao{
     }
     private function runAppModel(){
       //  include($this->path.'/core/DataBase/ORM/orm.php'); //Esto no estoy muy seguro si es optimo, por que implica llamar al orm en cada peticion 
-        import('Model/baseModel.php', false, '/core');
+        import('Model/baseModel.php', false, '/core', false);
     }
     //End App App
 

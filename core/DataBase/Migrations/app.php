@@ -3,6 +3,9 @@
 require "table.php";
 class Migration extends DataBase{
     
+    public function __construct() {
+        parent::__construct(true);
+    }
     
     public function create(string $nameTable, callable $function){
         $table = new Table($nameTable, 'create');

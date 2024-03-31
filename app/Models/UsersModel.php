@@ -61,4 +61,20 @@ class UsersModel extends BaseModel{
         $this->select(['*'])->from("users")->where("email", $email)->and("is_client", false);
         return $this->execute()->exists(); 
     }
+
+    public function updateName(string $id, string $name){
+        $this->prepare();
+        $this->update("users", [
+            "name" => $name
+        ])->where("id", $id);
+        return $this->execute()->lastId();
+    }
+
+    public function updateUser(string $id, string $user){
+        $this->prepare();
+        $this->update("users", [
+            "user" => $user
+        ])->where("id", $id);
+        return $this->execute()->lastId();
+    }
 }

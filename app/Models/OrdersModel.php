@@ -31,5 +31,11 @@ class OrdersModel extends BaseModel{
         ]);
         return $this->execute()->lastId();
     }
+
+    public function countNumByUserId(string $id){
+        $this->prepare();
+        $this->select()->count()->from("orders")->where("user_id", $id);
+        return $this->execute()->fetchColumn();
+    }
     
 }

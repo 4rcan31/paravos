@@ -51,3 +51,8 @@ Route::get("/login", function(){
 Route::get("/register", function(){
     view("register");
 });
+
+
+Route::get("/profile", function(){
+    Sauth::exitsClientAutheticated() ? controller("Views/ProfileViewController", "show") : Redirect::to("/login");
+});

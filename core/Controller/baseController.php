@@ -4,6 +4,7 @@
 class BaseController{
 
     public function validateCsrfTokenWithRedirection($request, $redirectTo){
+        Form();
         csrf();
         if (!TokenCsrf::validateToken($request)) {
             Form::send($redirectTo, ['Su sesión ha expirado'], 'Error');

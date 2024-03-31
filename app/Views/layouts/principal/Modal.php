@@ -99,7 +99,11 @@ class Modal {
     
 
     public function render(): void {
-        echo $this->modal();
+        echo $this->get();
+    }
+
+    public function get() : string{
+        return $this->modal();
     }
 
 }

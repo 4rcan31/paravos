@@ -75,7 +75,7 @@ $data = ViewData::get();
     $form .= $modal->input("Hora aproximada de entrega*", "deliveryTime", "", "time");
     $form .= $modal->input("Cantidad*", "amount", "1", "number");
     $form .= $modal->textarea("Comentario", "comment", "");
-    $form .= '<input type="hidden" name="idProduct" value="' . htmlspecialchars($data['id']) . '">';
+    $form .= $modal->inputSendHidden("idProduct", $data['id']);
     $form .= TokenCsrf::getInput();
 
 

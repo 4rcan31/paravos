@@ -14,6 +14,8 @@ function headPrincipal($title){
         <?php requiresStaticFiles([
             routePublic('vendor/tailwind/tailwind.min.css'),
             routePublic('vendor/bootstrap/css/bootstrap.min.css'),
+            routePublic('vendor/datatables/dataTables.bootstrap5.css'),
+            routePublic('vendor/datatables/responsive.bootstrap5.css'),
             routePublic('assets/fonts/fontawesome.css'),
             routePublic('assets/css/store.css'),
             routePublic('vendor/owl/owl.css'),

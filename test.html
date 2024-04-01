@@ -4,6 +4,29 @@
         
             Developed by: 4rcane31
         -->
+<pre>
+object(stdClass)#51 (9) {
+          ["id"]=>
+          int(1)
+          ["email"]=>
+          string(13) "user@test.com"
+          ["name"]=>
+          string(12) "User Default"
+          ["user"]=>
+          string(12) "User Default"
+          ["is_client"]=>
+          int(0)
+          ["password"]=>
+          string(60) "$2y$10$4SBTB34ehr2nrw2ibLYzb.hFupUs/U8jbt3orPm4d60mQ3Xrz2QHS"
+          ["remember_token"]=>
+          string(64) "9eb4de1c213dd43a1eaa3463ed2a8196d018804fa6b7fc9a435c2dd9c6d814a1"
+          ["created_at"]=>
+          string(19) "2024-03-30 02:04:04"
+          ["updated_at"]=>
+          string(19) "2024-03-30 18:11:46"
+        }
+        </pre
+>
 
 <!DOCTYPE html>
 <html>
@@ -20,7 +43,7 @@
       rel="stylesheet"
     />
 
-    <title>Producto</title>
+    <title>Perfil</title>
     <link
       rel="stylesheet"
       href="http://127.0.0.1:8080/vendor/tailwind/tailwind.min.css"
@@ -139,223 +162,150 @@
       </nav>
     </header>
 
-    <br /><br /><br />
-    <div class="pt-20">
-      <section class="text-gray-600 body-font overflow-hidden">
-        <div class="container px-5 py-24 mx-auto">
-          <div class="lg:w-4/5 mx-auto flex flex-wrap">
-            <img
-              alt="ecommerce"
-              class="lg:w-1/2 w-full lg:h-auto h-64 object-coverobject-center rounded"
-              data-lightbox="roadtrip"
-              src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png"
-            />
-            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              <div class="mb-4">
-                <h2 class="text-lg font-medium text-gray-700">Electronicos</h2>
-                <p class="text-sm text-gray-500">
-                  Powered by <b>Para vos (Interno)</b>
-                </p>
+    <div class="bg-gray-100">
+      <div class="container mx-auto py-8">
+        <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4 mt-32">
+          <div class="col-span-4 sm:col-span-3">
+            <div class="bg-white shadow rounded-lg p-6">
+              <div class="flex flex-col items-center">
+                <!-- Aca creo que pudiera ir una imagen xd  -->
+                <h1 class="text-xl font-bold">User Default</h1>
+                <p class="text-gray-700">user@test.com</p>
               </div>
-              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-                Nombre
-              </h1>
-              <div class="flex mb-4">
-                <span
-                  class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s"
-                >
-                </span>
+              <hr class="my-6 border-t border-gray-300" />
+            </div>
+          </div>
+
+          <div class="col-span-4 sm:col-span-9">
+            <div class="bg-white shadow rounded-lg p-6">
+              <div class="mb-6 border border-gray-300 rounded p-4">
+                <div class="flex justify-between flex-wrap gap-2 w-full">
+                  <span class="text-gray-700 font-bold">Email</span>
+                </div>
+                <p class="mt-1">user@test.com</p>
               </div>
-              <p class="leading-relaxed">Descripción Corta del producto 1</p>
+              <div class="mb-6 border border-gray-300 rounded p-4">
+                <div class="flex justify-between flex-wrap gap-2 w-full">
+                  <span class="text-gray-700 font-bold"
+                    >Fecha y hora creacion de la cuenta</span
+                  >
+                </div>
+                <p class="mt-1">2024-03-30 02:04:04</p>
+              </div>
+
+
+              <div class="mb-6 border border-gray-300 rounded p-4">
+                <div class="flex justify-between flex-wrap gap-2 w-full">
+                  <span class="text-gray-700 font-bold">Nombre</span>
+                  <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-1 px-2 rounded"
+                    id="modal_6608bd1aef7d1"
+                  >
+                    Editar
+                  </button>
+                </div>
+                <p class="mt-1">User Default</p>
+              </div>
               <div
-                class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"
-              >
-                Descripción larga del producto 1
-              </div>
-              <div class="flex flex-col lg:flex-row justify-between">
-                <div class="flex items-center mt-4">
-                  <div class="mr-20">
-                    <p class="text-gray-600">Precio:</p>
-                    <p class="text-2xl font-medium text-gray-900">$81.00</p>
-                  </div>
-                  <div>
-                    <p class="text-gray-600">En stock:</p>
-                    <p class="text-2xl font-medium text-gray-900">17</p>
+                class="modal fade"
+                id="modal_6608bd1aef7d1"
+                data-bs-backdrop="true"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="modal_6608bd1aef7d1Label"
+                aria-hidden="true"
+                style="z-index: 100000">
+                <div
+                  class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                  style="z-index: 100000"
+                >
+                  <div
+                    class="modal-content"
+                    style="position: relative; z-index: 100000"
+                  >
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modal_6608bd1aef7d1Label">
+                        Nombre
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <form
+                        action="http://127.0.0.1:8080/api/v1/updateName"
+                        method="POST"
+                      >
+                        <div class="mb-3">
+                          <label for="name" class="form-label"
+                            >Editar Nombre</label
+                          ><input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            value=""
+                          />
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary">
+                            Guardar
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Cerrar
+                          </button>
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
-                <button
-                  class="flex mt-4 lg:mt-0 text-white bg-gradient-to-r from-purple-500 to-purple-600 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded-md shadow-md"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal_65ffcce22c35c"
-                >
-                  Ordenar
-                </button>
+              </div>
+
+
+              
+              <div class="mb-6 border border-gray-300 rounded p-4">
+                <div class="flex justify-between flex-wrap gap-2 w-full">
+                  <span class="text-gray-700 font-bold">Email</span>
+                  <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-1 px-2 rounded"
+                  >
+                    Editar
+                  </button>
+                </div>
+                <p class="mt-1">email de prueba</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
-    <div
-      class="modal fade"
-      id="modal_65ffcce22c35c"
-      data-bs-backdrop="true"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="modal_65ffcce22c35cLabel"
-      aria-hidden="true"
-      style="z-index: 100000"
-    >
-      <div
-        class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-        style="z-index: 100000"
-      >
-        <div class="modal-content" style="position: relative; z-index: 100000">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modal_65ffcce22c35cLabel">Orden</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form action="http://127.0.0.1:8080/api/v1/order" method="POST">
-              <div class="mb-3">
-                <label for="name" class="form-label"
-                  >Nombre completo<span class="text-danger">*</span></label
-                ><input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  name="name"
-                  required
-                  value="User Default"
-                /><small class="form-text text-danger small"
-                  >Campo obligatorio</small
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <p>
+                Derechos de autor &copy; 2024 Para Vos - Diseño:
+                <a
+                  rel="nofollow noopener"
+                  href="https://templatemo.com"
+                  target="_blank"
+                  >TemplateMo</a
                 >
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Correo electrónico</label
-                ><input
-                  type="text"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                  value="user@test.com"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="phoneNumber" class="form-label"
-                  >Número de teléfono<span class="text-danger">*</span></label
-                ><input
-                  type="text"
-                  class="form-control"
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  required
-                  value="7737-0329"
-                /><small class="form-text text-danger small"
-                  >Campo obligatorio</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="addressDelivery" class="form-label"
-                  >Dirección de entrega<span class="text-danger">*</span></label
-                ><input
-                  type="text"
-                  class="form-control"
-                  id="addressDelivery"
-                  name="addressDelivery"
-                  required
-                  value="Example City, Example State, El Salvador, plaza mundo"
-                /><small class="form-text text-danger small"
-                  >Campo obligatorio</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="reference" class="form-label">Referencia</label
-                ><input
-                  type="text"
-                  class="form-control"
-                  id="reference"
-                  name="reference"
-                  value=""
-                />
-              </div>
-              <div class="mb-3">
-                <label for="deliveryDate" class="form-label"
-                  >Fecha de entrega<span class="text-danger">*</span></label
-                ><input
-                  type="date"
-                  class="form-control"
-                  id="deliveryDate"
-                  name="deliveryDate"
-                  required
-                  value=""
-                /><small class="form-text text-danger small"
-                  >Campo obligatorio</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="deliveryTime" class="form-label"
-                  >Hora aproximada de entrega<span class="text-danger"
-                    >*</span
-                  ></label
-                ><input
-                  type="time"
-                  class="form-control"
-                  id="deliveryTime"
-                  name="deliveryTime"
-                  required
-                  value=""
-                /><small class="form-text text-danger small"
-                  >Campo obligatorio</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="amount" class="form-label"
-                  >Cantidad<span class="text-danger">*</span></label
-                ><input
-                  type="number"
-                  class="form-control"
-                  id="amount"
-                  name="amount"
-                  required
-                  value="1"
-                /><small class="form-text text-danger small"
-                  >Campo obligatorio</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="comment" class="form-label">Comentario</label
-                ><textarea
-                  class="form-control"
-                  id="comment"
-                  name="comment"
-                ></textarea>
-              </div>
-              <input type="hidden" name="idProduct" value="1" /><input
-                type="hidden"
-                name="csrf_token"
-                value="e7293c0f6abe0c487c6dc4246f2be17aa52ce61c0ee3dc21cb10e7958c44aacc"
-              />
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Cerrar
-                </button>
-              </div>
-            </form>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
 
     <script
       type="text/javascript"

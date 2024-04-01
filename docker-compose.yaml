@@ -14,6 +14,7 @@ services:
     networks:
       - paravos-net
     working_dir: /var/www
+    command: /usr/local/bin/entrypoint.sh
 
   paravos-db:
     container_name: paravos-db

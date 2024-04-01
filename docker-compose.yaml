@@ -8,11 +8,12 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8070:80"
+      - "80:80"
     depends_on:
       - paravos-db
     networks:
       - paravos-net
+    working_dir: /var/www
 
   paravos-db:
     container_name: paravos-db
@@ -23,14 +24,14 @@ services:
     ports:
       - "3306:3306"
 
-    networks:
+    networks: 
     - paravos-net
         # Configuración para aumentar los recursos del contenedor
     deploy:
       resources:
         limits:
-          cpus: '2'  # Puedes ajustar el número de CPU según sea necesario
-          memory: 2G  # Puedes ajustar la memoria según sea necesario
+          cpus: '1'  # Puedes ajustar el número de CPU según sea necesario
+          memory: 1G  # Puedes ajustar la memoria según sea necesario
 
 networks:
   paravos-net:

@@ -68,12 +68,13 @@ class Modal {
         $htmlContent = '<textarea class="form-control" id="' . $name . '" name="' . $name . '" ' . (strpos($label, '*') !== false ? "required" : "") . '>' . $value . '</textarea>';
         return $this->renderField($label, $name, $htmlContent);
     }
-    
-    
-    
-    
-    
 
+    function inputSendHidden(string $name, string $value){
+        $htmlContent = '<input type="hidden" name="'.$name.'" value="' . $value . '">';
+        return $this->renderField("", $name, $htmlContent);
+    }
+    
+    
     public function modal(): string {
         return '<div class="modal fade" id="' . $this->id . '" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="' . $this->id . 'Label" aria-hidden="true" style="z-index: 100000;">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
@@ -97,7 +98,6 @@ class Modal {
     }
     
     
-
     public function render(): void {
         echo $this->get();
     }

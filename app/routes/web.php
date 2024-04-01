@@ -54,23 +54,18 @@ Route::get("/register", function(){
 
 
 
-
-Route::group(function(){
-
-
-    Route::get("/profile", function(){
-        controller("Views/ProfileViewController", "show");
-    });
-
-
-    Route::get('/orders', function(){
-        controller("Views/OrdersCardViewController", 'show');
-    });
-
-
+/* 
+    Esto esta bien raro, ya que con php -S localhost functiona, pero
+    en apache creo que no funciona como deberia xd
+*/
+Route::get("/profile", function(){
+    controller("Views/ProfileViewController", "show");
 })->middlewares(['AuthMiddleware@session']);
 
 
+Route::get('/orders', function(){
+    controller("Views/OrdersCardViewController", 'show');
+})->middlewares(['AuthMiddleware@session']);
 
 Route::error(403, function(){
     Redirect::to("/");

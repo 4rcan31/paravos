@@ -42,33 +42,38 @@ Jenu::command('execute:migrations', function(){
         $alreadyExecutedClasses = [];
         $migrationFiles = getDirsFilesByDirectory(Jenu::baseDir().'/app/Database/migrations/');
         foreach ($migrationFiles as $file) {
-            require_once $file;
-            $declaredClasses = get_declared_classes();
-            foreach ($declaredClasses as $class) {
-                if (method_exists($class, 'up') && is_subclass_of($class, 'Migration')) {
-                    if (!in_array($class, $alreadyExecutedClasses)) {
-                        array_push($alreadyExecutedClasses, $class);
-                        $migrationInstance = new $class();
-                        if (method_exists($migrationInstance, 'down')) {
-                            $migrationInstance->down();
-                        } else {
-                            Jenu::warn("In the migration called '".$class."' the 'down' method doesn't exist");
-                        }
-                        if (method_exists($migrationInstance, 'up')) {
-                            $migrationInstance->up();
-                        } else {
-                            Jenu::warn("In the migration called '".$class."' the 'up' method doesn't exist");
-                        }
+            try {
+                require_once $file;
+                $declaredClasses = get_declared_classes();
+                foreach ($declaredClasses as $class) {
+                    if (method_exists($class, 'up') && is_subclass_of($class, 'Migration')) {
+                        if (!in_array($class, $alreadyExecutedClasses)) {
+                            array_push($alreadyExecutedClasses, $class);
+                            $migrationInstance = new $class();
+                            if (method_exists($migrationInstance, 'down')) {
+                                $migrationInstance->down();
+                            } else {
+                                Jenu::error("In the migration called '".$class."' the 'down' method doesn't exist");
+                            }
+                            if (method_exists($migrationInstance, 'up')) {
+                                $migrationInstance->up();
+                            } else {
+                                Jenu::error("In the migration called '".$class."' the 'up' method doesn't exist");
+                            }
 
-                        Jenu::success("The migration '".basename($file)."' was executed");
+                            Jenu::success("The migration '".basename($file)."' was executed");
+                        }
                     }
                 }
+            } catch (Exception $e) {
+                Jenu::error("Error occurred in migration '".basename($file)."': ".$e->getMessage());
             }
         }
     } finally {
         $database->query("SET GLOBAL FOREIGN_KEY_CHECKS=1");
     }
 }, 'Install Tables to the Database', 'Sao:Data Base');
+
 
 
 Jenu::command('migrations:fresh', function(){

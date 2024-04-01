@@ -53,6 +53,25 @@ Route::get("/register", function(){
 });
 
 
-Route::get("/profile", function(){
-    Sauth::exitsClientAutheticated() ? controller("Views/ProfileViewController", "show") : Redirect::to("/login");
+
+
+Route::group(function(){
+
+
+    Route::get("/profile", function(){
+        controller("Views/ProfileViewController", "show");
+    });
+
+
+    Route::get('/orders', function(){
+        controller("Views/OrdersCardViewController", 'show');
+    });
+
+
+})->middlewares(['AuthMiddleware@session']);
+
+
+
+Route::error(403, function(){
+    Redirect::to("/");
 });

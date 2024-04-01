@@ -38,4 +38,32 @@ class OrdersModel extends BaseModel{
         return $this->execute()->fetchColumn();
     }
     
+
+    public function getByUserId(string $id){
+        $this->prepare();
+        $this->select(['*'])->from('orders')->where('user_id', $id);
+        return $this->execute()->all('fetchAll');
+    }
+
+    public function getAllInfoByIdUser(string $id){
+        return $this->query('SELECT
+                        products.name,
+                        products.price,
+                        orders.address,
+                        orders.reference,
+                        orders.phone,
+                        orders.payment_status,
+                        orders.payment_method,
+                        orders.order_status,
+                        orders.tracking_number,
+                        orders.shipping_date,
+                        orders.delivery_time
+                    FROM
+                        orders
+                    INNER JOIN
+                        products ON orders.product_id = products.id
+                    WHERE
+                        orders.user_id = ?;
+                ', [$id])->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

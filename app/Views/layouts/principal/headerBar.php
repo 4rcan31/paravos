@@ -34,7 +34,7 @@ function headerBarPrincipal($currentPage)
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <?php if (Sauth::exitsClientAutheticated()) : ?>
                                     <a class="dropdown-item" href="<?php echo route("/profile", false) ?>">Mi Cuenta</a>
-                                    <a class="dropdown-item" href="<?php echo route("/cart", false) ?>">Carrito</a>
+                                    <a class="dropdown-item" href="<?php echo route("/orders", false) ?>">Ordenes/Carrito</a>
                                     <a class="dropdown-item" href="<?php echo route("api/v1/logout/user", false) ?>">Cerrar Sesión</a>
                                 <?php else : ?>
                                     <a class="dropdown-item" href="<?php echo route("/login", false) ?>">Login</a>

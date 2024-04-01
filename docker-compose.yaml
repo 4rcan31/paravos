@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  paravos-web:
+    container_name: paravos-web
+    # image: d4rkghost47/paravos-server-ecommerce:1.0.0 # si se quiere usar la imagen (molde)
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - paravos-db
+    networks:
+      - paravos-net
+    working_dir: /var/www
+    command: /usr/local/bin/entrypoint.sh
+
+  paravos-db:
+    container_name: paravos-db
+    #image: d4rkghost47/paravos-db-ecommerce:1.0.2 # si se quiere usar la imagen
+    build:
+      context: ./infra/docker/custom-mysql/
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+
+    networks: 
+    - paravos-net
+        # Configuración para aumentar los recursos del contenedor
+    deploy:
+      resources:
+        limits:
+          cpus: '1'  # Puedes ajustar el número de CPU según sea necesario
+          memory: 1G  # Puedes ajustar la memoria según sea necesario
+
+networks:
+  paravos-net:
+    driver: bridge
+

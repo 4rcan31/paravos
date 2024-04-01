@@ -9,7 +9,7 @@ layout("store/features");
 layout("store/cards");
 layout("store/footer");
 layout("store/CategoriesApp");
-layout("principal/profile");
+layout("user/profile");
 $data = ViewData::get();
 $user = $data['user'];
 ?>

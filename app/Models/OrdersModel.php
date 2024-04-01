@@ -66,4 +66,13 @@ class OrdersModel extends BaseModel{
                         orders.user_id = ?;
                 ', [$id])->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function setCancelOrderByTrakingNumber(string $trackingNumber){
+        $this->prepare();
+        $this->update('orders', [
+            "payment_status" => "Cancelado",
+            "order_status" => 'Cancelado'
+        ])->where('tracking_number', $trackingNumber);
+        return $this->execute()->lastId();
+    }
 }

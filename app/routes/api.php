@@ -27,6 +27,10 @@ Route::group(function(){
         Route::post('/updateUser', function ($request){
             controller("User/ProfileController", "updateUser", $request);
         });
+
+        Route::post("/cancelar-pedido", function($request){
+           controller("Store/OrdersController", "cancelOrder", $request);
+        });
         
     })->middlewares(['AuthMiddleware@session']);
 

@@ -133,5 +133,26 @@ class OrdersController extends BaseController{
     public function trakingNumberOrder(){
         return token(8); //8 para que el usuario mas o menos pueda dictarlo
     }
+
     
+    public function cancelOrder($request){
+        //validar token cfsc
+        $validate = validate($request);
+        $validate->rule('required', ['tracking_number']);
+        $this->redirectWithBoolCondition(
+            !$validate->validate(),
+            "/orders",
+            $validate->err()
+        );
+
+        $this->orders()->setCancelOrderByTrakingNumber(
+            $validate->input("tracking_number")
+        );
+
+        $this->redirectWithBoolCondition(
+            true,
+            "/orders",
+            ['La orden con numero '.$validate->input("tracking_number")." fue cancela con exito"]
+        );
+    }
 }

@@ -64,7 +64,7 @@ class OrdersViewClass{
             "Cancelar Orden", // Nombre de la columna
             "Cancelar Pedido", // Texto del botón
             "Cancelando el pedido {{name}}", // Título del modal
-            "/cancelar-pedido", // Acción que se realizará al confirmar
+            route("api/v1/cancelar-pedido", false), // Acción que se realizará al confirmar
             "¿Estás seguro que deseas cancelar el pedido con número {{tracking_number}} llamado {{name}}?", // Mensaje de confirmación
             ["tracking_number"], // Claves de los datos a enviar al modal
             2

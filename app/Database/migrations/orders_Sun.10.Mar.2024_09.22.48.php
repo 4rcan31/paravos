@@ -12,13 +12,13 @@ class orders extends Migration {
                 reference TEXT DEFAULT NULL,
                 email VARCHAR(255),
                 phone VARCHAR(20) NOT NULL,
-                payment_status VARCHAR(20),
+                payment_status VARCHAR(20), -- puede ser: Pendiente, Completado, Cancelado
                 tracking_number VARCHAR(255),
                 shipping_date DATE,
                 delivery_time TIME,
                 notes TEXT DEFAULT NULL,
                 payment_method VARCHAR(50) DEFAULT "Efectivo", -- por el momento todo sera efectivo xd
-                order_status VARCHAR(20),
+                order_status VARCHAR(20), -- Puede ser: Entregado, Pendiente, Cancelado
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (product_id) REFERENCES products(id),
                 FOREIGN KEY (user_id) REFERENCES users(id) -- Clave foránea para 

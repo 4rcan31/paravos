@@ -19,7 +19,7 @@ Route::group(function(){
         controller("Auth/Register", "register", $request);
     });
 
-    Route::group(function(){
+/*     Route::group(function(){
         Route::post('/updateName', function ($request){
             controller("User/ProfileController", "updateName", $request);
         });
@@ -28,7 +28,7 @@ Route::group(function(){
             controller("User/ProfileController", "updateUser", $request);
         });
         
-    })->middlewares(['AuthMiddleware@session']);
+    })->middlewares(['AuthMiddleware@session']); */
 
 
 })->prefix("/api/v1");

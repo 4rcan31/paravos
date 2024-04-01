@@ -73,7 +73,6 @@ $data = ViewData::get();
     $form .= $modal->input("Referencia", "reference");
     $form .= $modal->input("Fecha de entrega*", "deliveryDate", "", "date");
     $form .= $modal->input("Hora aproximada de entrega*", "deliveryTime", "", "time");
-    $form .= $modal->input("Cantidad*", "amount", "1", "number");
     $form .= $modal->textarea("Comentario", "comment", "");
     $form .= $modal->inputSendHidden("idProduct", $data['id']);
     $form .= TokenCsrf::getInput();

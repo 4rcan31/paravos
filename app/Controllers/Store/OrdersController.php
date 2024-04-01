@@ -23,7 +23,7 @@ class OrdersController extends BaseController{
     public function makeOrder($request){
         $this->validateCsrfTokenWithRedirection($request, "/products");
         $validate = validate($request);
-        $validate->rule("required", ['name', 'phoneNumber', 'addressDelivery', 'deliveryDate', 'deliveryTime', 'amount', 'idProduct']);
+        $validate->rule("required", ['name', 'phoneNumber', 'addressDelivery', 'deliveryDate', 'deliveryTime', 'idProduct']);
         $validate->rule("date", ['deliveryDate']);
         $validate->rule("time", ['deliveryTime']);
         $validate->rule("phone", ['phoneNumber']);
@@ -45,7 +45,7 @@ class OrdersController extends BaseController{
 
         if(Sauth::exitsClientAutheticated()){
             $this->orders()->new(
-                $validate->input("idProduct"),
+                $IdProduct,
                 $this->clientAuth()->id,
                 $validate->input("addressDelivery"),
                 $validate->input("phoneNumber"),
@@ -56,6 +56,10 @@ class OrdersController extends BaseController{
                 $validate->input("deliveryDate"),
                 $validate->input("deliveryTime"),
                 "Pendiente" //por que se acaba de hacer xd
+            );
+            $this->products()->updateStock(
+                $IdProduct, 
+                $stock - 1 //se le resta uno por que es una nueva orden
             );
             Form::send('/show/'.$validate->input('idProduct'), ["Se registro correctamente tu orden"], "Notice");
             //significa que es un cliente con session

@@ -18,6 +18,7 @@ function view($html, $data = [], $route = '', $format = 'php'){
         return true;
     } catch (Exception $e) {
         print($e->getMessage());
+        die;
         return false;
     }
 }

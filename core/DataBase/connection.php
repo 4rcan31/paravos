@@ -6,7 +6,7 @@ class Connection{
     protected ?string $user = null;
     protected ?string $dbname = null;
     protected ?string $password = null;
-
+    protected ?string $port = null;
 
 
     public function __construct(bool $admin = false){
@@ -35,21 +35,23 @@ class Connection{
         $dbname = $this->buildVar($this->dbname, 'DB_DATABASE');
         $username = $this->buildVar($this->user, 'DB_USERNAME');
         $password = $this->buildVar($this->password, 'DB_PASSWORD');
+        $port = $this->buildVar($this->port, 'DB_PORT', '3306');
         return [
-            "uri" => "mysql:host=".$host.";dbname=".$dbname,
+            "uri" => "mysql:host=".$host.";port=".$port.";dbname=".$dbname,
             "user" => $username,
             "password" => $password
         ];
     }
 
-    public function buildVar(mixed $var, string $type){
-        return $var === null ? $_ENV[$type] : $var;
+    public function buildVar(mixed $var, string $type, string $default = null){
+        return $var === null ? ($_ENV[$type] ?? $default) : $var;
     }
 
-    public function setCredentialsAsAdmin(string $host = null, string $user = null, string $dbname = null, string $password = null){
+    public function setCredentialsAsAdmin(string $host = null, string $port = null, string $user = null, string $dbname = null, string $password = null){
         $this->host = $this->buildVar($host, 'DB_HOST');
         $this->dbname = $this->buildVar($dbname, 'DB_DATABASE');
         //esto es para que el cli ocupe modo admin
+        $this->port = $this->buildVar($port, 'DB_PORT', '3306');
         $this->user = $this->buildVar($user, 'DB_ADMIN_USERNAME');
         $this->password = $this->buildVar($password, 'DB_ADMIN_PASSWORD');
     }

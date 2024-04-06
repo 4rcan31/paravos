@@ -5,6 +5,7 @@ Route::root(function(){ // localhost:8080/
     controller("Views/HomeViewController", "show");
 });
 
+
 Route::get("/products/%pages", function($request){
     controller("Views/ProductsViewController", "products", $request);
 });
@@ -52,7 +53,13 @@ Route::get("/register", function(){
     view("register");
 });
 
+Route::group(function(){
 
+    Route::get("/home", function(){
+        view("admin/home");
+    });
+
+})->prefix("/admin");
 
 /* 
     Esto esta bien raro, ya que con php -S localhost functiona, pero
@@ -66,6 +73,10 @@ Route::get("/profile", function(){
 Route::get('/orders', function(){
     controller("Views/OrdersCardViewController", 'show');
 })->middlewares(['AuthMiddleware@session']);
+
+Route::get("/hola", function($request){
+    view("index");
+});
 
 Route::error(403, function(){
     Redirect::to("/");

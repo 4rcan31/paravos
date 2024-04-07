@@ -73,7 +73,16 @@ class Modal {
         $htmlContent = '<input type="hidden" name="'.$name.'" value="' . $value . '">';
         return $this->renderField("", $name, $htmlContent);
     }
-    
+
+    function select(string $label, string $name, array $options, string $selected = '') : string {
+        $htmlContent = '<select class="form-select" id="' . $name . '" name="' . $name . '" ' . (strpos($label, '*') !== false ? "required" : "") . '>';
+        foreach ($options as $value => $text) {
+            $isSelected = $value == $selected ? 'selected' : '';
+            $htmlContent .= '<option value="' . $value . '" ' . $isSelected . '>' . $text . '</option>';
+        }
+        $htmlContent .= '</select>';
+        return $this->renderField($label, $name, $htmlContent);
+    }
     
     public function modal(): string {
         return '<div class="modal fade" id="' . $this->id . '" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="' . $this->id . 'Label" aria-hidden="true" style="z-index: 100000;">

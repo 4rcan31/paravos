@@ -31,8 +31,8 @@ $user = $data['user'];
                     <div class="bg-white shadow rounded-lg p-6">
                         <div class="flex flex-col items-center">
                             <!-- Aca creo que pudiera ir una imagen xd  -->
-                            <h1 class="text-xl font-bold"><?php echo $user->name ?></h1>
-                            <p class="text-gray-700"><?php echo $user->email ?></p>
+                            <h1 class="text-xl font-bold"><?php echo $user['row']->name ?></h1>
+                            <p class="text-gray-700"><?php echo $user['row']->email ?></p>
                         </div>
                         <hr class="my-6 border-t border-gray-300">
                     </div>
@@ -44,11 +44,17 @@ $user = $data['user'];
                     <div class="bg-white shadow rounded-lg p-6">
                         <?php
                             $profile = new Profile($data);
+                            $profile->addTitle("Información del Usuario");
                             $profile->emailCard();
                             $profile->name();
                             $profile->user();
                             $profile->createAcount();
                             $profile->numOrders();
+                            $profile->addTitle(
+                                "Dirección", 
+                                "Nota: La dirección que definas afectará el costo de envío. Puedes modificarla en cualquier momento."
+                            );
+                            $profile->address();
                             $profile->render();
                         ?>
                     </div>

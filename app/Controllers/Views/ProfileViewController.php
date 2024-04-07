@@ -14,7 +14,7 @@ class ProfileViewController extends BaseController{
 
     public function show(){
         view("profile", [
-            "user" => $this->user()->getById(
+            "user" => $this->user()->getAllById(
                 $this->clientAuth()->id
             ),
             "orders" => [

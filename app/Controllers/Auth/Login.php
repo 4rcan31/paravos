@@ -18,7 +18,11 @@ class Login extends BaseController{
         $validate = validate($request);
         $validate->rule('required', ['email', 'password']); 
         $validate->rule('email', ['email']);
-        if(!$validate->validate()){ Form::send('/login', $validate->err(), 'Error'); }
+        $this->redirectWithBoolCondition(
+            !$validate->validate(),
+            "/login",
+            $validate->err()
+        );
 
         $explode = explode(":", $validate->input("email"));
 

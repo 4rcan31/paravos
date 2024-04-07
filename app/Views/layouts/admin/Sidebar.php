@@ -5,43 +5,65 @@
 */
 
 function sidebar(){
-    ?>  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> <?php
-    headSideBar();
-    divider('my-0');
-    navItem('DashBoard', 'fas fa-fw fa-tachometer-alt', 'panel/dashboard');
-    divider();
-    HeadingNavItem('Apps conectadas');
-    collapse("app name", 'Administración:', [
-        'Dashboard' => 'panel/croquette',
-    ], 'fas fa-fw fa-dog');
-    
-    divider();
-    HeadingNavItem('Utilidades');
-    navItem(
-        'Ordenes',
-        'fas fa-fw fa-cash-register',
-        'panel/orders'
-    );
-    navItem('Tienda', 'fas fa-fw fa-store', '/panel/store');
-    /* navItem('Logs', 'fas fa-fw fa-list', '/panel/logs'); */
-    /* navItem('Configuracion', 'fas fa-fw fa-wrench', '/panel/settings'); */
-    navItem('Profile', 'fas fa-fw fa-user', '/panel/profile');
-    navItem('Estado Server', 'fas fa-fw fa-server', 'panel/statusservices');
-    navItem('FAQ', 'fas fa-fw fa-question', 'panel/faq');
-    /* navItem('doctemplate', 'fas fa-fw fa-test', 'panel/template'); */
-    sidebarToggler();
-    //sidebarMessage('Conecta a croquette', 'BOTON', 'TES');
-    ?> </ul> <?php
+    ?>  
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> 
+        <?php
+        headSideBar();
+        divider();
+        HeadingNavItem('Estadisticas');
+        navItem('DashBoard', 'fas fa-fw fa-tachometer-alt', 'admin/home');
+        divider();
+        HeadingNavItem('Tienda');
+        navItem('Ordenes', 'fas fa-truck', '/panel/store');
+        navItem('Productos', 'fas fa-shopping-bag', '/panel/store');
+        navItem('Categorias', 'fas fa-tags', '/panel/store');
+
+        divider();
+        HeadingNavItem('Parners');
+        navItem('Parners', 'fas fa-fw fa-users', '/panel/store');
+
+
+        divider();
+        HeadingNavItem('Usuarios');
+        navItem('Usuarios', 'fas fa-fw fa-user-friends', '/panel/store');
+
+
+        /* collapse("app name", 'Administración:', [
+            'Dashboard' => 'panel/croquette',
+            'jskdjskdj' => 'panel/croquette',
+        ], 'fas fa-fw fa-dog');
+        
+        divider();
+        HeadingNavItem('Utilidades');
+        navItem(
+            'Ordenes',
+            'fas fa-fw fa-cash-register',
+            'panel/orders'
+        );
+        navItem('Tienda', 'fas fa-fw fa-store', '/panel/store');
+        navItem('ORdenes', 'fas fa-fw fa-store', '/panel/store');
+        navItem('Logs', 'fas fa-fw fa-list', '/panel/logs');
+        navItem('Configuracion', 'fas fa-fw fa-wrench', '/panel/settings');
+        navItem('Profile', 'fas fa-fw fa-user', '/panel/profile');
+        navItem('Estado Server', 'fas fa-fw fa-server', 'panel/statusservices');
+        navItem('FAQ', 'fas fa-fw fa-question', 'panel/faq');
+        navItem('doctemplate', 'fas fa-fw fa-test', 'panel/template'); */
+        sidebarToggler();
+        //sidebarMessage('Conecta a croquette', 'BOTON', 'TES');
+        ?> 
+    </ul> 
+    <?php
 }
+
 
 
 function headSideBar(){
 ?>
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php route('/panel/dashboard') ?>">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-paw"></i>
+            <i class="fas fa-store"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">FTecnology</div>
+        <div class="sidebar-brand-text mx-3">Para vos</div>
     </a>
 <?php
 }

@@ -155,15 +155,20 @@ function newMessage($message, $time, $route, $redirecto = '#'){
     <?php
 }
 
+
+// TODO: en el futuro pone run avatar en la base de datos para admin
 function userInformation($nameUser, $avatar, $profileLInk, $settisLink, $logLink, $logoutLink = '#'){
     ?> 
-    <li class="nav-item dropdown">
-    <a class="nav-link" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <img class="img-profile rounded-circle" src="<?php echo $avatar ?>" alt="Profile Picture">
-        <span class="d-block text-center text-gray-600 small"><?php echo $nameUser ?></span>
-    </a>
+    <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <div style="text-align: center;">
+                <img class="img-profile rounded-circle mb-2" src="<?php echo "https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" ?>" alt="Profile Picture">
+                <span class="d-block text-gray-600 small"><?php echo $nameUser ?></span>
+            </div>
+        </a>
         <!-- Dropdown - User Information -->
-        <ul class="dropdown-menu dropdown-menu-end shadow animated--grow-in" aria-labelledby="userDropdown">
+        <ul class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
             <li><a class="dropdown-item" href="<?php echo $profileLInk ?>">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                 Profile
@@ -185,6 +190,9 @@ function userInformation($nameUser, $avatar, $profileLInk, $settisLink, $logLink
     </li>
     <?php
 }
+
+
+
 
 
 

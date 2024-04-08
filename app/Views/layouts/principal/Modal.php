@@ -10,6 +10,7 @@ class Modal {
     private string $htmlToRenderIntoModal = '';
     private string $actionRute;
     private string $method = 'POST';
+    private string $ruteWithOutAction = '/null';
 
     public function __construct(string $title, string $action) {
         $this->id = $this->generateId();
@@ -39,6 +40,10 @@ class Modal {
 
     public function setSaveButtonName(string $name): void {
         $this->saveButtonName = $name;
+    }
+
+    public function setEndpointWithOutActionForm(string $enpoint) : void{
+        $this->ruteWithOutAction = $enpoint;
     }
     
 
@@ -85,6 +90,7 @@ class Modal {
     }
     
     public function modal(): string {
+        $submitButton = ($this->actionRute === $this->ruteWithOutAction) ? '' : '<button type="submit" class="btn btn-primary">' . $this->saveButtonName . '</button>';
         return '<div class="modal fade" id="' . $this->id . '" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="' . $this->id . 'Label" aria-hidden="true" style="z-index: 100000;">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
                 <div class="modal-content" style="position: relative; z-index: 100000;">
@@ -96,7 +102,7 @@ class Modal {
                         <form action="' . $this->actionRute . '" method="' . $this->method . '">
                             ' . $this->htmlToRenderIntoModal . '
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">' . $this->saveButtonName . '</button>
+                                ' . $submitButton . '
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">' . $this->closeButtonName . '</button>
                             </div>
                         </form>

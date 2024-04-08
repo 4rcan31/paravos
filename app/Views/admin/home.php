@@ -1,4 +1,4 @@
-<?php 
+<?php
 layout("admin/HeaderAdmin");
 layout("admin/ScriptsAdmin");
 layout("admin/Components");
@@ -6,6 +6,19 @@ layout("admin/Footer");
 layout("admin/Logout");
 layout("admin/Sidebar");
 layout("admin/Topbar");
+layout("principal/Modal");
+layout("admin/Crud");
+
+$table = [
+    "columns" => ["id", "name", "age", "email", "city"],
+    "rows" => [
+        ["id" => 1, "name" => "John", "age" => 25, "email" => "john@example.com", "city" => "New York"],
+        ["id" => 2, "name" => "Emma", "age" => 30, "email" => "emma@example.com", "city" => "Los Angeles"],
+        ["id" => 3, "name" => "Michael", "age" => 28, "email" => "michael@example.com", "city" => "Chicago"],
+        ["id" => 4, "name" => "Sophia", "age" => 22, "email" => "sophia@example.com", "city" => "Houston"],
+        ["id" => 5, "name" => "William", "age" => 35, "email" => "william@example.com", "city" => "Miami"]
+    ]
+];
 ?>
 
 
@@ -20,7 +33,7 @@ layout("admin/Topbar");
     <div id="wrapper">
 
         <!-- Sidebar -->
-            <?php sidebar(); ?>
+        <?php sidebar(); ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -36,15 +49,52 @@ layout("admin/Topbar");
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <?php pageHending('Apps conectadas', true, 'reporte'); ?>
 
-                    <!-- Content Row -->
-                    <div class="row">
-                        <?php 
-                        card('Ninguna app conectada',"Hola user esto es una card", 'paw', 'warning', 1);
-                        ?>  
-                    </div>
+
+
+
+
+                    <?Php
+
+                    /* 
+                    CRUD:
+                    create: no
+                    READ: Listo
+                    Update: Listo
+                    Delete: Listo
+
+
+                        //read all
+                          $crud = new Crud($allTable, $columsShowInTable <- por defecto todas)
+                        //read all just row
+                        $crud->setViewAllData() : mostrar toda la data de la fila
+
+
+                          /update
+                          $crud->setEditButton(arrar $columnsToEdit, string $action) : abrir modal para editar
+                          
+                          /delete
+                          $crud->setDeleteButton(bool $justDesactive = false, string $column = "") : eliminar la fila, o desactivarla en el caso que este configurado asi (mostrar un modal de coonfirmacion)
+
+                          //create
+                          $crud->setCreateButton(array $columnsNeedsToCreate)
+
+                    */
+                        $crud = new Crud($table);
+                        $crud->setColumnsShowInTable('id', 'name');
+                        $crud->setViewDataColumnsTable("Esto es un titulo");
+                        $crud->setViewAllRowTheTableOriginalInModal();
+                        $crud->setEditButton(
+                            "Editar", "action"
+                        );
+                        $crud->setCancelButton("Cancelar", "/action", "Seguro que deseas eliminar al usuario {{name}}", []);
+                        $crud->setCreateButton("Titulo del modal", "/action", false);
+                        $crud->build();
+                        $crud->render();    
+                    ?>
+
+
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -52,7 +102,7 @@ layout("admin/Topbar");
             <!-- End of Main Content -->
 
             <!-- Footer -->
-                <?php footerPanel(); ?>
+            <?php footerPanel(); ?>
             <!-- End of Footer -->
 
         </div>
@@ -68,6 +118,7 @@ layout("admin/Topbar");
     <?php modalLogout() ?>
 
     <?php scriptsPanel() ?>
+    <?php $crud->dataTable()->redenderPaginationTableAfterLoadScriptJs(); ?>
 
 </body>
 

@@ -13,7 +13,7 @@ function scriptsPanel(){
     routePublic('assets/js/demo/chart-area-demo.js'),
     routePublic('assets/js/demo/chart-pie-demo.js'),
     routePublic('vendor/datatables/jquery.dataTables.min.js'),
-    routePublic('vendor/datatables/dataTables.bootstrap5.js')
+    routePublic('vendor/datatables/dataTables.bootstrap4.min.js')
   ]);
   Form::print(); 
   Form::setValuesInputs();

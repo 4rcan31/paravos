@@ -14,7 +14,7 @@ function headPanel($title){
         <?php requiresStaticFiles([
             routePublic('vendor/fontawesome-free/css/all.min.css'),
             routePublic('assets/css/sb-admin-2.min.css'),
-            routePublic('vendor/datatables/dataTables.bootstrap5.css')
+            routePublic('vendor/datatables/dataTables.bootstrap5.css'),
         ]) ?>
     </head>
 <?php

@@ -35,4 +35,30 @@ Route::group(function(){
     })->middlewares(['AuthMiddleware@session']);
 
 
+    Route::group(function(){
+
+        Route::post("/category", function($request){
+            controller("Admin/CategoriesController", "edit", $request);
+        });
+
+    })->prefix("/edit");
+
+    Route::group(function(){
+
+        Route::post("/category", function($request){
+            controller("Admin/CategoriesController", "create", $request);
+        });
+
+    })->prefix("/create");
+
+    Route::group(function(){
+
+        Route::post("/category", function($request){
+            controller("Admin/CategoriesController", "delete", $request);
+        });
+
+    })->prefix("/delete");
+
+
+
 })->prefix("/api/v1");

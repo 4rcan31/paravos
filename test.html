@@ -1,339 +1,524 @@
-<!--
+
+
+        <!--
             Powered by Sao
             GitHub: https://github.com/4rcan31/Sao
         
             Developed by: 4rcane31
-        -->
-<pre>
-object(stdClass)#51 (9) {
-          ["id"]=>
-          int(1)
-          ["email"]=>
-          string(13) "user@test.com"
-          ["name"]=>
-          string(12) "User Default"
-          ["user"]=>
-          string(12) "User Default"
-          ["is_client"]=>
-          int(0)
-          ["password"]=>
-          string(60) "$2y$10$4SBTB34ehr2nrw2ibLYzb.hFupUs/U8jbt3orPm4d60mQ3Xrz2QHS"
-          ["remember_token"]=>
-          string(64) "9eb4de1c213dd43a1eaa3463ed2a8196d018804fa6b7fc9a435c2dd9c6d814a1"
-          ["created_at"]=>
-          string(19) "2024-03-30 02:04:04"
-          ["updated_at"]=>
-          string(19) "2024-03-30 18:11:46"
-        }
-        </pre
->
+        -->    
+        
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Content-Type" content="text/html" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>Perfil</title>
-    <link
-      rel="stylesheet"
-      href="http://127.0.0.1:8080/vendor/tailwind/tailwind.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="http://127.0.0.1:8080/vendor/bootstrap/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="http://127.0.0.1:8080/assets/fonts/fontawesome.css"
-    />
-    <link rel="stylesheet" href="http://127.0.0.1:8080/assets/css/store.css" />
-    <link rel="stylesheet" href="http://127.0.0.1:8080/vendor/owl/owl.css" />
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/core/document.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/core/touch.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/core/send.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/core/cookies.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/core/server.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/core/string.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/core/animations.js"
-    ></script>
-  </head>
-
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="http://127.0.0.1:8080/">
-            <h2>Para <em>Vos</em></h2>
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarResponsive"
-            aria-controls="navbarResponsive"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8080/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8080/products"
-                  >Productos</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8080/aboutus"
-                  >About Us</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8080/contact"
-                  >Contact Us</a
-                >
-              </li>
-
-              <!-- Nuevo elemento para el perfil del usuario -->
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-user-circle"></i> Perfil
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a
-                    class="dropdown-item"
-                    href="http://127.0.0.1:8080/myaccount"
-                    >Mi Cuenta</a
-                  >
-                  <a class="dropdown-item" href="http://127.0.0.1:8080/cart"
-                    >Carrito</a
-                  >
-                  <a
-                    class="dropdown-item"
-                    href="http://127.0.0.1:8080/api/v1/logout/user"
-                    >Cerrar Sesión</a
-                  >
+        <!DOCTYPE html>
+        <html lang="en">
+        
+        
+            <head>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta name="description" content="">
+                <meta name="author" content="">
+                <title>Home</title>
+                <link rel="stylesheet" href="http://127.0.0.1:8080/vendor/fontawesome-free/css/all.min.css" />
+        <link rel="stylesheet" href="http://127.0.0.1:8080/assets/css/sb-admin-2.min.css" />
+        <link rel="stylesheet" href="http://127.0.0.1:8080/vendor/datatables/dataTables.bootstrap5.css" />
+            </head>
+        
+        <body id="page-top">
+        
+            <!-- Page Wrapper -->
+            <div id="wrapper">
+        
+                <!-- Sidebar -->
+                  
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> 
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://127.0.0.1:8080/panel/dashboard">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-store"></i>
                 </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <div class="bg-gray-100">
-      <div class="container mx-auto py-8">
-        <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4 mt-32">
-          <div class="col-span-4 sm:col-span-3">
-            <div class="bg-white shadow rounded-lg p-6">
-              <div class="flex flex-col items-center">
-                <!-- Aca creo que pudiera ir una imagen xd  -->
-                <h1 class="text-xl font-bold">User Default</h1>
-                <p class="text-gray-700">user@test.com</p>
-              </div>
-              <hr class="my-6 border-t border-gray-300" />
-            </div>
-          </div>
-
-          <div class="col-span-4 sm:col-span-9">
-            <div class="bg-white shadow rounded-lg p-6">
-              <div class="mb-6 border border-gray-300 rounded p-4">
-                <div class="flex justify-between flex-wrap gap-2 w-full">
-                  <span class="text-gray-700 font-bold">Email</span>
-                </div>
-                <p class="mt-1">user@test.com</p>
-              </div>
-              <div class="mb-6 border border-gray-300 rounded p-4">
-                <div class="flex justify-between flex-wrap gap-2 w-full">
-                  <span class="text-gray-700 font-bold"
-                    >Fecha y hora creacion de la cuenta</span
-                  >
-                </div>
-                <p class="mt-1">2024-03-30 02:04:04</p>
-              </div>
-
-
-              <div class="mb-6 border border-gray-300 rounded p-4">
-                <div class="flex justify-between flex-wrap gap-2 w-full">
-                  <span class="text-gray-700 font-bold">Nombre</span>
-                  <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-1 px-2 rounded"
-                    id="modal_6608bd1aef7d1"
-                  >
-                    Editar
-                  </button>
-                </div>
-                <p class="mt-1">User Default</p>
-              </div>
-              <div
-                class="modal fade"
-                id="modal_6608bd1aef7d1"
-                data-bs-backdrop="true"
-                data-bs-keyboard="false"
-                tabindex="-1"
-                aria-labelledby="modal_6608bd1aef7d1Label"
-                aria-hidden="true"
-                style="z-index: 100000">
-                <div
-                  class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                  style="z-index: 100000"
-                >
-                  <div
-                    class="modal-content"
-                    style="position: relative; z-index: 100000"
-                  >
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="modal_6608bd1aef7d1Label">
-                        Nombre
-                      </h5>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div class="modal-body">
-                      <form
-                        action="http://127.0.0.1:8080/api/v1/updateName"
-                        method="POST"
-                      >
-                        <div class="mb-3">
-                          <label for="name" class="form-label"
-                            >Editar Nombre</label
-                          ><input
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            name="name"
-                            value=""
-                          />
-                        </div>
-                        <div class="modal-footer">
-                          <button type="submit" class="btn btn-primary">
-                            Guardar
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                          >
-                            Cerrar
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
+                <div class="sidebar-brand-text mx-3">Para vos</div>
+            </a>
+         <hr class="sidebar-divider ">  
+            <div class="sidebar-heading">
+                Estadisticas    </div>
+             
+                  <li class="nav-item ">
+                        <a class="nav-link" href="http://127.0.0.1:8080/admin/home">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>DashBoard</span></a>
+                    </li>
+             <hr class="sidebar-divider ">  
+            <div class="sidebar-heading">
+                Tienda    </div>
+             
+                  <li class="nav-item ">
+                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                            <i class="fas fa-truck"></i>
+                            <span>Ordenes</span></a>
+                    </li>
+             
+                  <li class="nav-item ">
+                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Productos</span></a>
+                    </li>
+             
+                  <li class="nav-item ">
+                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                            <i class="fas fa-tags"></i>
+                            <span>Categorias</span></a>
+                    </li>
+             <hr class="sidebar-divider ">  
+            <div class="sidebar-heading">
+                Parners    </div>
+             
+                  <li class="nav-item ">
+                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                            <i class="fas fa-fw fa-users"></i>
+                            <span>Parners</span></a>
+                    </li>
+             <hr class="sidebar-divider ">  
+            <div class="sidebar-heading">
+                Usuarios    </div>
+             
+                  <li class="nav-item ">
+                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                            <i class="fas fa-fw fa-user-friends"></i>
+                            <span>Usuarios</span></a>
+                    </li>
               
-              <div class="mb-6 border border-gray-300 rounded p-4">
-                <div class="flex justify-between flex-wrap gap-2 w-full">
-                  <span class="text-gray-700 font-bold">Email</span>
-                  <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-1 px-2 rounded"
-                  >
-                    Editar
-                  </button>
+            <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+             
+            </ul> 
+                    <!-- End of Sidebar -->
+        
+                <!-- Content Wrapper -->
+                <div id="content-wrapper" class="d-flex flex-column">
+        
+                    <!-- Main Content -->
+                    <div id="content">
+        
+                        <!-- Topbar -->
+                         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">  
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+             
+                                 <form
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+              <ul class="navbar-nav ml-auto">  
+                               <li class="nav-item dropdown no-arrow d-sm-none">
+                                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-search fa-fw"></i>
+                                    </a>
+                                    <!-- Dropdown - Messages -->
+                                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                        aria-labelledby="searchDropdown">
+                                        <form class="form-inline mr-auto w-100 navbar-search">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control bg-light border-0 small"
+                                                    placeholder="Search for..." aria-label="Search"
+                                                    aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button">
+                                                        <i class="fas fa-search fa-sm"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+        
+             <li class="nav-item dropdown no-arrow mx-1">         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell fa-fw"></i>
+                        <!-- Counter - Alerts -->
+                        <span class="badge badge-danger badge-counter">2+</span>
+                </a>
+             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">         <h6 class="dropdown-header">
+                    Alert center        </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                        <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
                 </div>
-                <p class="mt-1">email de prueba</p>
-              </div>
+                <div>
+                    <div class="small text-gray-500">December</div>
+                    <span class="font-weight-bold">Esto es una alerta</span>
+                </div>
+            </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                        <i class="fas fa-donate text-white"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="small text-gray-500">tes time</div>
+                    <span class="font-weight-bold">Esto es una prueba en monedas</span>
+                </div>
+            </a>
+             </div>  </li>     <div class="topbar-divider d-none d-sm-block"></div>  
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <div style="text-align: center;">
+                        <img class="img-profile rounded-circle mb-2" src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Profile Picture">
+                        <span class="d-block text-gray-600 small">name</span>
+                    </div>
+                </a>
+                <!-- Dropdown - User Information -->
+                <ul class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="http://127.0.0.1:8080/panel/profile">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                    </a></li>
+                    <li><a class="dropdown-item" href="http://127.0.0.1:8080/panel/settings">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Settings
+                    </a></li>
+                    <li><a class="dropdown-item" href="http://127.0.0.1:8080/panel/logs">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Activity Log
+                    </a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a></li>
+                </ul>
+            </li>
+              </ul>  </nav>                 <!-- End of Topbar -->
+        
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+                        <form action="/api/v1/edit/category" method="post">
+            <label for="name">Nombre:</label><br>
+            <input type="text" id="name" name="name" value="Valor por defecto del nombre"><br><br>
+            <label for="test">Test:</label><br>
+            <input type="text" id="test" name="test" value="Valor por defecto del test"><br><br>
+            <input type="submit" value="Enviar">
+        </form>
+                            <div class="modal fade" id="modal_6618ca4b0e421" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e421Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e421Label">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST" id="modal_6618ca4b0e421-form">
+                                    <div class="mb-3"><label for="id" class="form-label">Editando id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Electronicos" ></div><div class="mb-3"><label for="created_at" class="form-label">Editando created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-09 23:55:33" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e44f" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e44fLabel" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e44fLabel">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST" id="modal_6618ca4b0e44f-form">
+                                    <div class="mb-3"><label for="id" class="form-label">Editando id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="2" ></div><div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Ropa" ></div><div class="mb-3"><label for="created_at" class="form-label">Editando created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-09 23:55:33" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e46c" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e46cLabel" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e46cLabel">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST" id="modal_6618ca4b0e46c-form">
+                                    <div class="mb-3"><label for="id" class="form-label">Editando id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="3" ></div><div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Hogar" ></div><div class="mb-3"><label for="created_at" class="form-label">Editando created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-09 23:55:33" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e484" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e484Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e484Label">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST" id="modal_6618ca4b0e484-form">
+                                    <div class="mb-3"><label for="id" class="form-label">Editando id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="4" ></div><div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Alimentos" ></div><div class="mb-3"><label for="created_at" class="form-label">Editando created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-09 23:55:33" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e4cb" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e4cbLabel" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e4cbLabel">Editando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/category" method="POST" id="modal_6618ca4b0e4cb-form">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name"  value="Electronicos" ></div><div class="mb-3"><label for="indentifier" class="form-label"></label><input type="hidden" name="indentifier" value="1"></div><div class="mb-3"><label for="name" class="form-label"></label><input type="hidden" name="name" value="Electronicos"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e4e4" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e4e4Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e4e4Label">Editando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/category" method="POST" id="modal_6618ca4b0e4e4-form">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name"  value="Ropa" ></div><div class="mb-3"><label for="indentifier" class="form-label"></label><input type="hidden" name="indentifier" value="2"></div><div class="mb-3"><label for="name" class="form-label"></label><input type="hidden" name="name" value="Ropa"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e4f6" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e4f6Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e4f6Label">Editando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/category" method="POST" id="modal_6618ca4b0e4f6-form">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name"  value="Hogar" ></div><div class="mb-3"><label for="indentifier" class="form-label"></label><input type="hidden" name="indentifier" value="3"></div><div class="mb-3"><label for="name" class="form-label"></label><input type="hidden" name="name" value="Hogar"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e50a" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e50aLabel" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e50aLabel">Editando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/category" method="POST" id="modal_6618ca4b0e50a-form">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name"  value="Alimentos" ></div><div class="mb-3"><label for="indentifier" class="form-label"></label><input type="hidden" name="indentifier" value="4"></div><div class="mb-3"><label for="name" class="form-label"></label><input type="hidden" name="name" value="Alimentos"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e590" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e590Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e590Label">Titulo del modal</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/create/category" method="POST" id="modal_6618ca4b0e590-form">
+                                    <div class="mb-3"><label for="name" class="form-label">name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="" ><small class="form-text text-danger small">Campo obligatorio</small></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Categorias</h6>
+                    <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e590">Nuevo</button>
+                </div><div class="card-body"><div class="table-responsive"><table class="table table-bordered" id="table_6618ca4b0e3c9" width="100%" cellspacing="0"><thead><tr><th>N</th><th>name</th><th>Ver</th><th>Editar</th><th>Cancelar</th></tr></thead><tbody><tr><td>1</td><td>Electronicos</td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e421">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e4cb">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e552">Cancelar</button></td></tr><tr><td>2</td><td>Ropa</td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e44f">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e4e4">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e564">Cancelar</button></td></tr><tr><td>3</td><td>Hogar</td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e46c">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e4f6">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e575">Cancelar</button></td></tr><tr><td>4</td><td>Alimentos</td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e484">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e50a">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e584">Cancelar</button></td></tr></tbody><tfoot><tr><th>N</th><th>name</th><th>Ver</th><th>Editar</th><th>Cancelar</th></tr></tfoot></table></div></div></div><div class="modal fade" id="modal_6618ca4b0e552" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e552Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e552Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/delete/category" method="POST" id="modal_6618ca4b0e552-form">
+                                    Seguro que deseas eliminar al usuario Electronicos
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e564" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e564Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e564Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/delete/category" method="POST" id="modal_6618ca4b0e564-form">
+                                    Seguro que deseas eliminar al usuario Ropa
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e575" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e575Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e575Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/delete/category" method="POST" id="modal_6618ca4b0e575-form">
+                                    Seguro que deseas eliminar al usuario Hogar
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6618ca4b0e584" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e584Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6618ca4b0e584Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/delete/category" method="POST" id="modal_6618ca4b0e584-form">
+                                    Seguro que deseas eliminar al usuario Alimentos
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>                </div>
+                        <!-- /.container-fluid -->
+        
+                    </div>
+                    <!-- End of Main Content -->
+        
+                    <!-- Footer -->
+                     
+              <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+                      <!-- End of Footer -->
+        
+                </div>
+                <!-- End of Content Wrapper -->
+        
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <p>
-                Derechos de autor &copy; 2024 Para Vos - Diseño:
-                <a
-                  rel="nofollow noopener"
-                  href="https://templatemo.com"
-                  target="_blank"
-                  >TemplateMo</a
-                >
-              </p>
+            <!-- End of Page Wrapper -->
+        
+            <!-- Scroll to Top Button-->
+                <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+        
+            <!-- Logout Modal-->
+                <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Listo para irse?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+        
+        
+                        <form method="POST" action="http://127.0.0.1:8080/api/v1/auth/logout">
+                            <input type="hidden" name="csrf_token" value="85fc288b37b67e55f086ab19734e78b0532c589a3ac183fae5f523332b575b99">                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">
+                                    Cerrar session
+                                </button>
+                            </div>
+             
+                           
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/vendor/jquery/jquery.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/vendor/bootstrap/js/bootstrap.bundle.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/assets/js/store.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/vendor/owl/owl.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/vendor/slick/slick.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/vendor/isotope/isotope.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="http://127.0.0.1:8080/vendor/accordions/accordions.js"
-    ></script>
-  </body>
-</html>
+        
+            <script type="text/javascript" src="http://127.0.0.1:8080/vendor/jquery/jquery.min.js" ></script>
+        <script type="text/javascript" src="http://127.0.0.1:8080/vendor/bootstrap/js/bootstrap.bundle.min.js" ></script>
+        <script type="text/javascript" src="http://127.0.0.1:8080/vendor/jquery-easing/jquery.easing.min.js" ></script>
+        <script type="text/javascript" src="http://127.0.0.1:8080/assets/js/sb-admin-2.min.js" ></script>
+        <script type="text/javascript" src="http://127.0.0.1:8080/vendor/chart.js/Chart.min.js" ></script>
+        <script type="text/javascript" src="http://127.0.0.1:8080/assets/js/demo/chart-area-demo.js" ></script>
+        <script type="text/javascript" src="http://127.0.0.1:8080/assets/js/demo/chart-pie-demo.js" ></script>
+        <script type="text/javascript" src="http://127.0.0.1:8080/vendor/datatables/jquery.dataTables.min.js" ></script>
+        <script type="text/javascript" src="http://127.0.0.1:8080/vendor/datatables/dataTables.bootstrap4.min.js" ></script>
+            <script>
+                        $(document).ready(function() {
+                            $("#table_6618ca4b0e3c9").DataTable();
+                        });
+                    </script>
+        </body>
+        
+        </html>

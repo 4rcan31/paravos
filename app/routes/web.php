@@ -59,6 +59,10 @@ Route::group(function(){
         view("admin/home");
     });
 
+    Route::get("/categories", function(){
+        controller("Views/Admin/CategoriesViewController", 'show');
+    });
+
 })->prefix("/admin");
 
 /* 

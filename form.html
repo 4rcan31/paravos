@@ -1,53 +1,30 @@
-<!-- Nombre completo -->
-<div class="mb-3">
-    <label for="nombreCompleto" class="form-label">Nombre Completo</label>
-    <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" required >
-</div>
-
-<!-- Dirección de entrega -->
-<div class="mb-3">
-    <label for="direccion" class="form-label">Dirección de Entrega</label>
-    <input type="text" class="form-control" id="direccion" name="direccion" required>
-</div>
-
-<!-- Día de entrega -->
-<div class="mb-3">
-    <label for="diaEntrega" class="form-label">Día de Entrega</label>
-    <input type="date" class="form-control" id="diaEntrega" name="diaEntrega" required>
-</div>
-
-<!-- Hora de entrega -->
-<div class="mb-3">
-    <label for="horaEntrega" class="form-label">Hora de Entrega</label>
-    <input type="time" class="form-control" id="horaEntrega" name="horaEntrega" required>
-</div>
-
-<!-- Número de teléfono -->
-<div class="mb-3">
-    <label for="telefono" class="form-label">Número de Teléfono</label>
-    <input type="tel" class="form-control" id="telefono" name="telefono" required>
-</div>
-
-<!-- Correo electrónico -->
-<div class="mb-3">
-    <label for="email" class="form-label">Correo Electrónico</label>
-    <input type="email" class="form-control" id="email" name="email" required>
-</div>
-
-<!-- Cantidad -->
-<div class="mb-3">
-    <label for="cantidad" class="form-label">Cantidad</label>
-    <input type="number" class="form-control" id="cantidad" name="cantidad" required>
-</div>
-
-<!-- Precio -->
-<div class="mb-3">
-    <label for="precio" class="form-label">Precio</label>
-    <input type="text" class="form-control" id="precio" name="precio" required>
-</div>
-
-<!-- Comentario adicional del cliente -->
-<div class="mb-3">
-    <label for="comentario" class="form-label">Comentario Adicional del Cliente</label>
-    <textarea class="form-control" id="comentario" name="comentario" rows="3"></textarea>
-</div>
+<form
+  action="/api/v1/edit/category"
+  method="POST"
+  id="modal_661630e6042c7-form"
+>
+  <div class="mb-3">
+    <label for="name" class="form-label">Editando name</label
+    ><input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      value="Electronicos"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="indentifier" class="form-label"></label
+    ><input type="hidden" name="indentifier" value="1" />
+  </div>
+  <div class="mb-3">
+    <label for="name" class="form-label"></label
+    ><input type="hidden" name="name" value="Electronicos" />
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+      Cerrar
+    </button>
+  </div>
+</form>

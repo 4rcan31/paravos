@@ -118,19 +118,34 @@ class DataTablePanel{
     }
 
     public function insertChunkColumnWithCell(string $columnName, array $rowCells, int|string $position = 'last') {
-        if ($position !== "last" && ($position < 0 || $position > count($this->columns))) {
+        $rowCount = count($this->rows) - 1;
+        $columnsCount = count($this->columns) - 1;
+        $rowCellsCount = count($rowCells) - 1;
+        if ($position !== "last" && ($position < 0 || $position > $columnsCount)) {
             throw new Exception("Invalid column position: ".$position);
+        }
+        if($rowCellsCount != $rowCount){
+            throw new Exception(
+                $rowCellsCount > $rowCount ? 
+                "There is an overflow in the number of cells you want to insert" : 
+                "There are not enough cells to fill the entire table");
         }
         $position = $this->addColumn($columnName, $position);
         foreach ($this->rows as &$row) {
-            array_splice($row, $position, 0, [isset($rowCells[key($rowCells)]) ? current($rowCells) : null]);
-            next($rowCells);
+            $cellToInsert = array_shift($rowCells);
+            $position === 'last' ?
+            $row[] = $cellToInsert :
+            array_splice($row, $position, 0, $cellToInsert);
         }
     }
     
     
-    public function getChunkColumnWithCell(int $position) {
-        if ($position < 0 || $position >= count($this->columns)) {
+    
+    public function getChunkColumnWithCell(int|string $position = 'last') {
+        if($position === 'last'){
+            $position = count($this->columns) - 1;
+        }
+        if ($position < 0 || $position > (count($this->columns) - 1)) {
             throw new Exception("Invalid column position: ".$position);
         }
         $columnName = isset($this->columns[$position]) ? $this->columns[$position] : null;
@@ -138,8 +153,8 @@ class DataTablePanel{
         foreach($this->rows as $row) {
             $countCell = 0;
             foreach($row as $cell) {
-                $countCell = $countCell + 1;
-                if ($countCell - 1 == $position) {
+                $countCell++;
+                if ($countCell - 1 === $position) {
                     $columnData[] = $cell; 
                     break;
                 }
@@ -152,21 +167,45 @@ class DataTablePanel{
         ];
     }
     
-    
-    
-    
-    
 
+    public function removeChunkColumn(int|string $position = 'last') {
+        if($position == 'last'){
+            $positionColumn = count($this->columns) - 1;
+        }
+        //eliminar el encambezado de la columna y ordenarlo
+        unset($this->columns[$positionColumn]);
+        sort($this->columns);
+        for($i = 0; $i < count($this->rows); $i++){
+            if($position == 'last'){
+                $countThisCellsPosition = count($this->rows[$i]) - 1;
+                unset($this->rows[$i][$countThisCellsPosition]);
+            }
+            $countCell = 0;
+            foreach($this->rows[$i] as $index => $cell) {
+                $countCell = $countCell + 1;
+                if ($countCell - 1 == $position) {
+                    unset($this->rows[$i][$index]);
+                }
+            }
+
+        }
+    }
+    
     public function addColumnWithModalButtons(string $nameColumn, string $buttonName, string $titleModal, string $action, string $htmlRender, array $keysToSend, int|string $position = 'last', array $atributes = []) {
         $positionColumn = $this->addColumn($nameColumn, $position);
         foreach ($this->rows as &$row) {
             $modal = new Modal($this->replaceVariables($titleModal, $row), $action);
             $htmlToRenderIntoModal = $this->replaceVariables($htmlRender, $row);
             foreach ($keysToSend as $valueKey) {
-                if (array_key_exists($valueKey, $row)) {
-                    $htmlToRenderIntoModal .= $modal->inputSendHidden($valueKey, $row[$valueKey]);
+                $identifier = $this->identifierKeyCleaner($valueKey);
+                $value = array_key_exists($valueKey, $row) ? 
+                        $row[$valueKey] : 
+                        (array_key_exists($identifier, $row) ? 
+                        $row[$identifier] : null);
+                if ($value !== null) {
+                    $htmlToRenderIntoModal .= $modal->inputSendHidden($identifier !== '' ? 'identifier' : $valueKey, $value);
                 } else {
-                    throw new Exception("The key '$valueKey' does not exist when add");
+                    throw new Exception("The key '$valueKey' does not exist when adding.");
                 }
             }
             $modal->setHtmlToRender($htmlToRenderIntoModal);
@@ -226,6 +265,15 @@ class DataTablePanel{
     private function insertItemAtLastPosition(array &$array, $item): int {
         array_push($array, $item);
         return count($array) - 1;
+    }
+
+    private function identifierKeyCleaner($string) {
+        $colonPosition = strpos($string, ':');
+        if ($colonPosition === false || substr($string, $colonPosition + 1) !== 'identifier') {
+            return '';
+        }
+        $leftPart = substr($string, 0, $colonPosition);
+        return $leftPart;
     }
     
 }

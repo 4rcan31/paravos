@@ -15,18 +15,39 @@ class Crud{
     public array $columnsShowInTable;
     public string $html;
     public DataTablePanel $dataTable;
+    public DataTablePanel $dataTableCopyTempWithAllColumns;
+    public string|null $identifier = "id";
 
 
     public function __construct(array|object $table){
         $table = is_object($table) ? objectToArray($table) : $table;
         $this->rows = $table['rows'];
         $this->columns = $table['columns'];
+        $this->dataTableCopyTempWithAllColumns = new DataTablePanel(
+            $this->columns,
+            $this->rows,
+            "This table is temporaly and never will rendered"
+        );
         $this->html = '';
     }
 
     public function setColumnsShowInTable(string ...$columns): void {
         $this->columnsShowInTable = $columns;
-    } 
+    }
+
+    public function setIdentifier(string $identifierName){
+        foreach($this->rows as $row){
+            if(isset($row[$identifierName])){
+                $this->identifier = $identifierName;
+                return;
+            }
+        }
+        throw new Exception("The indentifier $identifierName not found in rows");
+    }
+
+    public function getIndentifier(){
+        return $this->identifier;
+    }
 
     public function setViewDataColumnsTable(string $titleTable){
         $columnsToShow = empty($this->columnsShowInTable) ? $this->columns : $this->columnsShowInTable;
@@ -49,36 +70,51 @@ class Crud{
             //no se por que tengo que ponerle 3 {{{}}} para que cuando llega al nevegador me lo quita, no tengo idea
             $formInputHtml .= $form->input("Editando $column", $column, "{{{$column}}}"); 
         }
-        
-         $this->dataTable->addColumnWithModalButtons(
+        $positionInsert = 'last';
+        $this->dataTableCopyTempWithAllColumns->addColumnWithModalButtons(
             "Editar",
             $name,
             $titleModal == '' ? "Editando" : $titleModal,
             $action,
             $formInputHtml,
-            $columns,
-            "last",
+            [$this->getIndentifier() . ":identifier"], //esto es lo que se esta mandando por hidden, pero en realidad, no se necesita mandar nada xd
+            $positionInsert, //esta es la posicion
             [
                 "class" => 'btn btn-warning'
             ]
         );
+        $columnsCells = $this->dataTableCopyTempWithAllColumns->getChunkColumnWithCell($positionInsert);
+        $this->dataTableCopyTempWithAllColumns->removeChunkColumn($positionInsert);
+        $this->dataTable->insertChunkColumnWithCell(
+            $columnsCells['column'],
+            $columnsCells['rowCells'],
+            $positionInsert);
     }
 
 
 
-    public function setCancelButton(string $name, string $action, string $htmlDinamic, array $filedDinamicToSend, string $titleModal = ''){
-         $this->dataTable->addColumnWithModalButtons(
+
+    public function setCancelButton(string $name, string $action, string $htmlDinamic, array $filedDinamicToSend = [], string $titleModal = ''){
+        $send = array_merge($filedDinamicToSend, [$this->getIndentifier() . ":identifier"]);
+        $positionInsert = 'last';
+        $this->dataTableCopyTempWithAllColumns->addColumnWithModalButtons(
             "Cancelar",
             $name,
             $titleModal == '' ? "Cancelando" : $titleModal,
             $action,
             $htmlDinamic,
-            $filedDinamicToSend,
+            $send,
             "last",
             [
                 "class" => 'btn btn-danger'
             ]
         );
+        $columnsCells = $this->dataTableCopyTempWithAllColumns->getChunkColumnWithCell($positionInsert);
+        $this->dataTableCopyTempWithAllColumns->removeChunkColumn($positionInsert);
+        $this->dataTable->insertChunkColumnWithCell(
+            $columnsCells['column'],
+            $columnsCells['rowCells'],
+            $positionInsert);
     }
 
     public function setViewAllRowTheTableOriginalInModal(){
@@ -86,13 +122,12 @@ class Crud{
         $form = new FormBuilder;
         foreach ($this->columns as $column) {
             //no se por que tengo que ponerle 3 {{{}}} para que cuando llega al nevegador me lo quita, no tengo idea
-            $formInputHtml .= $form->input("Editando $column", $column, "{{{$column}}}", "text", [
+            $formInputHtml .= $form->input("Viendo a $column", $column, "{{{$column}}}", "text", [
                 'readonly' => 'true'
             ]); 
         }
-        $dataTable = new DataTablePanel($this->columns, $this->rows, "This table is temporaly and never will rendered");
-        $positionInsert = 1;
-        $dataTable->addColumnWithModalButtons(
+        $positionInsert = 'last';
+        $this->dataTableCopyTempWithAllColumns->addColumnWithModalButtons(
             "Ver",
             "Ver",
             "Esto es un titulo",
@@ -101,13 +136,15 @@ class Crud{
             [],
             $positionInsert
         );
-        $columnChuck = $dataTable->getChunkColumnWithCell($positionInsert);
+        $columnChuck = $this->dataTableCopyTempWithAllColumns->getChunkColumnWithCell($positionInsert);
+        $this->dataTableCopyTempWithAllColumns->removeChunkColumn($positionInsert);
         //insertar en la tabla original
         $this->dataTable->insertChunkColumnWithCell(
             $columnChuck['column'],
-            $columnChuck['rowCells']
+            $columnChuck['rowCells'],
+            $positionInsert
         );
-        $this->html .= $dataTable->getHtmlModal();
+      //  $this->html .= $this->dataTableCopyTempWithAllColumns->getHtmlModal(); //esto dejo de hacer falta creo xd
 
     }
 
@@ -127,15 +164,26 @@ class Crud{
         $modal->setHtmlToRender($form);
         $idButtonModal = $modal->getId();
         $button = '<button';
-        $button .= 'type="button" class="btn btn-primary"';
+        $button .= ' type="button" class="btn btn-primary"';
         $button .= 'data-bs-toggle="modal" data-bs-target="#' . $idButtonModal . '"';
         $button .= '>'.$nameButton.'</button>';
         $this->dataTable->insertHtmlInHeaderTittleCard($button);
         $this->html .= $modal->get();
     }
 
+    public function setColumnForNumberRows(){
+        $rowsCells = [];
+        for($i = 0; $i < count($this->rows); $i++){
+            $rowsCells[] = $i + 1;
+        }
+        $this->dataTable->insertChunkColumnWithCell(
+            "N", $rowsCells, 0
+        );
+    }
+
 
     public function build(){
+        $this->html .= $this->dataTableCopyTempWithAllColumns->getHtmlModal();
         $this->html .= $this->dataTable->get();
     }
 
@@ -162,7 +210,4 @@ class Crud{
         }
         return $filteredRows;
     }
-    
-
-
 }

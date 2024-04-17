@@ -17,6 +17,8 @@ class Crud{
     public DataTablePanel $dataTable;
     public DataTablePanel $dataTableCopyTempWithAllColumns;
     public string|null $identifier = "id";
+    public string $inputsAddedInCreate = '';
+    public array $lessInputsInCreateButton = [];
 
 
     public function __construct(array|object $table){
@@ -57,39 +59,8 @@ class Crud{
             $filteredRows,
             $titleTable
         );
-/*         $this->dataTable->insertHtmlInHeaderTittleCard('
-        <button type="button" class="btn btn-warning">Botón Amarillo</button>'); */
     }
 
-
-    public function setEditButton(string $name, string $action, string $titleModal = ''){
-        $formInputHtml = '';
-        $form = new FormBuilder;
-        $columns = empty($this->columnsShowInTable) ? $this->columns : $this->columnsShowInTable;
-        foreach ($columns as $column) {
-            //no se por que tengo que ponerle 3 {{{}}} para que cuando llega al nevegador me lo quita, no tengo idea
-            $formInputHtml .= $form->input("Editando $column", $column, "{{{$column}}}"); 
-        }
-        $positionInsert = 'last';
-        $this->dataTableCopyTempWithAllColumns->addColumnWithModalButtons(
-            "Editar",
-            $name,
-            $titleModal == '' ? "Editando" : $titleModal,
-            $action,
-            $formInputHtml,
-            [$this->getIndentifier() . ":identifier"], //esto es lo que se esta mandando por hidden, pero en realidad, no se necesita mandar nada xd
-            $positionInsert, //esta es la posicion
-            [
-                "class" => 'btn btn-warning'
-            ]
-        );
-        $columnsCells = $this->dataTableCopyTempWithAllColumns->getChunkColumnWithCell($positionInsert);
-        $this->dataTableCopyTempWithAllColumns->removeChunkColumn($positionInsert);
-        $this->dataTable->insertChunkColumnWithCell(
-            $columnsCells['column'],
-            $columnsCells['rowCells'],
-            $positionInsert);
-    }
 
 
 
@@ -120,11 +91,32 @@ class Crud{
     public function setViewAllRowTheTableOriginalInModal(){
         $formInputHtml = '';
         $form = new FormBuilder;
+        //prettyPrint($this->rows);
+        $formDataArray = [];
         foreach ($this->columns as $column) {
+          //  echo $column."<br>";
+           // echo '{{'.$column.".type}}<br>";
             //no se por que tengo que ponerle 3 {{{}}} para que cuando llega al nevegador me lo quita, no tengo idea
-            $formInputHtml .= $form->input("Viendo a $column", $column, "{{{$column}}}", "text", [
-                'readonly' => 'true'
-            ]); 
+            $formDataArray[] = [
+                "Viendo a $column", //titulo
+                $column, //nombre de input y tambien nombre de key
+                'text',  //tipo de input
+                [
+                    'readonly' => 'true' //atributos del input
+                ]
+                ];
+            if('{{{'.$column.".type}}}"){
+                $formInputHtml .= $form->input("Esto es un html xd $column", $column, "{{{$column}}}", "text", [
+                    'readonly' => 'true'
+                ]); 
+            }else{
+                $formInputHtml .= $form->input("Viendo a $column", $column, "{{{$column}}}", "text", [
+                    'readonly' => 'true'
+                ]); 
+            }
+
+        //    echo $this->dataTable->replaceVariables('{{'.$column.".type}}", $this->tryValueAsKey($this->columns))."<br>";
+
         }
         $positionInsert = 'last';
         $this->dataTableCopyTempWithAllColumns->addColumnWithModalButtons(
@@ -132,7 +124,7 @@ class Crud{
             "Ver",
             "Esto es un titulo",
             "/null", //esto es la ruta para no enviar el form a ninguna parte
-            $formInputHtml,
+            $formDataArray,
             [],
             $positionInsert
         );
@@ -148,19 +140,40 @@ class Crud{
 
     }
 
-    public function setCreateButton(string $titleMolda, string $action, bool $useAll = true, string $nameButton = "Nuevo"){
+    function tryValueAsKey(array $array) {
+        $result = [];
+        foreach ($array as $value) {
+            // Intenta usar el valor como nombre de clave
+            // Si el valor ya existe como clave, añade un sufijo numérico para hacerlo único
+            $key = $value;
+            $suffix = 1;
+            while (array_key_exists($key, $result)) {
+                $key = $value . '_' . $suffix;
+                $suffix++;
+            }
+            // Asigna el valor al nuevo array usando la clave generada
+            $result[$key] = $value;
+        }
+        return $result;
+    }
+    
+
+    public function setCreateButton(string $titleMolda, string $action, bool $useAll = false, string $nameButton = "Nuevo"){
         $modal = new Modal($titleMolda, $action);
         if ($useAll) {
             $columns = $this->columns;
         } elseif (!empty($this->columnsShowInTable)) {
             $columns = $this->columnsShowInTable;
         } else {
-            throw new Exception("You want to use all columns but have not specified which columns to use.");
+            throw new Exception("You want to use all columns but have not specified which columns to use in button create.");
         }        
         $form = '';
-        foreach($columns as $column){
-            $form .= $modal->input("$column*", $column);
+        foreach ($columns as $column) {
+            if (empty($this->lessInputsInCreateButton) || !in_array($column, $this->lessInputsInCreateButton)) {
+                $form .= $modal->input("$column*", $column);
+            }
         }
+        $form .= $this->inputsAddedInCreate;
         $modal->setHtmlToRender($form);
         $idButtonModal = $modal->getId();
         $button = '<button';
@@ -171,13 +184,75 @@ class Crud{
         $this->html .= $modal->get();
     }
 
-    public function setColumnForNumberRows(){
+    public function setEditButton(string $name, string $action, string $titleModal = '', bool $useAll = false){
+        $formInputHtml = '';
+        $form = new FormBuilder;
+        if ($useAll) {
+            $columns = $this->columns;
+        } elseif (!empty($this->columnsShowInTable)) {
+            $columns = $this->columnsShowInTable;
+        } else {
+            throw new Exception("You want to use all columns but have not specified which columns to use in button Edit.");
+        }   
+        foreach ($columns as $column) {
+            //no se por que tengo que ponerle 3 {{{}}} para que cuando llega al nevegador me lo quita, no tengo idea
+            if (empty($this->lessInputsInCreateButton) || !in_array($column, $this->lessInputsInCreateButton)) {
+                $formInputHtml .= $form->input("Editando $column*", $column, "{{{$column}}}"); 
+            }
+           
+        }
+        $formInputHtml .= $this->inputsAddedInCreate;
+        $positionInsert = 'last';
+        $this->dataTableCopyTempWithAllColumns->addColumnWithModalButtons(
+            "Editar",
+            $name,
+            $titleModal == '' ? "Editando" : $titleModal,
+            $action,
+            $formInputHtml,
+            [$this->getIndentifier() . ":identifier"], //esto es lo que se esta mandando por hidden, pero en realidad, no se necesita mandar nada xd
+            $positionInsert, //esta es la posicion
+            [
+                "class" => 'btn btn-warning'
+            ]
+        );
+        $columnsCells = $this->dataTableCopyTempWithAllColumns->getChunkColumnWithCell($positionInsert);
+        $this->dataTableCopyTempWithAllColumns->removeChunkColumn($positionInsert);
+        $this->dataTable->insertChunkColumnWithCell(
+            $columnsCells['column'],
+            $columnsCells['rowCells'],
+            $positionInsert);
+    }
+
+    public function addOneMoreInputInCreateModal(array $typos) {
+        $form = new FormBuilder;
+        $label = $typos['label'] ?? "No se especificó el Label";
+        $name = $typos['name'] ?? "No se especificó el name";
+        $type = $typos['type'] ?? "No se pudo determinar el tipo de input";
+        $input = $typos['input'] ?? "No se pudo encontrar la data";
+        if (is_array($input)) {
+            $this->inputsAddedInCreate .= $form->select($label, $name, $input);
+        } elseif ($type === 'textarea') {
+            $this->inputsAddedInCreate .= $form->textarea($label, $name);
+        } elseif (is_numeric($input) || is_int($input)) {
+            $this->inputsAddedInCreate .= $form->input($label, $name, '', 'number');
+        } else {
+            $this->inputsAddedInCreate .= $form->input($label, $name, '', $type);
+        }
+    }
+
+    public function setLessInputInCreateButton(array $inputs){
+        $this->lessInputsInCreateButton = $inputs;
+    }
+
+    
+
+    public function setColumnForNumberRows(string $columnName = "N"){
         $rowsCells = [];
         for($i = 0; $i < count($this->rows); $i++){
             $rowsCells[] = $i + 1;
         }
         $this->dataTable->insertChunkColumnWithCell(
-            "N", $rowsCells, 0
+            $columnName, $rowsCells, 0
         );
     }
 
@@ -195,7 +270,11 @@ class Crud{
         return $this->dataTable;
     }
 
-    function filterRowsByColumns(array $columns, array $rows): array {
+    public function datatableCopy() : DataTablePanel{
+        return $this->dataTableCopyTempWithAllColumns;
+    }
+
+    public function filterRowsByColumns(array $columns, array $rows): array {
         $filteredRows = [];
         foreach ($rows as $row) {
             $filteredRow = [];
@@ -209,5 +288,10 @@ class Crud{
             $filteredRows[] = $filteredRow;
         }
         return $filteredRows;
+    }
+
+    public function loadIn(string $name, string $load){
+        $this->dataTable->loadIn($name, $load);
+        $this->dataTableCopyTempWithAllColumns->loadIn($name, $load);
     }
 }

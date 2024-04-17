@@ -14,18 +14,18 @@ function sidebar(){
         navItem('DashBoard', 'fas fa-fw fa-tachometer-alt', 'admin/home');
         divider();
         HeadingNavItem('Tienda');
-        navItem('Ordenes', 'fas fa-truck', '/panel/store');
-        navItem('Productos', 'fas fa-shopping-bag', '/panel/store');
-        navItem('Categorias', 'fas fa-tags', '/panel/store');
+        navItem('Ordenes', 'fas fa-truck', '/admin/orders');
+        navItem('Productos', 'fas fa-shopping-bag', '/admin/products');
+        navItem('Categorias', 'fas fa-tags', '/admin/categories');
 
         divider();
         HeadingNavItem('Parners');
-        navItem('Parners', 'fas fa-fw fa-users', '/panel/store');
+        navItem('Parners', 'fas fa-fw fa-users', '/admin/parners');
 
 
         divider();
         HeadingNavItem('Usuarios');
-        navItem('Usuarios', 'fas fa-fw fa-user-friends', '/panel/store');
+        navItem('Usuarios', 'fas fa-fw fa-user-friends', '/admin/users');
 
 
         /* collapse("app name", 'Administración:', [

@@ -19,5 +19,11 @@ class PartnersModel extends BaseModel{
         $this->prepare();
         $this->select(['*'])->from("partners")->where("id", $id);
         return $this->execute()->all();
+    }
+
+    public function getJustName(){
+        return array_column(
+            $this->query("SELECT name FROM partners")->fetchAll(), 
+            'name');
     } 
 }

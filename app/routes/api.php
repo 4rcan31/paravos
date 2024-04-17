@@ -41,6 +41,10 @@ Route::group(function(){
             controller("Admin/CategoriesController", "edit", $request);
         });
 
+        Route::post("/product", function($request){
+            res($request);
+        });
+
     })->prefix("/edit");
 
     Route::group(function(){

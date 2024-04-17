@@ -11,6 +11,24 @@ class ProductsModel extends BaseModel{
         ORDER BY c.name")->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAll(){
+        return $this->query("SELECT 
+                                p.*,
+                                c.name AS category_name,
+                                pa.name AS partner_name
+                            FROM products p 
+                            INNER JOIN categories c ON p.category_id = c.id 
+                            INNER JOIN partners pa ON p.partners_id = pa.id
+                            ORDER BY c.name")->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
+    public function getColumns(){
+        return array_column($this->query("SHOW COLUMNS FROM products;
+        ")->fetchAll(PDO::FETCH_ASSOC), "Field");
+    }
+    
+
     public function getWithLimit($limit, $offset) {
         $query = "SELECT c.name AS category_name, p.name, p.description_short, p.price, p.id, p.url_img, p.id
                   FROM products p 

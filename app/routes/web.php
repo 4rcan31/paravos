@@ -63,6 +63,10 @@ Route::group(function(){
         controller("Views/Admin/CategoriesViewController", 'show');
     });
 
+    Route::get("/products", function(){
+        controller("Views/Admin/ProductsViewController", 'show');
+    });
+
 })->prefix("/admin");
 
 /* 

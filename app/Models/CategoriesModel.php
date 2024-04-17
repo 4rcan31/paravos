@@ -9,6 +9,12 @@ class CategoriesModel extends BaseModel{
         return $this->execute()->all('fetchAll');
     }
 
+    public function getJustName(){
+        return array_column(
+            $this->query("SELECT name FROM categories")->fetchAll(), 
+            'name');
+    }
+
     public function updateNameById(string $name, string $idCategory) : int|string{
         $this->prepare();
         $this->update('categories', [

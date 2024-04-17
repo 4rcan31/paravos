@@ -12,9 +12,17 @@ class Modal {
     private string $method = 'POST';
     private string $ruteWithOutAction = '/null';
 
-    public function __construct(string $title, string $action) {
+    public function __construct(string $title = '', string $action = '/null') {
         $this->id = $this->generateId();
         $this->title = $title;
+        $this->actionRute = $action;
+    }
+
+    public function setTitle(string $title){
+        $this->title = $title;
+    }
+
+    public function setAction(string $action){
         $this->actionRute = $action;
     }
 

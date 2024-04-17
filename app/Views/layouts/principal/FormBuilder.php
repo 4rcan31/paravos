@@ -41,12 +41,22 @@ class FormBuilder{
     }
 
     function select(string $label, string $name, array $options, string $selected = '') : string {
-        $htmlContent = '<select class="form-select" id="' . $name . '" name="' . $name . '" ' . (strpos($label, '*') !== false ? "required" : "") . '>';
+        $htmlContent = '<select class="form-control" id="' . $name . '" name="' . $name . '" ' . (strpos($label, '*') !== false ? "required" : "") . '>';
         foreach ($options as $value => $text) {
             $isSelected = $value == $selected ? 'selected' : '';
-            $htmlContent .= '<option value="' . $value . '" ' . $isSelected . '>' . $text . '</option>';
+            $htmlContent .= '<option ' . $isSelected . '>' . $text . '</option>';
         }
         $htmlContent .= '</select>';
         return $this->renderField($label, $name, $htmlContent);
+    }
+
+    public function justAdd(string $title, string $html){
+        return '
+        <div class="card mt-3 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">' . $title . '</h5>
+                <div class="card-text" style="white-space: pre-wrap;">' . $html . '</div>
+            </div>
+        </div>';
     }
 }

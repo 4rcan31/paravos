@@ -18,6 +18,9 @@ function token($length = 32) {
     ), 0, $length);
 }
 
+function hasHtmlFormat(string $string) {
+    return $string !== strip_tags($string);
+}
 
 class StringBuilder {
     private $string;

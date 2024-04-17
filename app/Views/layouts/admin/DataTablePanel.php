@@ -191,37 +191,52 @@ class DataTablePanel{
         }
     }
     
-    public function addColumnWithModalButtons(string $nameColumn, string $buttonName, string $titleModal, string $action, string $htmlRender, array $keysToSend, int|string $position = 'last', array $atributes = []) {
+    public function addColumnWithModalButtons(string $nameColumn, string $buttonName, string $titleModal, string $action, string|array $htmlRender, array $keysToSend, int|string $position = 'last', array $atributes = []) {
         $positionColumn = $this->addColumn($nameColumn, $position);
+        $modal = new Modal('', $action); 
         foreach ($this->rows as &$row) {
-            $modal = new Modal($this->replaceVariables($titleModal, $row), $action);
-            $htmlToRenderIntoModal = $this->replaceVariables($htmlRender, $row);
+            $htmlFinal = '';
+            // Procesar HTML renderizado
+            if (is_string($htmlRender)) {
+                $htmlToRenderIntoModal = $this->replaceVariables($htmlRender, $row);
+            } else if (is_array($htmlRender)) {
+                foreach ($htmlRender as $input) {
+                    [$title, $name, $type, $attributes] = $input;
+                    $value = $this->replaceVariables("{{" . $name . "}}", $row);
+                    $isHtml = (bool)$this->replaceVariables("{{" . $name . ".ishtml}}", $row);
+                    $htmlFinal .= $isHtml ?
+                        (new FormBuilder)->justAdd($this->replaceVariables($title, $row), $value) :
+                        (new FormBuilder)->input($this->replaceVariables($title, $row), $name, $value, $type, $attributes);
+                }
+                $htmlToRenderIntoModal = $this->replaceVariables($htmlFinal, $row);
+            } else {
+                throw new Exception("Invalid htmlRender parameter");
+            }
+     
+            $buttonHtml = sprintf('<button %s data-bs-toggle="modal" data-bs-target="#%s">%s</button>',
+                $this->buildAtributesStringByArray($atributes) == null ?
+                'class="btn btn-primary"' :
+                $this->buildAtributesStringByArray($atributes),
+                $modal->getId(),
+                $buttonName
+            );
+            // Renderizar modal y actualizar fila
             foreach ($keysToSend as $valueKey) {
                 $identifier = $this->identifierKeyCleaner($valueKey);
-                $value = array_key_exists($valueKey, $row) ? 
-                        $row[$valueKey] : 
-                        (array_key_exists($identifier, $row) ? 
-                        $row[$identifier] : null);
+                $value = array_key_exists($valueKey, $row) ? $row[$valueKey] : (array_key_exists($identifier, $row) ? $row[$identifier] : null);
                 if ($value !== null) {
                     $htmlToRenderIntoModal .= $modal->inputSendHidden($identifier !== '' ? 'identifier' : $valueKey, $value);
                 } else {
                     throw new Exception("The key '$valueKey' does not exist when adding.");
                 }
             }
+            $modal->setTitle($this->replaceVariables($titleModal, $row));
             $modal->setHtmlToRender($htmlToRenderIntoModal);
-            $idButtonModal = $modal->getId();
             $this->htmlModals .= $modal->get();
-            $atribuesString = '';
-            foreach($atributes as $atribute => $value){
-                $atribuesString .= $atribute . '="' . $value . '"';
-            }
-            $buttonHtml = '<button ' . 
-            ($atribuesString == "" ? 'class="btn btn-primary"' : $atribuesString) . 
-            ' data-bs-toggle="modal" data-bs-target="#' . $idButtonModal . '">' . $buttonName . '</button>';            
             array_splice($row, $positionColumn, 0, $buttonHtml);
         }
     }
-
+    
     public function redenderPaginationTableAfterLoadScriptJs(){
         echo '<script>
                 $(document).ready(function() {
@@ -230,20 +245,65 @@ class DataTablePanel{
             </script>';
     }
 
-    private function replaceVariables(string $string, array $variables) : string {
-        $pattern = '/\{\{(\w+)\}\}/';
+    public function buildAtributesStringByArray(array $attributes): ?string {
+        if (empty($attributes)) {
+            return null;
+        }
+        return implode(' ', array_map(
+            fn($key, $value) => "$key=\"$value\"",
+            array_keys($attributes),
+            $attributes
+        ));
+    }
+    
+
+    public function replaceVariables(string $string, array $variables) : string {
+        $pattern = '/\{\{(\w+(\.\w+)*)\}\}/';
         $result = preg_replace_callback($pattern, function($matches) use ($variables) {
             $variableName = $matches[1];
-            if (array_key_exists($variableName, $variables)) {
-                return $variables[$variableName];
-            }else{
-                throw new Exception("The key '".$variableName."' dont exist when replace");
+            // Si el nombre de la variable contiene puntos, significa que es una funcion
+            if (strpos($variableName, '.') !== false) {
+                // Dividir el nombre de la variable en partes
+                $parts = explode('.', $variableName);
+                // El primer elemento sera el nombre de la variable
+                $variable = $parts[0];
+                // El resto de los elementos seran solamente los metodos/funciones
+                $functions = array_slice($parts, 1);
+                if (array_key_exists($variable, $variables)) {
+                    $value = $variables[$variable];
+                    foreach ($functions as $function) {
+                        switch ($function) {
+                            case 'type':
+                                $value = gettype($value);
+                                break;
+                            case 'ishtml':
+                                $value = $this->hasHtmlFormat($value);
+                                break;
+                            default:
+                                throw new Exception("Unsupported function: $function");
+                        }
+                    }
+                    return $value;
+                } else {
+                    throw new Exception("The key '$variable' doesn't exist when replacing");
+                }
+            } else {
+                // Si no hay funciones, simplemente reemplazar la variable
+                if (array_key_exists($variableName, $variables)) {
+                    return $variables[$variableName];
+                } else {
+                    throw new Exception("The key '$variableName' doesn't exist when replacing");
+                }
             }
-            return $matches[0];
         }, $string);
     
         return $result;
     }
+    
+    private function hasHtmlFormat($string) {
+        return (bool)hasHtmlFormat($string);
+    }
+    
 
     private function insertColumnAtPosition(string $name, int $position): int {
         return $this->insertItemAtPosition($this->columns, $name, $position);
@@ -275,5 +335,20 @@ class DataTablePanel{
         $leftPart = substr($string, 0, $colonPosition);
         return $leftPart;
     }
-    
+
+
+    public function loadIn(string $key, string $string, string $nameReplace = "{{element}}"){
+        if (empty($this->rows)) {
+            throw new Exception("No rows found. Please load data before calling loadIn.");
+        }
+        foreach($this->rows as $index => &$row){
+            if(!array_key_exists($key, $row)){
+                throw new Exception("The key '$key' does not exist in the row when trying to load in.");
+            }
+            if (!strpos($string, $nameReplace)) {
+                throw new Exception("The placeholder '$nameReplace' does not exist in the string '$string'.");
+            }
+            $this->rows[$index][$key] = str_replace($nameReplace,$this->rows[$index][$key], $string);
+        }
+    }
 }

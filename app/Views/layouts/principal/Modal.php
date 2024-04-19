@@ -53,50 +53,7 @@ class Modal {
     public function setEndpointWithOutActionForm(string $enpoint) : void{
         $this->ruteWithOutAction = $enpoint;
     }
-    
 
-    function renderField(string $label, string $name, string $htmlContent, string $message = "Campo obligatorio") : string {
-        $required = strpos($label, '*') !== false; // Verificar si el label contiene un asterisco
-        $label = str_replace('*', '', $label); // Eliminar el asterisco del label
-        $html = '<div class="mb-3">';
-        $html .= '<label for="' . $name . '" class="form-label">' . $label;
-        if ($required) {
-            $html .= '<span class="text-danger">*</span>'; // Agregar asterisco si el campo es obligatorio
-        }
-        $html .= '</label>';
-        $html .= $htmlContent;
-        if ($required) {
-            $html .= '<small class="form-text text-danger small">'.$message.'</small>'; // Agregar mensaje de ayuda en color rojo y tamaño pequeño si el campo es obligatorio
-        }
-        $html .= '</div>';
-        return $html;
-    }
-    
-    function input(string $label, string $name, string $value = '', string $type = 'text') : string {
-        $htmlContent = '<input type="' . $type . '" class="form-control" id="' . $name . '" name="' . $name . '" ' . (strpos($label, '*') !== false ? "required" : "") . ' value="' . $value . '" >';
-        return $this->renderField($label, $name, $htmlContent);
-    }
-    
-    function textarea(string $label, string $name, string $value = '') : string {
-        $htmlContent = '<textarea class="form-control" id="' . $name . '" name="' . $name . '" ' . (strpos($label, '*') !== false ? "required" : "") . '>' . $value . '</textarea>';
-        return $this->renderField($label, $name, $htmlContent);
-    }
-
-    function inputSendHidden(string $name, string $value){
-        $htmlContent = '<input type="hidden" name="'.$name.'" value="' . $value . '">';
-        return $this->renderField("", $name, $htmlContent);
-    }
-
-    function select(string $label, string $name, array $options, string $selected = '') : string {
-        $htmlContent = '<select class="form-select" id="' . $name . '" name="' . $name . '" ' . (strpos($label, '*') !== false ? "required" : "") . '>';
-        foreach ($options as $value => $text) {
-            $isSelected = $value == $selected ? 'selected' : '';
-            $htmlContent .= '<option value="' . $value . '" ' . $isSelected . '>' . $text . '</option>';
-        }
-        $htmlContent .= '</select>';
-        return $this->renderField($label, $name, $htmlContent);
-    }
-    
     public function modal(): string {
         $submitButton = ($this->actionRute === $this->ruteWithOutAction) ? '' : '<button type="submit" class="btn btn-primary">' . $this->saveButtonName . '</button>';
         return '<div class="modal fade" id="' . $this->id . '" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="' . $this->id . 'Label" aria-hidden="true" style="z-index: 100000;">
@@ -107,7 +64,7 @@ class Modal {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="' . $this->actionRute . '" method="' . $this->method . '">
+                        <form action="' . $this->actionRute . '" method="' . $this->method . '" enctype="multipart/form-data">
                             ' . $this->htmlToRenderIntoModal . '
                             <div class="modal-footer">
                                 ' . $submitButton . '
@@ -119,7 +76,11 @@ class Modal {
             </div>
         </div>';
     }
-    
+
+    public function form() : FormBuilder{
+        layout("principal/FormBuilder");
+        return new FormBuilder;
+    }
     
     public function render(): void {
         echo $this->get();

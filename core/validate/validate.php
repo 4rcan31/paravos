@@ -45,6 +45,7 @@ class Validate{
     private function numeric(array $fields){
         foreach($fields as $field){
             if(isset($this->datos[$field]) && is_numeric($this->datos[$field]) === false){
+                array_push($this->msg, "El campo $field debe de ser un numero");
                 return false;
             }
         }

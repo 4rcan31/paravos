@@ -61,6 +61,9 @@ class File {
         }
         self::$nameFile = $nameFile == null ? token() . "." . self::$format : self::$nameFile;
         self::$routeFile = self::$basePath . '/' . ltrim($ruteServer, '/')."/"; //Esta es la ruta en el servidor (sin el file)
+        if(!is_dir(self::$routeFile)){
+            mkdir(self::$routeFile); //si no existe la carpeta, que la cree
+        }
         self::$routeHostUpload = '/' . ltrim($ruteHost, '/')."/".self::$nameFile; //Esto es la ruta en el servidor (sin el host)
         self::$pathHostUpload = self::$host."/".self::$routeHostUpload; //Esta es la ruta en el host (toda la ruta)
         return move_uploaded_file(self::$imageUpload, self::$routeFile . self::$nameFile);
@@ -111,11 +114,18 @@ class File {
         // Comprobar si $file está dentro de $directory o es igual a $directory
         return strpos($file, $directory) === 0;
     }
-    
-    
-    
-    
 
+
+    public static function isEmptyFile(array $input): bool {
+        foreach ($input as $key => $record) {
+            if (!empty($record) && ($record !== "" && !($key === "error" && $record === 4))) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    
     public static function lastFileUploadInfo(string $input) {
         if ($input == 'name') {
             return self::$nameFile;

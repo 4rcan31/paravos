@@ -89,34 +89,17 @@ class Crud{
     }
 
     public function setViewAllRowTheTableOriginalInModal(){
-        $formInputHtml = '';
-        $form = new FormBuilder;
-        //prettyPrint($this->rows);
         $formDataArray = [];
         foreach ($this->columns as $column) {
-          //  echo $column."<br>";
-           // echo '{{'.$column.".type}}<br>";
             //no se por que tengo que ponerle 3 {{{}}} para que cuando llega al nevegador me lo quita, no tengo idea
             $formDataArray[] = [
                 "Viendo a $column", //titulo
                 $column, //nombre de input y tambien nombre de key
-                'text',  //tipo de input
+                '{{type}}',  //tipo de input
                 [
                     'readonly' => 'true' //atributos del input
                 ]
                 ];
-            if('{{{'.$column.".type}}}"){
-                $formInputHtml .= $form->input("Esto es un html xd $column", $column, "{{{$column}}}", "text", [
-                    'readonly' => 'true'
-                ]); 
-            }else{
-                $formInputHtml .= $form->input("Viendo a $column", $column, "{{{$column}}}", "text", [
-                    'readonly' => 'true'
-                ]); 
-            }
-
-        //    echo $this->dataTable->replaceVariables('{{'.$column.".type}}", $this->tryValueAsKey($this->columns))."<br>";
-
         }
         $positionInsert = 'last';
         $this->dataTableCopyTempWithAllColumns->addColumnWithModalButtons(
@@ -168,9 +151,13 @@ class Crud{
             throw new Exception("You want to use all columns but have not specified which columns to use in button create.");
         }        
         $form = '';
+      
         foreach ($columns as $column) {
             if (empty($this->lessInputsInCreateButton) || !in_array($column, $this->lessInputsInCreateButton)) {
-                $form .= $modal->input("$column*", $column);
+
+                $type = $this->determineColumnType($column, $this->rows);
+                //prettyPrint($type);
+                $form .= $modal->form()->input("$column*", $column, "", $type);
             }
         }
         $form .= $this->inputsAddedInCreate;
@@ -185,8 +172,6 @@ class Crud{
     }
 
     public function setEditButton(string $name, string $action, string $titleModal = '', bool $useAll = false){
-        $formInputHtml = '';
-        $form = new FormBuilder;
         if ($useAll) {
             $columns = $this->columns;
         } elseif (!empty($this->columnsShowInTable)) {
@@ -194,21 +179,30 @@ class Crud{
         } else {
             throw new Exception("You want to use all columns but have not specified which columns to use in button Edit.");
         }   
+
+        $formDataArray = [];
         foreach ($columns as $column) {
             //no se por que tengo que ponerle 3 {{{}}} para que cuando llega al nevegador me lo quita, no tengo idea
             if (empty($this->lessInputsInCreateButton) || !in_array($column, $this->lessInputsInCreateButton)) {
-                $formInputHtml .= $form->input("Editando $column*", $column, "{{{$column}}}"); 
+                $formDataArray[] = [
+                    "Editanto a $column", //titulo
+                    $column, //nombre de input y tambien nombre de key
+                    '{{type}}',  //tipo de input
+                    ];
             }
-           
+
         }
-        $formInputHtml .= $this->inputsAddedInCreate;
+        $formDataArray['html'] = $this->inputsAddedInCreate;
+
+
+
         $positionInsert = 'last';
         $this->dataTableCopyTempWithAllColumns->addColumnWithModalButtons(
             "Editar",
             $name,
             $titleModal == '' ? "Editando" : $titleModal,
             $action,
-            $formInputHtml,
+            $formDataArray,
             [$this->getIndentifier() . ":identifier"], //esto es lo que se esta mandando por hidden, pero en realidad, no se necesita mandar nada xd
             $positionInsert, //esta es la posicion
             [
@@ -230,7 +224,8 @@ class Crud{
         $type = $typos['type'] ?? "No se pudo determinar el tipo de input";
         $input = $typos['input'] ?? "No se pudo encontrar la data";
         if (is_array($input)) {
-            $this->inputsAddedInCreate .= $form->select($label, $name, $input);
+           // prettyPrint($this->rows); die;
+            $this->inputsAddedInCreate .= $form->select($label, $name, $input, "{{Alimentos}}");
         } elseif ($type === 'textarea') {
             $this->inputsAddedInCreate .= $form->textarea($label, $name);
         } elseif (is_numeric($input) || is_int($input)) {
@@ -243,6 +238,30 @@ class Crud{
     public function setLessInputInCreateButton(array $inputs){
         $this->lessInputsInCreateButton = $inputs;
     }
+
+    function determineColumnType(string $columnName, array $data): string {
+        $columnType = 'unknown';
+    
+        // Recorrer los datos para determinar el tipo de la columna
+        foreach ($data as $row) {
+            $value = $row[$columnName];
+            
+            // Determinar el tipo de dato de la columna
+            if (is_numeric($value)) {
+                // Si el valor es numérico, actualiza el tipo de la columna a numérico
+                $columnType = 'numeric';
+            } elseif (is_string($value)) {
+                // Si el valor es una cadena, actualiza el tipo de la columna a cadena, 
+                // pero solo si aún no se ha detectado como otro tipo
+                $columnType = ($columnType === 'unknown' || $columnType === 'string') ? 'string' : $columnType;
+            }
+            // Si necesitas manejar otros tipos de datos, puedes agregar más condiciones aquí
+        }
+    
+        return $columnType;
+    }
+    
+    
 
     
 

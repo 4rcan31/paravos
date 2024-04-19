@@ -39,4 +39,16 @@ class CategoriesModel extends BaseModel{
         );
         return $this->execute()->lastId();
     }
+
+    public function getIdByName(string $name){
+        $this->prepare();
+        $this->select(['id'])->from("categories")->where("name", $name);
+        return $this->execute()->all()->id;
+    }
+
+    public function existByName(string $name){
+        $this->prepare();
+        $this->select(['name'])->from("categories")->where("name", $name);
+        return $this->execute()->exists();
+    }
 }

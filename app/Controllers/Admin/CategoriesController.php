@@ -46,6 +46,8 @@ class CategoriesController extends BaseController{
         );
     }
 
+
+    //Todo: Agregar que no se pueda eliminar categoria si hay productos usandola xd
     public function delete($request){
         // $this->validateCsrfTokenWithRedirection($request, "/admin/categories");
          $validate = validate($request);

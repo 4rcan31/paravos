@@ -95,4 +95,75 @@ class ProductsModel extends BaseModel{
         ORDER BY created_at DESC
         LIMIT ?", [$limit])->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function new(
+        string $categoryId, 
+        string $partnerId, 
+        string $name, 
+        string $descriptionLarge, 
+        string $descriptionShort, 
+        int|string $stock, 
+        float|string $price, 
+        string $urlImg
+    ) {
+        $this->prepare();
+        $this->insert("products")->values([
+            "category_id" => $categoryId,
+            "partners_id" => $partnerId,
+            "name" => $name,
+            "description_large" => $descriptionLarge,
+            "description_short" => $descriptionShort,
+            "stock" => $stock,
+            "price" => $price,
+            "url_img" => $urlImg
+        ]);
+        return $this->execute()->lastId();
+    }
+
+    public function updateP(
+        string $categoryId, 
+        string $partnerId, 
+        string $name, 
+        string $descriptionLarge, 
+        string $descriptionShort, 
+        int|string $stock, 
+        float|string $price, 
+        string $urlImg,
+        string $id
+    ) {
+        $this->prepare();
+        $this->update("products", [
+            "category_id" => $categoryId,
+            "partners_id" => $partnerId,
+            "name" => $name,
+            "description_large" => $descriptionLarge,
+            "description_short" => $descriptionShort,
+            "stock" => $stock,
+            "price" => $price,
+            "url_img" => $urlImg
+        ])->where("id", $id);
+        return $this->execute()->lastId();
+    }
+    
+
+    public function getUrlImgById(string $id) : string{
+        $this->prepare();
+        $this->select(['url_img'])->from("products")->where("id", $id);
+        return $this->execute()->all()->url_img;
+    }
+
+
+
+    public function existById(string $id) : bool{
+        $this->prepare();
+        $this->select(['*'])->from("products")->where("id", $id);
+        return $this->execute()->exists();
+    }
+
+    public function deleteById(string $id){
+        $this->prepare();
+        $this->delete("products")->where('id', $id);
+        return $this->execute();
+    }
+
 }

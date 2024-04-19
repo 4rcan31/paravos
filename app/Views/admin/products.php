@@ -6,6 +6,7 @@ layout("admin/Footer");
 layout("admin/Logout");
 layout("admin/Sidebar");
 layout("admin/Topbar");
+
 layout("admin/Crud");
 $data = ViewData::get();
 $table = $data['table'];
@@ -49,7 +50,7 @@ $crud->addOneMoreInputInCreateModal([
 
 
 $crud->addOneMoreInputInCreateModal([
-   "label" => "Imagen del producto*",
+   "label" => "Imagen del producto",
    'name' => "img",
    'type' => 'file'
 ]);
@@ -65,7 +66,7 @@ $crud->loadIn(
 $crud->setViewAllRowTheTableOriginalInModal();
 $crud->setCreateButton(
    "Creando un nuevo producto",
-   "/api/v1/edit/product",
+   "/api/v1/create/product",
    false
 );
 $crud->setEditButton(
@@ -75,7 +76,7 @@ $crud->setEditButton(
 );
 $crud->setCancelButton(
     "Eliminar",
-    "/api/v1/edit/product",
+    "/api/v1/delete/product",
     "Seguro que deseas eliminar al usuario {{name}}",
     []
 );

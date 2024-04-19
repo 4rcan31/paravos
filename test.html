@@ -18,7 +18,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                 <meta name="description" content="">
                 <meta name="author" content="">
-                <title>Home</title>
+                <title>Products</title>
                 <link rel="stylesheet" href="http://127.0.0.1:8080/vendor/fontawesome-free/css/all.min.css" />
         <link rel="stylesheet" href="http://127.0.0.1:8080/assets/css/sb-admin-2.min.css" />
         <link rel="stylesheet" href="http://127.0.0.1:8080/vendor/datatables/dataTables.bootstrap5.css" />
@@ -52,19 +52,19 @@
                 Tienda    </div>
              
                   <li class="nav-item ">
-                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                        <a class="nav-link" href="http://127.0.0.1:8080/admin/orders">
                             <i class="fas fa-truck"></i>
                             <span>Ordenes</span></a>
                     </li>
              
                   <li class="nav-item ">
-                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                        <a class="nav-link" href="http://127.0.0.1:8080/admin/products">
                             <i class="fas fa-shopping-bag"></i>
                             <span>Productos</span></a>
                     </li>
              
                   <li class="nav-item ">
-                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                        <a class="nav-link" href="http://127.0.0.1:8080/admin/categories">
                             <i class="fas fa-tags"></i>
                             <span>Categorias</span></a>
                     </li>
@@ -73,7 +73,7 @@
                 Parners    </div>
              
                   <li class="nav-item ">
-                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                        <a class="nav-link" href="http://127.0.0.1:8080/admin/parners">
                             <i class="fas fa-fw fa-users"></i>
                             <span>Parners</span></a>
                     </li>
@@ -82,7 +82,7 @@
                 Usuarios    </div>
              
                   <li class="nav-item ">
-                        <a class="nav-link" href="http://127.0.0.1:8080/panel/store">
+                        <a class="nav-link" href="http://127.0.0.1:8080/admin/users">
                             <i class="fas fa-fw fa-user-friends"></i>
                             <span>Usuarios</span></a>
                     </li>
@@ -205,95 +205,16 @@
         
                         <!-- Begin Page Content -->
                         <div class="container-fluid">
-                        <form action="/api/v1/edit/category" method="post">
-            <label for="name">Nombre:</label><br>
-            <input type="text" id="name" name="name" value="Valor por defecto del nombre"><br><br>
-            <label for="test">Test:</label><br>
-            <input type="text" id="test" name="test" value="Valor por defecto del test"><br><br>
-            <input type="submit" value="Enviar">
-        </form>
-                            <div class="modal fade" id="modal_6618ca4b0e421" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e421Label" aria-hidden="true" style="z-index: 100000;">
+                            <div class="modal fade" id="modal_662068640210e" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_662068640210eLabel" aria-hidden="true" style="z-index: 100000;">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
                         <div class="modal-content" style="position: relative; z-index: 100000;">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e421Label">Esto es un titulo</h5>
+                                <h5 class="modal-title" id="modal_662068640210eLabel">Creando un nuevo producto</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/null" method="POST" id="modal_6618ca4b0e421-form">
-                                    <div class="mb-3"><label for="id" class="form-label">Editando id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Electronicos" ></div><div class="mb-3"><label for="created_at" class="form-label">Editando created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-09 23:55:33" ></div>
-                                    <div class="modal-footer">
-                                        
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e44f" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e44fLabel" aria-hidden="true" style="z-index: 100000;">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
-                        <div class="modal-content" style="position: relative; z-index: 100000;">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e44fLabel">Esto es un titulo</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/null" method="POST" id="modal_6618ca4b0e44f-form">
-                                    <div class="mb-3"><label for="id" class="form-label">Editando id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="2" ></div><div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Ropa" ></div><div class="mb-3"><label for="created_at" class="form-label">Editando created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-09 23:55:33" ></div>
-                                    <div class="modal-footer">
-                                        
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e46c" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e46cLabel" aria-hidden="true" style="z-index: 100000;">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
-                        <div class="modal-content" style="position: relative; z-index: 100000;">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e46cLabel">Esto es un titulo</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/null" method="POST" id="modal_6618ca4b0e46c-form">
-                                    <div class="mb-3"><label for="id" class="form-label">Editando id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="3" ></div><div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Hogar" ></div><div class="mb-3"><label for="created_at" class="form-label">Editando created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-09 23:55:33" ></div>
-                                    <div class="modal-footer">
-                                        
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e484" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e484Label" aria-hidden="true" style="z-index: 100000;">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
-                        <div class="modal-content" style="position: relative; z-index: 100000;">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e484Label">Esto es un titulo</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/null" method="POST" id="modal_6618ca4b0e484-form">
-                                    <div class="mb-3"><label for="id" class="form-label">Editando id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="4" ></div><div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Alimentos" ></div><div class="mb-3"><label for="created_at" class="form-label">Editando created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-09 23:55:33" ></div>
-                                    <div class="modal-footer">
-                                        
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e4cb" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e4cbLabel" aria-hidden="true" style="z-index: 100000;">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
-                        <div class="modal-content" style="position: relative; z-index: 100000;">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e4cbLabel">Editando</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/api/v1/edit/category" method="POST" id="modal_6618ca4b0e4cb-form">
-                                    <div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name"  value="Electronicos" ></div><div class="mb-3"><label for="indentifier" class="form-label"></label><input type="hidden" name="indentifier" value="1"></div><div class="mb-3"><label for="name" class="form-label"></label><input type="hidden" name="name" value="Electronicos"></div>
+                                <form action="/api/v1/edit/product" method="POST">
+                                    <div class="mb-3"><label for="name" class="form-label">name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="price" class="form-label">price<span class="text-danger">*</span></label><input type="text" class="form-control" id="price" name="price" required value="" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_large" class="form-label">description_large<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_large" name="description_large" required value="" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_short" class="form-label">description_short<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_short" name="description_short" required value="" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="stock" class="form-label">stock<span class="text-danger">*</span></label><input type="text" class="form-control" id="stock" name="stock" required value="" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="category" class="form-label">Categorias<span class="text-danger">*</span></label><select class="form-control" id="category" name="category" required><option value="0" >Electronicos</option><option value="1" >Ropa</option><option value="2" >Hogar</option><option value="3" >Alimentos</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="partner" class="form-label">Elija el partner de este producto<span class="text-danger">*</span></label><select class="form-control" id="partner" name="partner" required><option value="0" >Para vos (Interno)</option><option value="1" >Clinica Medica Escobar</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="img" class="form-label">Imagen del producto</label><input type="file" class="form-control" id="img" name="img"  value="" ></div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -302,16 +223,200 @@
                             </div>
                         </div>
                     </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e4e4" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e4e4Label" aria-hidden="true" style="z-index: 100000;">
+                </div><div class="modal fade" id="modal_6620686401270" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686401270Label" aria-hidden="true" style="z-index: 100000;">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
                         <div class="modal-content" style="position: relative; z-index: 100000;">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e4e4Label">Editando</h5>
+                                <h5 class="modal-title" id="modal_6620686401270Label">Esto es un titulo</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/api/v1/edit/category" method="POST" id="modal_6618ca4b0e4e4-form">
-                                    <div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name"  value="Ropa" ></div><div class="mb-3"><label for="indentifier" class="form-label"></label><input type="hidden" name="indentifier" value="2"></div><div class="mb-3"><label for="name" class="form-label"></label><input type="hidden" name="name" value="Ropa"></div>
+                                <form action="/null" method="POST">
+                                    <div class="mb-3"><label for="id" class="form-label">Viendo a id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="8" ></div><div class="mb-3"><label for="category_id" class="form-label">Viendo a category_id</label><input type="text" class="form-control" id="category_id" name="category_id" readonly="true"  value="4" ></div><div class="mb-3"><label for="partners_id" class="form-label">Viendo a partners_id</label><input type="text" class="form-control" id="partners_id" name="partners_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Viendo a name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="McCormick Gourmet Organic Cinnamon" ></div><div class="mb-3"><label for="description_large" class="form-label">Viendo a description_large</label><input type="text" class="form-control" id="description_large" name="description_large" readonly="true"  value="Canela orgánica de McCormick Gourmet para dar sabor y aroma a tus platos favoritos." ></div><div class="mb-3"><label for="description_short" class="form-label">Viendo a description_short</label><input type="text" class="form-control" id="description_short" name="description_short" readonly="true"  value="Canela McCormick Gourmet" ></div><div class="mb-3"><label for="7d637b01707bf8ce7682bf3f7904eadd" class="form-label">Viendo a url_img</label>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-text" style="white-space: pre-wrap;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></div>
+                    </div>
+                </div></div><div class="mb-3"><label for="stock" class="form-label">Viendo a stock</label><input type="text" class="form-control" id="stock" name="stock" readonly="true"  value="35" ></div><div class="mb-3"><label for="price" class="form-label">Viendo a price</label><input type="text" class="form-control" id="price" name="price" readonly="true"  value="4.99" ></div><div class="mb-3"><label for="created_at" class="form-label">Viendo a created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="updated_at" class="form-label">Viendo a updated_at</label><input type="text" class="form-control" id="updated_at" name="updated_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="category_name" class="form-label">Viendo a category_name</label><input type="text" class="form-control" id="category_name" name="category_name" readonly="true"  value="Alimentos" ></div><div class="mb-3"><label for="partner_name" class="form-label">Viendo a partner_name</label><input type="text" class="form-control" id="partner_name" name="partner_name" readonly="true"  value="Para vos (Interno)" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686401270" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686401270Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686401270Label">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST">
+                                    <div class="mb-3"><label for="id" class="form-label">Viendo a id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="7" ></div><div class="mb-3"><label for="category_id" class="form-label">Viendo a category_id</label><input type="text" class="form-control" id="category_id" name="category_id" readonly="true"  value="4" ></div><div class="mb-3"><label for="partners_id" class="form-label">Viendo a partners_id</label><input type="text" class="form-control" id="partners_id" name="partners_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Viendo a name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Nutella Hazelnut Spread" ></div><div class="mb-3"><label for="description_large" class="form-label">Viendo a description_large</label><input type="text" class="form-control" id="description_large" name="description_large" readonly="true"  value="Untable de avellanas Nutella con sabor dulce y delicioso para disfrutar en cualquier momento." ></div><div class="mb-3"><label for="description_short" class="form-label">Viendo a description_short</label><input type="text" class="form-control" id="description_short" name="description_short" readonly="true"  value="Nutella Untable de Avellanas" ></div><div class="mb-3"><label for="87749516e3e8900ca484357ab47be11a" class="form-label">Viendo a url_img</label>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-text" style="white-space: pre-wrap;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></div>
+                    </div>
+                </div></div><div class="mb-3"><label for="stock" class="form-label">Viendo a stock</label><input type="text" class="form-control" id="stock" name="stock" readonly="true"  value="40" ></div><div class="mb-3"><label for="price" class="form-label">Viendo a price</label><input type="text" class="form-control" id="price" name="price" readonly="true"  value="3.99" ></div><div class="mb-3"><label for="created_at" class="form-label">Viendo a created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="updated_at" class="form-label">Viendo a updated_at</label><input type="text" class="form-control" id="updated_at" name="updated_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="category_name" class="form-label">Viendo a category_name</label><input type="text" class="form-control" id="category_name" name="category_name" readonly="true"  value="Alimentos" ></div><div class="mb-3"><label for="partner_name" class="form-label">Viendo a partner_name</label><input type="text" class="form-control" id="partner_name" name="partner_name" readonly="true"  value="Para vos (Interno)" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686401270" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686401270Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686401270Label">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST">
+                                    <div class="mb-3"><label for="id" class="form-label">Viendo a id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="2" ></div><div class="mb-3"><label for="category_id" class="form-label">Viendo a category_id</label><input type="text" class="form-control" id="category_id" name="category_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="partners_id" class="form-label">Viendo a partners_id</label><input type="text" class="form-control" id="partners_id" name="partners_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Viendo a name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Apple Watch Series 7" ></div><div class="mb-3"><label for="description_large" class="form-label">Viendo a description_large</label><input type="text" class="form-control" id="description_large" name="description_large" readonly="true"  value="El último modelo de reloj inteligente de Apple con nuevas funciones de salud y fitness." ></div><div class="mb-3"><label for="description_short" class="form-label">Viendo a description_short</label><input type="text" class="form-control" id="description_short" name="description_short" readonly="true"  value="Apple Watch Series 7" ></div><div class="mb-3"><label for="2fa55f27b1b79a0034a3bf11467d06fd" class="form-label">Viendo a url_img</label>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-text" style="white-space: pre-wrap;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></div>
+                    </div>
+                </div></div><div class="mb-3"><label for="stock" class="form-label">Viendo a stock</label><input type="text" class="form-control" id="stock" name="stock" readonly="true"  value="20" ></div><div class="mb-3"><label for="price" class="form-label">Viendo a price</label><input type="text" class="form-control" id="price" name="price" readonly="true"  value="399.00" ></div><div class="mb-3"><label for="created_at" class="form-label">Viendo a created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="updated_at" class="form-label">Viendo a updated_at</label><input type="text" class="form-control" id="updated_at" name="updated_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="category_name" class="form-label">Viendo a category_name</label><input type="text" class="form-control" id="category_name" name="category_name" readonly="true"  value="Electronicos" ></div><div class="mb-3"><label for="partner_name" class="form-label">Viendo a partner_name</label><input type="text" class="form-control" id="partner_name" name="partner_name" readonly="true"  value="Para vos (Interno)" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686401270" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686401270Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686401270Label">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST">
+                                    <div class="mb-3"><label for="id" class="form-label">Viendo a id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="1" ></div><div class="mb-3"><label for="category_id" class="form-label">Viendo a category_id</label><input type="text" class="form-control" id="category_id" name="category_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="partners_id" class="form-label">Viendo a partners_id</label><input type="text" class="form-control" id="partners_id" name="partners_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Viendo a name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Samsung Galaxy S21 Ultra" ></div><div class="mb-3"><label for="description_large" class="form-label">Viendo a description_large</label><input type="text" class="form-control" id="description_large" name="description_large" readonly="true"  value="El último smartphone de gama alta de Samsung con una cámara potente y pantalla impresionante." ></div><div class="mb-3"><label for="description_short" class="form-label">Viendo a description_short</label><input type="text" class="form-control" id="description_short" name="description_short" readonly="true"  value="Smartphone Samsung Galaxy S21 Ultra" ></div><div class="mb-3"><label for="daa8a3306f56bf203b319817c88fa265" class="form-label">Viendo a url_img</label>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-text" style="white-space: pre-wrap;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></div>
+                    </div>
+                </div></div><div class="mb-3"><label for="stock" class="form-label">Viendo a stock</label><input type="text" class="form-control" id="stock" name="stock" readonly="true"  value="15" ></div><div class="mb-3"><label for="price" class="form-label">Viendo a price</label><input type="text" class="form-control" id="price" name="price" readonly="true"  value="1199.00" ></div><div class="mb-3"><label for="created_at" class="form-label">Viendo a created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="updated_at" class="form-label">Viendo a updated_at</label><input type="text" class="form-control" id="updated_at" name="updated_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="category_name" class="form-label">Viendo a category_name</label><input type="text" class="form-control" id="category_name" name="category_name" readonly="true"  value="Electronicos" ></div><div class="mb-3"><label for="partner_name" class="form-label">Viendo a partner_name</label><input type="text" class="form-control" id="partner_name" name="partner_name" readonly="true"  value="Para vos (Interno)" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686401270" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686401270Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686401270Label">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST">
+                                    <div class="mb-3"><label for="id" class="form-label">Viendo a id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="6" ></div><div class="mb-3"><label for="category_id" class="form-label">Viendo a category_id</label><input type="text" class="form-control" id="category_id" name="category_id" readonly="true"  value="3" ></div><div class="mb-3"><label for="partners_id" class="form-label">Viendo a partners_id</label><input type="text" class="form-control" id="partners_id" name="partners_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Viendo a name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Dyson V11 Absolute Vacuum Cleaner" ></div><div class="mb-3"><label for="description_large" class="form-label">Viendo a description_large</label><input type="text" class="form-control" id="description_large" name="description_large" readonly="true"  value="Aspiradora sin cable Dyson V11 Absolute con succión potente y tecnología inteligente." ></div><div class="mb-3"><label for="description_short" class="form-label">Viendo a description_short</label><input type="text" class="form-control" id="description_short" name="description_short" readonly="true"  value="Aspiradora Dyson V11 Absolute" ></div><div class="mb-3"><label for="1c772ca9f5e7c6b552b25be2f8800dc5" class="form-label">Viendo a url_img</label>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-text" style="white-space: pre-wrap;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></div>
+                    </div>
+                </div></div><div class="mb-3"><label for="stock" class="form-label">Viendo a stock</label><input type="text" class="form-control" id="stock" name="stock" readonly="true"  value="8" ></div><div class="mb-3"><label for="price" class="form-label">Viendo a price</label><input type="text" class="form-control" id="price" name="price" readonly="true"  value="699.00" ></div><div class="mb-3"><label for="created_at" class="form-label">Viendo a created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="updated_at" class="form-label">Viendo a updated_at</label><input type="text" class="form-control" id="updated_at" name="updated_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="category_name" class="form-label">Viendo a category_name</label><input type="text" class="form-control" id="category_name" name="category_name" readonly="true"  value="Hogar" ></div><div class="mb-3"><label for="partner_name" class="form-label">Viendo a partner_name</label><input type="text" class="form-control" id="partner_name" name="partner_name" readonly="true"  value="Para vos (Interno)" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686401270" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686401270Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686401270Label">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST">
+                                    <div class="mb-3"><label for="id" class="form-label">Viendo a id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="5" ></div><div class="mb-3"><label for="category_id" class="form-label">Viendo a category_id</label><input type="text" class="form-control" id="category_id" name="category_id" readonly="true"  value="3" ></div><div class="mb-3"><label for="partners_id" class="form-label">Viendo a partners_id</label><input type="text" class="form-control" id="partners_id" name="partners_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Viendo a name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="KitchenAid Artisan Stand Mixer" ></div><div class="mb-3"><label for="description_large" class="form-label">Viendo a description_large</label><input type="text" class="form-control" id="description_large" name="description_large" readonly="true"  value="Batidora de pie KitchenAid Artisan con diseño elegante y potencia excepcional para tus recetas." ></div><div class="mb-3"><label for="description_short" class="form-label">Viendo a description_short</label><input type="text" class="form-control" id="description_short" name="description_short" readonly="true"  value="Batidora KitchenAid Artisan" ></div><div class="mb-3"><label for="ada65fa3691d4f77fdc4b958ad83d569" class="form-label">Viendo a url_img</label>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-text" style="white-space: pre-wrap;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></div>
+                    </div>
+                </div></div><div class="mb-3"><label for="stock" class="form-label">Viendo a stock</label><input type="text" class="form-control" id="stock" name="stock" readonly="true"  value="10" ></div><div class="mb-3"><label for="price" class="form-label">Viendo a price</label><input type="text" class="form-control" id="price" name="price" readonly="true"  value="399.00" ></div><div class="mb-3"><label for="created_at" class="form-label">Viendo a created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="updated_at" class="form-label">Viendo a updated_at</label><input type="text" class="form-control" id="updated_at" name="updated_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="category_name" class="form-label">Viendo a category_name</label><input type="text" class="form-control" id="category_name" name="category_name" readonly="true"  value="Hogar" ></div><div class="mb-3"><label for="partner_name" class="form-label">Viendo a partner_name</label><input type="text" class="form-control" id="partner_name" name="partner_name" readonly="true"  value="Para vos (Interno)" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686401270" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686401270Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686401270Label">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST">
+                                    <div class="mb-3"><label for="id" class="form-label">Viendo a id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="4" ></div><div class="mb-3"><label for="category_id" class="form-label">Viendo a category_id</label><input type="text" class="form-control" id="category_id" name="category_id" readonly="true"  value="2" ></div><div class="mb-3"><label for="partners_id" class="form-label">Viendo a partners_id</label><input type="text" class="form-control" id="partners_id" name="partners_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Viendo a name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Nike Air Force 1" ></div><div class="mb-3"><label for="description_large" class="form-label">Viendo a description_large</label><input type="text" class="form-control" id="description_large" name="description_large" readonly="true"  value="Zapatillas clásicas de Nike con estilo versátil y comodidad duradera." ></div><div class="mb-3"><label for="description_short" class="form-label">Viendo a description_short</label><input type="text" class="form-control" id="description_short" name="description_short" readonly="true"  value="Zapatillas Nike Air Force 1" ></div><div class="mb-3"><label for="834e4624202390c7acf85adacdc92bef" class="form-label">Viendo a url_img</label>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-text" style="white-space: pre-wrap;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></div>
+                    </div>
+                </div></div><div class="mb-3"><label for="stock" class="form-label">Viendo a stock</label><input type="text" class="form-control" id="stock" name="stock" readonly="true"  value="25" ></div><div class="mb-3"><label for="price" class="form-label">Viendo a price</label><input type="text" class="form-control" id="price" name="price" readonly="true"  value="90.00" ></div><div class="mb-3"><label for="created_at" class="form-label">Viendo a created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="updated_at" class="form-label">Viendo a updated_at</label><input type="text" class="form-control" id="updated_at" name="updated_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="category_name" class="form-label">Viendo a category_name</label><input type="text" class="form-control" id="category_name" name="category_name" readonly="true"  value="Ropa" ></div><div class="mb-3"><label for="partner_name" class="form-label">Viendo a partner_name</label><input type="text" class="form-control" id="partner_name" name="partner_name" readonly="true"  value="Para vos (Interno)" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686401270" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686401270Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686401270Label">Esto es un titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/null" method="POST">
+                                    <div class="mb-3"><label for="id" class="form-label">Viendo a id</label><input type="text" class="form-control" id="id" name="id" readonly="true"  value="3" ></div><div class="mb-3"><label for="category_id" class="form-label">Viendo a category_id</label><input type="text" class="form-control" id="category_id" name="category_id" readonly="true"  value="2" ></div><div class="mb-3"><label for="partners_id" class="form-label">Viendo a partners_id</label><input type="text" class="form-control" id="partners_id" name="partners_id" readonly="true"  value="1" ></div><div class="mb-3"><label for="name" class="form-label">Viendo a name</label><input type="text" class="form-control" id="name" name="name" readonly="true"  value="Levi's 501 Original Fit Jeans" ></div><div class="mb-3"><label for="description_large" class="form-label">Viendo a description_large</label><input type="text" class="form-control" id="description_large" name="description_large" readonly="true"  value="Los jeans icónicos de Levi's con un ajuste clásico y duradero." ></div><div class="mb-3"><label for="description_short" class="form-label">Viendo a description_short</label><input type="text" class="form-control" id="description_short" name="description_short" readonly="true"  value="Jeans Levi's 501 Original Fit" ></div><div class="mb-3"><label for="8663cadaab572567aa26527f1a50d57f" class="form-label">Viendo a url_img</label>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-text" style="white-space: pre-wrap;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></div>
+                    </div>
+                </div></div><div class="mb-3"><label for="stock" class="form-label">Viendo a stock</label><input type="text" class="form-control" id="stock" name="stock" readonly="true"  value="30" ></div><div class="mb-3"><label for="price" class="form-label">Viendo a price</label><input type="text" class="form-control" id="price" name="price" readonly="true"  value="59.99" ></div><div class="mb-3"><label for="created_at" class="form-label">Viendo a created_at</label><input type="text" class="form-control" id="created_at" name="created_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="updated_at" class="form-label">Viendo a updated_at</label><input type="text" class="form-control" id="updated_at" name="updated_at" readonly="true"  value="2024-04-14 00:35:20" ></div><div class="mb-3"><label for="category_name" class="form-label">Viendo a category_name</label><input type="text" class="form-control" id="category_name" name="category_name" readonly="true"  value="Ropa" ></div><div class="mb-3"><label for="partner_name" class="form-label">Viendo a partner_name</label><input type="text" class="form-control" id="partner_name" name="partner_name" readonly="true"  value="Para vos (Interno)" ></div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402206" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402206Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402206Label">Editanto el producto McCormick Gourmet Organic Cinnamon</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="McCormick Gourmet Organic Cinnamon" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="price" class="form-label">Editando price<span class="text-danger">*</span></label><input type="text" class="form-control" id="price" name="price" required value="4.99" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_large" class="form-label">Editando description_large<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_large" name="description_large" required value="Canela orgánica de McCormick Gourmet para dar sabor y aroma a tus platos favoritos." ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_short" class="form-label">Editando description_short<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_short" name="description_short" required value="Canela McCormick Gourmet" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="stock" class="form-label">Editando stock<span class="text-danger">*</span></label><input type="text" class="form-control" id="stock" name="stock" required value="35" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="category" class="form-label">Categorias<span class="text-danger">*</span></label><select class="form-control" id="category" name="category" required><option value="0" >Electronicos</option><option value="1" >Ropa</option><option value="2" >Hogar</option><option value="3" >Alimentos</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="partner" class="form-label">Elija el partner de este producto<span class="text-danger">*</span></label><select class="form-control" id="partner" name="partner" required><option value="0" >Para vos (Interno)</option><option value="1" >Clinica Medica Escobar</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="img" class="form-label">Imagen del producto</label><input type="file" class="form-control" id="img" name="img"  value="" ></div><div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="8"></div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -320,16 +425,16 @@
                             </div>
                         </div>
                     </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e4f6" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e4f6Label" aria-hidden="true" style="z-index: 100000;">
+                </div><div class="modal fade" id="modal_6620686402206" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402206Label" aria-hidden="true" style="z-index: 100000;">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
                         <div class="modal-content" style="position: relative; z-index: 100000;">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e4f6Label">Editando</h5>
+                                <h5 class="modal-title" id="modal_6620686402206Label">Editanto el producto Nutella Hazelnut Spread</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/api/v1/edit/category" method="POST" id="modal_6618ca4b0e4f6-form">
-                                    <div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name"  value="Hogar" ></div><div class="mb-3"><label for="indentifier" class="form-label"></label><input type="hidden" name="indentifier" value="3"></div><div class="mb-3"><label for="name" class="form-label"></label><input type="hidden" name="name" value="Hogar"></div>
+                                <form action="/api/v1/edit/product" method="POST">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="Nutella Hazelnut Spread" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="price" class="form-label">Editando price<span class="text-danger">*</span></label><input type="text" class="form-control" id="price" name="price" required value="3.99" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_large" class="form-label">Editando description_large<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_large" name="description_large" required value="Untable de avellanas Nutella con sabor dulce y delicioso para disfrutar en cualquier momento." ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_short" class="form-label">Editando description_short<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_short" name="description_short" required value="Nutella Untable de Avellanas" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="stock" class="form-label">Editando stock<span class="text-danger">*</span></label><input type="text" class="form-control" id="stock" name="stock" required value="40" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="category" class="form-label">Categorias<span class="text-danger">*</span></label><select class="form-control" id="category" name="category" required><option value="0" >Electronicos</option><option value="1" >Ropa</option><option value="2" >Hogar</option><option value="3" >Alimentos</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="partner" class="form-label">Elija el partner de este producto<span class="text-danger">*</span></label><select class="form-control" id="partner" name="partner" required><option value="0" >Para vos (Interno)</option><option value="1" >Clinica Medica Escobar</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="img" class="form-label">Imagen del producto</label><input type="file" class="form-control" id="img" name="img"  value="" ></div><div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="7"></div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -338,16 +443,16 @@
                             </div>
                         </div>
                     </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e50a" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e50aLabel" aria-hidden="true" style="z-index: 100000;">
+                </div><div class="modal fade" id="modal_6620686402206" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402206Label" aria-hidden="true" style="z-index: 100000;">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
                         <div class="modal-content" style="position: relative; z-index: 100000;">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e50aLabel">Editando</h5>
+                                <h5 class="modal-title" id="modal_6620686402206Label">Editanto el producto Apple Watch Series 7</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/api/v1/edit/category" method="POST" id="modal_6618ca4b0e50a-form">
-                                    <div class="mb-3"><label for="name" class="form-label">Editando name</label><input type="text" class="form-control" id="name" name="name"  value="Alimentos" ></div><div class="mb-3"><label for="indentifier" class="form-label"></label><input type="hidden" name="indentifier" value="4"></div><div class="mb-3"><label for="name" class="form-label"></label><input type="hidden" name="name" value="Alimentos"></div>
+                                <form action="/api/v1/edit/product" method="POST">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="Apple Watch Series 7" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="price" class="form-label">Editando price<span class="text-danger">*</span></label><input type="text" class="form-control" id="price" name="price" required value="399.00" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_large" class="form-label">Editando description_large<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_large" name="description_large" required value="El último modelo de reloj inteligente de Apple con nuevas funciones de salud y fitness." ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_short" class="form-label">Editando description_short<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_short" name="description_short" required value="Apple Watch Series 7" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="stock" class="form-label">Editando stock<span class="text-danger">*</span></label><input type="text" class="form-control" id="stock" name="stock" required value="20" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="category" class="form-label">Categorias<span class="text-danger">*</span></label><select class="form-control" id="category" name="category" required><option value="0" >Electronicos</option><option value="1" >Ropa</option><option value="2" >Hogar</option><option value="3" >Alimentos</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="partner" class="form-label">Elija el partner de este producto<span class="text-danger">*</span></label><select class="form-control" id="partner" name="partner" required><option value="0" >Para vos (Interno)</option><option value="1" >Clinica Medica Escobar</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="img" class="form-label">Imagen del producto</label><input type="file" class="form-control" id="img" name="img"  value="" ></div><div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="2"></div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -356,16 +461,232 @@
                             </div>
                         </div>
                     </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e590" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e590Label" aria-hidden="true" style="z-index: 100000;">
+                </div><div class="modal fade" id="modal_6620686402206" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402206Label" aria-hidden="true" style="z-index: 100000;">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
                         <div class="modal-content" style="position: relative; z-index: 100000;">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e590Label">Titulo del modal</h5>
+                                <h5 class="modal-title" id="modal_6620686402206Label">Editanto el producto Samsung Galaxy S21 Ultra</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/api/v1/create/category" method="POST" id="modal_6618ca4b0e590-form">
-                                    <div class="mb-3"><label for="name" class="form-label">name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="" ><small class="form-text text-danger small">Campo obligatorio</small></div>
+                                <form action="/api/v1/edit/product" method="POST">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="Samsung Galaxy S21 Ultra" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="price" class="form-label">Editando price<span class="text-danger">*</span></label><input type="text" class="form-control" id="price" name="price" required value="1199.00" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_large" class="form-label">Editando description_large<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_large" name="description_large" required value="El último smartphone de gama alta de Samsung con una cámara potente y pantalla impresionante." ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_short" class="form-label">Editando description_short<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_short" name="description_short" required value="Smartphone Samsung Galaxy S21 Ultra" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="stock" class="form-label">Editando stock<span class="text-danger">*</span></label><input type="text" class="form-control" id="stock" name="stock" required value="15" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="category" class="form-label">Categorias<span class="text-danger">*</span></label><select class="form-control" id="category" name="category" required><option value="0" >Electronicos</option><option value="1" >Ropa</option><option value="2" >Hogar</option><option value="3" >Alimentos</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="partner" class="form-label">Elija el partner de este producto<span class="text-danger">*</span></label><select class="form-control" id="partner" name="partner" required><option value="0" >Para vos (Interno)</option><option value="1" >Clinica Medica Escobar</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="img" class="form-label">Imagen del producto</label><input type="file" class="form-control" id="img" name="img"  value="" ></div><div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="1"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402206" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402206Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402206Label">Editanto el producto Dyson V11 Absolute Vacuum Cleaner</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="Dyson V11 Absolute Vacuum Cleaner" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="price" class="form-label">Editando price<span class="text-danger">*</span></label><input type="text" class="form-control" id="price" name="price" required value="699.00" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_large" class="form-label">Editando description_large<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_large" name="description_large" required value="Aspiradora sin cable Dyson V11 Absolute con succión potente y tecnología inteligente." ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_short" class="form-label">Editando description_short<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_short" name="description_short" required value="Aspiradora Dyson V11 Absolute" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="stock" class="form-label">Editando stock<span class="text-danger">*</span></label><input type="text" class="form-control" id="stock" name="stock" required value="8" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="category" class="form-label">Categorias<span class="text-danger">*</span></label><select class="form-control" id="category" name="category" required><option value="0" >Electronicos</option><option value="1" >Ropa</option><option value="2" >Hogar</option><option value="3" >Alimentos</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="partner" class="form-label">Elija el partner de este producto<span class="text-danger">*</span></label><select class="form-control" id="partner" name="partner" required><option value="0" >Para vos (Interno)</option><option value="1" >Clinica Medica Escobar</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="img" class="form-label">Imagen del producto</label><input type="file" class="form-control" id="img" name="img"  value="" ></div><div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="6"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402206" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402206Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402206Label">Editanto el producto KitchenAid Artisan Stand Mixer</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="KitchenAid Artisan Stand Mixer" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="price" class="form-label">Editando price<span class="text-danger">*</span></label><input type="text" class="form-control" id="price" name="price" required value="399.00" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_large" class="form-label">Editando description_large<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_large" name="description_large" required value="Batidora de pie KitchenAid Artisan con diseño elegante y potencia excepcional para tus recetas." ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_short" class="form-label">Editando description_short<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_short" name="description_short" required value="Batidora KitchenAid Artisan" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="stock" class="form-label">Editando stock<span class="text-danger">*</span></label><input type="text" class="form-control" id="stock" name="stock" required value="10" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="category" class="form-label">Categorias<span class="text-danger">*</span></label><select class="form-control" id="category" name="category" required><option value="0" >Electronicos</option><option value="1" >Ropa</option><option value="2" >Hogar</option><option value="3" >Alimentos</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="partner" class="form-label">Elija el partner de este producto<span class="text-danger">*</span></label><select class="form-control" id="partner" name="partner" required><option value="0" >Para vos (Interno)</option><option value="1" >Clinica Medica Escobar</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="img" class="form-label">Imagen del producto</label><input type="file" class="form-control" id="img" name="img"  value="" ></div><div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="5"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402206" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402206Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402206Label">Editanto el producto Nike Air Force 1</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="Nike Air Force 1" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="price" class="form-label">Editando price<span class="text-danger">*</span></label><input type="text" class="form-control" id="price" name="price" required value="90.00" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_large" class="form-label">Editando description_large<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_large" name="description_large" required value="Zapatillas clásicas de Nike con estilo versátil y comodidad duradera." ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_short" class="form-label">Editando description_short<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_short" name="description_short" required value="Zapatillas Nike Air Force 1" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="stock" class="form-label">Editando stock<span class="text-danger">*</span></label><input type="text" class="form-control" id="stock" name="stock" required value="25" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="category" class="form-label">Categorias<span class="text-danger">*</span></label><select class="form-control" id="category" name="category" required><option value="0" >Electronicos</option><option value="1" >Ropa</option><option value="2" >Hogar</option><option value="3" >Alimentos</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="partner" class="form-label">Elija el partner de este producto<span class="text-danger">*</span></label><select class="form-control" id="partner" name="partner" required><option value="0" >Para vos (Interno)</option><option value="1" >Clinica Medica Escobar</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="img" class="form-label">Imagen del producto</label><input type="file" class="form-control" id="img" name="img"  value="" ></div><div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="4"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402206" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402206Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402206Label">Editanto el producto Levi's 501 Original Fit Jeans</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    <div class="mb-3"><label for="name" class="form-label">Editando name<span class="text-danger">*</span></label><input type="text" class="form-control" id="name" name="name" required value="Levi's 501 Original Fit Jeans" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="price" class="form-label">Editando price<span class="text-danger">*</span></label><input type="text" class="form-control" id="price" name="price" required value="59.99" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_large" class="form-label">Editando description_large<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_large" name="description_large" required value="Los jeans icónicos de Levi's con un ajuste clásico y duradero." ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="description_short" class="form-label">Editando description_short<span class="text-danger">*</span></label><input type="text" class="form-control" id="description_short" name="description_short" required value="Jeans Levi's 501 Original Fit" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="stock" class="form-label">Editando stock<span class="text-danger">*</span></label><input type="text" class="form-control" id="stock" name="stock" required value="30" ><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="category" class="form-label">Categorias<span class="text-danger">*</span></label><select class="form-control" id="category" name="category" required><option value="0" >Electronicos</option><option value="1" >Ropa</option><option value="2" >Hogar</option><option value="3" >Alimentos</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="partner" class="form-label">Elija el partner de este producto<span class="text-danger">*</span></label><select class="form-control" id="partner" name="partner" required><option value="0" >Para vos (Interno)</option><option value="1" >Clinica Medica Escobar</option></select><small class="form-text text-danger small">Campo obligatorio</small></div><div class="mb-3"><label for="img" class="form-label">Imagen del producto</label><input type="file" class="form-control" id="img" name="img"  value="" ></div><div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="3"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402489" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402489Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402489Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    Seguro que deseas eliminar al usuario McCormick Gourmet Organic Cinnamon<div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="8"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402489" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402489Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402489Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    Seguro que deseas eliminar al usuario Nutella Hazelnut Spread<div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="7"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402489" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402489Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402489Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    Seguro que deseas eliminar al usuario Apple Watch Series 7<div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="2"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402489" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402489Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402489Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    Seguro que deseas eliminar al usuario Samsung Galaxy S21 Ultra<div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="1"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402489" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402489Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402489Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    Seguro que deseas eliminar al usuario Dyson V11 Absolute Vacuum Cleaner<div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="6"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402489" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402489Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402489Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    Seguro que deseas eliminar al usuario KitchenAid Artisan Stand Mixer<div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="5"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402489" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402489Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402489Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    Seguro que deseas eliminar al usuario Nike Air Force 1<div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="4"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="modal fade" id="modal_6620686402489" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6620686402489Label" aria-hidden="true" style="z-index: 100000;">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
+                        <div class="modal-content" style="position: relative; z-index: 100000;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_6620686402489Label">Cancelando</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/v1/edit/product" method="POST">
+                                    Seguro que deseas eliminar al usuario Levi's 501 Original Fit Jeans<div class="mb-3"><label for="identifier" class="form-label"></label><input type="hidden" name="identifier" value="3"></div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -376,80 +697,8 @@
                     </div>
                 </div><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Categorias</h6>
-                    <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e590">Nuevo</button>
-                </div><div class="card-body"><div class="table-responsive"><table class="table table-bordered" id="table_6618ca4b0e3c9" width="100%" cellspacing="0"><thead><tr><th>N</th><th>name</th><th>Ver</th><th>Editar</th><th>Cancelar</th></tr></thead><tbody><tr><td>1</td><td>Electronicos</td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e421">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e4cb">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e552">Cancelar</button></td></tr><tr><td>2</td><td>Ropa</td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e44f">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e4e4">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e564">Cancelar</button></td></tr><tr><td>3</td><td>Hogar</td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e46c">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e4f6">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e575">Cancelar</button></td></tr><tr><td>4</td><td>Alimentos</td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e484">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e50a">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6618ca4b0e584">Cancelar</button></td></tr></tbody><tfoot><tr><th>N</th><th>name</th><th>Ver</th><th>Editar</th><th>Cancelar</th></tr></tfoot></table></div></div></div><div class="modal fade" id="modal_6618ca4b0e552" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e552Label" aria-hidden="true" style="z-index: 100000;">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
-                        <div class="modal-content" style="position: relative; z-index: 100000;">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e552Label">Cancelando</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/api/v1/delete/category" method="POST" id="modal_6618ca4b0e552-form">
-                                    Seguro que deseas eliminar al usuario Electronicos
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e564" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e564Label" aria-hidden="true" style="z-index: 100000;">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
-                        <div class="modal-content" style="position: relative; z-index: 100000;">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e564Label">Cancelando</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/api/v1/delete/category" method="POST" id="modal_6618ca4b0e564-form">
-                                    Seguro que deseas eliminar al usuario Ropa
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e575" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e575Label" aria-hidden="true" style="z-index: 100000;">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
-                        <div class="modal-content" style="position: relative; z-index: 100000;">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e575Label">Cancelando</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/api/v1/delete/category" method="POST" id="modal_6618ca4b0e575-form">
-                                    Seguro que deseas eliminar al usuario Hogar
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="modal fade" id="modal_6618ca4b0e584" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_6618ca4b0e584Label" aria-hidden="true" style="z-index: 100000;">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
-                        <div class="modal-content" style="position: relative; z-index: 100000;">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_6618ca4b0e584Label">Cancelando</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/api/v1/delete/category" method="POST" id="modal_6618ca4b0e584-form">
-                                    Seguro que deseas eliminar al usuario Alimentos
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>                </div>
+                    <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#modal_662068640210e">Nuevo</button>
+                </div><div class="card-body"><div class="table-responsive"><table class="table table-bordered" id="table_6620686401127" width="100%" cellspacing="0"><thead><tr><th>N</th><th>name</th><th>category_name</th><th>price</th><th>partner_name</th><th>description_large</th><th>description_short</th><th>stock</th><th>url_img</th><th>Ver</th><th>Editar</th><th>Cancelar</th></tr></thead><tbody><tr><td>1</td><td>McCormick Gourmet Organic Cinnamon</td><td>Alimentos</td><td>4.99</td><td>Para vos (Interno)</td><td>Canela orgánica de McCormick Gourmet para dar sabor y aroma a tus platos favoritos.</td><td>Canela McCormick Gourmet</td><td>35</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6620686401270">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6620686402206">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6620686402489">Eliminar</button></td></tr><tr><td>2</td><td>Nutella Hazelnut Spread</td><td>Alimentos</td><td>3.99</td><td>Para vos (Interno)</td><td>Untable de avellanas Nutella con sabor dulce y delicioso para disfrutar en cualquier momento.</td><td>Nutella Untable de Avellanas</td><td>40</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6620686401270">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6620686402206">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6620686402489">Eliminar</button></td></tr><tr><td>3</td><td>Apple Watch Series 7</td><td>Electronicos</td><td>399.00</td><td>Para vos (Interno)</td><td>El último modelo de reloj inteligente de Apple con nuevas funciones de salud y fitness.</td><td>Apple Watch Series 7</td><td>20</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6620686401270">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6620686402206">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6620686402489">Eliminar</button></td></tr><tr><td>4</td><td>Samsung Galaxy S21 Ultra</td><td>Electronicos</td><td>1199.00</td><td>Para vos (Interno)</td><td>El último smartphone de gama alta de Samsung con una cámara potente y pantalla impresionante.</td><td>Smartphone Samsung Galaxy S21 Ultra</td><td>15</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6620686401270">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6620686402206">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6620686402489">Eliminar</button></td></tr><tr><td>5</td><td>Dyson V11 Absolute Vacuum Cleaner</td><td>Hogar</td><td>699.00</td><td>Para vos (Interno)</td><td>Aspiradora sin cable Dyson V11 Absolute con succión potente y tecnología inteligente.</td><td>Aspiradora Dyson V11 Absolute</td><td>8</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6620686401270">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6620686402206">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6620686402489">Eliminar</button></td></tr><tr><td>6</td><td>KitchenAid Artisan Stand Mixer</td><td>Hogar</td><td>399.00</td><td>Para vos (Interno)</td><td>Batidora de pie KitchenAid Artisan con diseño elegante y potencia excepcional para tus recetas.</td><td>Batidora KitchenAid Artisan</td><td>10</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6620686401270">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6620686402206">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6620686402489">Eliminar</button></td></tr><tr><td>7</td><td>Nike Air Force 1</td><td>Ropa</td><td>90.00</td><td>Para vos (Interno)</td><td>Zapatillas clásicas de Nike con estilo versátil y comodidad duradera.</td><td>Zapatillas Nike Air Force 1</td><td>25</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6620686401270">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6620686402206">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6620686402489">Eliminar</button></td></tr><tr><td>8</td><td>Levi's 501 Original Fit Jeans</td><td>Ropa</td><td>59.99</td><td>Para vos (Interno)</td><td>Los jeans icónicos de Levi's con un ajuste clásico y duradero.</td><td>Jeans Levi's 501 Original Fit</td><td>30</td><td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Rojos.png" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;"></td><td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_6620686401270">Ver</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_6620686402206">Editar</button></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_6620686402489">Eliminar</button></td></tr></tbody><tfoot><tr><th>N</th><th>name</th><th>category_name</th><th>price</th><th>partner_name</th><th>description_large</th><th>description_short</th><th>stock</th><th>url_img</th><th>Ver</th><th>Editar</th><th>Cancelar</th></tr></tfoot></table></div></div></div>                </div>
                         <!-- /.container-fluid -->
         
                     </div>
@@ -516,7 +765,7 @@
         <script type="text/javascript" src="http://127.0.0.1:8080/vendor/datatables/dataTables.bootstrap4.min.js" ></script>
             <script>
                         $(document).ready(function() {
-                            $("#table_6618ca4b0e3c9").DataTable();
+                            $("#table_6620686401127").DataTable();
                         });
                     </script>
         </body>

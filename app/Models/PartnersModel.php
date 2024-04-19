@@ -26,4 +26,16 @@ class PartnersModel extends BaseModel{
             $this->query("SELECT name FROM partners")->fetchAll(), 
             'name');
     } 
+
+    public function getIdByName(string $name){
+        $this->prepare();
+        $this->select(['id'])->from("partners")->where("name", $name);
+        return $this->execute()->all()->id;
+    }
+
+    public function existByName(string $name){
+        $this->prepare();
+        $this->select(['name'])->from("partners")->where("name", $name);
+        return $this->execute()->exists();
+    }
 }

@@ -35,34 +35,37 @@ Route::group(function(){
     })->middlewares(['AuthMiddleware@session']);
 
 
-    Route::group(function(){
-
-        Route::post("/category", function($request){
-            controller("Admin/CategoriesController", "edit", $request);
-        });
-
-        Route::post("/product", function($request){
-            res($request);
-        });
-
-    })->prefix("/edit");
-
-    Route::group(function(){
-
-        Route::post("/category", function($request){
-            controller("Admin/CategoriesController", "create", $request);
-        });
-
-    })->prefix("/create");
-
-    Route::group(function(){
-
-        Route::post("/category", function($request){
-            controller("Admin/CategoriesController", "delete", $request);
-        });
-
-    })->prefix("/delete");
 
 
+    //Edits
+    Route::post("/edit/category", function($request){
+        controller("Admin/CategoriesController", "edit", $request);
+    });
+
+    Route::post("/edit/product", function($request){
+        controller("Admin/ProductsController", "edit", $request);
+    });
+
+
+
+    //creates
+    Route::post("/create/category", function($request){
+        controller("Admin/CategoriesController", "create", $request);
+    });
+
+    Route::post("/create/product", function($request){
+        controller("Admin/ProductsController", "create", $request);
+    });
+
+
+
+    //deletes
+    Route::post("/delete/category", function($request){
+        controller("Admin/CategoriesController", "delete", $request);
+    });
+
+    Route::post("/delete/product", function($request){
+        controller("Admin/ProductsController", "delete", $request);
+    });
 
 })->prefix("/api/v1");

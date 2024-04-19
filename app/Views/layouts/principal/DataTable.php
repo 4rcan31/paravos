@@ -84,7 +84,7 @@ class DataTable{
             $htmlToRenderIntoModal = $this->replaceVariables($htmlRender, $row);
             foreach ($keysToSend as $valueKey) {
                 if (array_key_exists($valueKey, $row)) {
-                    $htmlToRenderIntoModal .= $modal->inputSendHidden($valueKey, $row[$valueKey]);
+                    $htmlToRenderIntoModal .= $modal->form()->inputSendHidden($valueKey, $row[$valueKey]);
                 } else {
                     throw new Exception("The key $valueKey does not exist");
                 }

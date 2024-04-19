@@ -92,15 +92,15 @@ class Profile{
                 $value = $input['value'] ?? "";
                 $type = $input['type'] ?? 'text';
                 if($type == "textarea"){
-                    $form .= $modal->textarea($input['label'], $input['name'], $value);
+                    $form .= $modal->form()->textarea($input['label'], $input['name'], $value);
                 }else if($type == 'select'){
-                    $form .= $modal->select(
+                    $form .= $modal->form()->select(
                         $input['label'],
                         $input['name'],
                         $input['options']
                     );
                 }else if($type == 'text'){
-                    $form .= $modal->input($input['label'], $input['name'], $value, $type);
+                    $form .= $modal->form()->input($input['label'], $input['name'], $value, $type);
                 }
             }
     

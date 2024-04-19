@@ -66,15 +66,15 @@ $data = ViewData::get();
     
     
     $modal = new Modal("Orden", route("/api/v1/order", false));
-    $form = $modal->input("Nombre completo*", 'name', $dataUser->row->name ?? "");
-    $form .= $modal->input("Correo electrónico", "email", $dataUser->row->email ?? "");
-    $form .= $modal->input("Número de teléfono*", "phoneNumber", $dataUser->phones->principal->number_phone ?? "");
-    $form .= $modal->input("Dirección de entrega*", "addressDelivery", $dataUser->address->principal->address_line ?? "");
-    $form .= $modal->input("Referencia", "reference");
-    $form .= $modal->input("Fecha de entrega*", "deliveryDate", "", "date");
-    $form .= $modal->input("Hora aproximada de entrega*", "deliveryTime", "", "time");
-    $form .= $modal->textarea("Comentario", "comment", "");
-    $form .= $modal->inputSendHidden("idProduct", $data['id']);
+    $form = $modal->form()->input("Nombre completo*", 'name', $dataUser->row->name ?? "");
+    $form .= $modal->form()->input("Correo electrónico", "email", $dataUser->row->email ?? "");
+    $form .= $modal->form()->input("Número de teléfono*", "phoneNumber", $dataUser->phones->principal->number_phone ?? "");
+    $form .= $modal->form()->input("Dirección de entrega*", "addressDelivery", $dataUser->address->principal->address_line ?? "");
+    $form .= $modal->form()->input("Referencia", "reference");
+    $form .= $modal->form()->input("Fecha de entrega*", "deliveryDate", "", "date");
+    $form .= $modal->form()->input("Hora aproximada de entrega*", "deliveryTime", "", "time");
+    $form .= $modal->form()->textarea("Comentario", "comment", "");
+    $form .= $modal->form()->inputSendHidden("idProduct", $data['id']);
     $form .= TokenCsrf::getInput();
 
 

@@ -18,15 +18,25 @@ class FormBuilder{
         $html .= '</div>';
         return $html;
     }
-    
+
     function input(string $label, string $name, string $value = '', string $type = 'text', array $attributes = []) : string {
+        // Mapear algunos tipos comunes a los tipos de entrada HTML
+        $typeMap = [
+            'string' => 'text',
+            'numeric' => 'number',
+            'integer' => 'number',
+            'img'  => 'img',
+            'imagen' => 'file',
+            'file' => 'file'
+        ];
         $attributeString = '';
         foreach ($attributes as $attribute => $attrValue) {
             $attributeString .= $attribute . '="' . $attrValue . '" ';
         }
-    
-        $htmlContent = '<input type="' . $type . '" class="form-control" id="' . $name . '" name="' . $name . '" ' . $attributeString . (strpos($label, '*') !== false ? "required" : "") . ' value="' . $value . '" >';
-        return $this->renderField($label, $name, $htmlContent);
+        $type = array_key_exists($type, $typeMap) ? 
+                $typeMap[$type] : "text";
+                $htmlContent = '<input type="' . $type . '" class="form-control" id="' . $name . '" name="' . $name . '" ' . $attributeString . (strpos($label, '*') !== false ? "required" : "") . ' value="' . $value . '" >';
+                return $this->renderField($label, $name, $htmlContent);
     }
     
     
@@ -42,21 +52,22 @@ class FormBuilder{
 
     function select(string $label, string $name, array $options, string $selected = '') : string {
         $htmlContent = '<select class="form-control" id="' . $name . '" name="' . $name . '" ' . (strpos($label, '*') !== false ? "required" : "") . '>';
+        $htmlContent .= ' <option value="" disabled selected hidden>Seleccionar</option>';
         foreach ($options as $value => $text) {
-            $isSelected = $value == $selected ? 'selected' : '';
-            $htmlContent .= '<option ' . $isSelected . '>' . $text . '</option>';
+            $isSelected = ($value == $selected || $text == $selected) ? 'selected' : '';
+            $htmlContent .= '<option value="' . htmlspecialchars($text) . '" ' . $isSelected . '>' . htmlspecialchars($text) . '</option>';
         }
         $htmlContent .= '</select>';
         return $this->renderField($label, $name, $htmlContent);
     }
 
     public function justAdd(string $title, string $html){
-        return '
-        <div class="card mt-3 mb-3">
+        $var =  '
+        <div class="card mb-3">
             <div class="card-body">
-                <h5 class="card-title">' . $title . '</h5>
                 <div class="card-text" style="white-space: pre-wrap;">' . $html . '</div>
             </div>
         </div>';
+        return $this->renderField($title, token(), $var);
     }
 }

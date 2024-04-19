@@ -193,49 +193,80 @@ class DataTablePanel{
     
     public function addColumnWithModalButtons(string $nameColumn, string $buttonName, string $titleModal, string $action, string|array $htmlRender, array $keysToSend, int|string $position = 'last', array $atributes = []) {
         $positionColumn = $this->addColumn($nameColumn, $position);
-        $modal = new Modal('', $action); 
         foreach ($this->rows as &$row) {
-            $htmlFinal = '';
-            // Procesar HTML renderizado
-            if (is_string($htmlRender)) {
-                $htmlToRenderIntoModal = $this->replaceVariables($htmlRender, $row);
-            } else if (is_array($htmlRender)) {
-                foreach ($htmlRender as $input) {
-                    [$title, $name, $type, $attributes] = $input;
-                    $value = $this->replaceVariables("{{" . $name . "}}", $row);
-                    $isHtml = (bool)$this->replaceVariables("{{" . $name . ".ishtml}}", $row);
-                    $htmlFinal .= $isHtml ?
-                        (new FormBuilder)->justAdd($this->replaceVariables($title, $row), $value) :
-                        (new FormBuilder)->input($this->replaceVariables($title, $row), $name, $value, $type, $attributes);
+            if(is_string($htmlRender)){
+                $modal = new Modal($this->replaceVariables($titleModal, $row), $action);
+            }else if(is_array($htmlRender)){
+                $modal = new Modal($this->replaceVariables($titleModal, $row), $action);
+                $form = new FormBuilder;
+                $htmlFinal = '';
+                $htmlInserteBefore = '';
+                foreach($htmlRender as $key => $input){
+                    if($key == 'html'){
+                        //esto significa que mando algo mas, un html en forma de string y no de array que quiere
+                        //que se inserte al html que se va a generar
+                        $htmlInserteBefore .= $input;
+                        continue;
+                    }
+                    $title = $input[0] ?? "No se definio el titulo";
+                    $name = $input[1] ?? "no_se_definio_el_nombre".token();
+                    $type = $input[2] ?? "text";
+                    $atributesInput = $input[3] ?? [];
+                    if($type == '{{type}}'){
+                        //la conversion de type php a type html input ya la hace $form->input()
+                        $type = (string)$this->runFunctionInVars($name, 'type', $row);
+                    }
+                   // $ishtml = (bool)$this->replaceVariables("{{" . $name . ".ishtml}}", $row);
+                    $ishtml = (bool)$this->runFunctionInVars($name, 'ishtml', $row);
+                    if($ishtml){
+                        $htmlFinal .= $form->justAdd(
+                            $this->replaceVariables($title, $row),
+                            $this->replaceVariables("{{" . $name . "}}", $row)
+                        );
+                    }else{
+                        //prettyPrint("Esto es lo que quedo xd: " .$type);
+                        $htmlFinal .= $form->input(
+                            $this->replaceVariables($title, $row),
+                            $name,
+                            $this->replaceVariables("{{" . $name . "}}", $row),
+                            $type,
+                            $atributesInput
+                        );
+                    }
+                    
                 }
-                $htmlToRenderIntoModal = $this->replaceVariables($htmlFinal, $row);
-            } else {
-                throw new Exception("Invalid htmlRender parameter");
+                $htmlFinal .= $htmlInserteBefore;
             }
-     
-            $buttonHtml = sprintf('<button %s data-bs-toggle="modal" data-bs-target="#%s">%s</button>',
-                $this->buildAtributesStringByArray($atributes) == null ?
-                'class="btn btn-primary"' :
-                $this->buildAtributesStringByArray($atributes),
-                $modal->getId(),
-                $buttonName
-            );
-            // Renderizar modal y actualizar fila
+           
+            $htmlToRenderIntoModal = $this->replaceVariables(
+                is_string($htmlRender) ? $htmlRender : $htmlFinal, $row);
             foreach ($keysToSend as $valueKey) {
                 $identifier = $this->identifierKeyCleaner($valueKey);
-                $value = array_key_exists($valueKey, $row) ? $row[$valueKey] : (array_key_exists($identifier, $row) ? $row[$identifier] : null);
+                $value = array_key_exists($valueKey, $row) ? 
+                        $row[$valueKey] : 
+                        (array_key_exists($identifier, $row) ? 
+                        $row[$identifier] : null);
                 if ($value !== null) {
-                    $htmlToRenderIntoModal .= $modal->inputSendHidden($identifier !== '' ? 'identifier' : $valueKey, $value);
+                    $htmlToRenderIntoModal .= $modal->form()->inputSendHidden($identifier !== '' ? 'identifier' : $valueKey, $value);
                 } else {
                     throw new Exception("The key '$valueKey' does not exist when adding.");
                 }
             }
-            $modal->setTitle($this->replaceVariables($titleModal, $row));
             $modal->setHtmlToRender($htmlToRenderIntoModal);
+            $idButtonModal = $modal->getId();
             $this->htmlModals .= $modal->get();
+            $atribuesString = '';
+            foreach($atributes as $atribute => $value){
+                $atribuesString .= $atribute . '="' . $value . '"';
+            }
+            $buttonHtml = '<button ' . 
+            ($atribuesString == "" ? 'class="btn btn-primary"' : $atribuesString) . 
+            ' data-bs-toggle="modal" data-bs-target="#' . $idButtonModal . '">' . $buttonName . '</button>';            
             array_splice($row, $positionColumn, 0, $buttonHtml);
         }
     }
+
+
     
     public function redenderPaginationTableAfterLoadScriptJs(){
         echo '<script>
@@ -256,6 +287,9 @@ class DataTablePanel{
         ));
     }
     
+    public function runFunctionInVars(string $field, string $function, array $variables){
+        return $this->replaceVariables("{{".$field.".$function}}", $variables);
+    }
 
     public function replaceVariables(string $string, array $variables) : string {
         $pattern = '/\{\{(\w+(\.\w+)*)\}\}/';
@@ -274,7 +308,11 @@ class DataTablePanel{
                     foreach ($functions as $function) {
                         switch ($function) {
                             case 'type':
-                                $value = gettype($value);
+                                if(is_numeric($value)){
+                                    $value = "numeric";
+                                }else{
+                                    $value = gettype($value);
+                                }
                                 break;
                             case 'ishtml':
                                 $value = $this->hasHtmlFormat($value);

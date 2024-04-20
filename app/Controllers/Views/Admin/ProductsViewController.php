@@ -23,7 +23,7 @@ class ProductsViewController extends BaseController{
     }
 
     public function getTableProducts(){
-       $colums = $this->products()->getColumns();
+       $colums = $this->products()->getColumnsPro();
        $colums[] = "category_name";
        $colums[] = 'partner_name';
         return [

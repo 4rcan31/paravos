@@ -212,7 +212,7 @@ class Validate{
         return true;
     }
 
-    public function input($index) : bool|string{
+    public function input($index) : bool|string|array{
         if(isset($this->datos[$index])){
             return $this->datos[$index];
         }

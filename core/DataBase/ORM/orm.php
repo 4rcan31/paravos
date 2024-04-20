@@ -201,6 +201,10 @@ class DataBase extends Connection{
         }
     }
 
+    public function getColumns(string $table) : array{
+        return array_column($this->query("SHOW COLUMNS FROM $table;
+        ")->fetchAll(PDO::FETCH_ASSOC), "Field");
+    }
 
     public function execute(){
         try{

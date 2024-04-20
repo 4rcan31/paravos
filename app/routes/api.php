@@ -46,6 +46,9 @@ Route::group(function(){
         controller("Admin/ProductsController", "edit", $request);
     });
 
+    Route::post("/edit/partner", function($request){
+        controller("Admin/PartnersController", "edit", $request);
+    });
 
 
     //creates
@@ -57,6 +60,11 @@ Route::group(function(){
         controller("Admin/ProductsController", "create", $request);
     });
 
+    Route::post("/create/partner", function($request){
+        controller("Admin/PartnersController", "create", $request);
+    });
+
+
 
 
     //deletes
@@ -66,6 +74,10 @@ Route::group(function(){
 
     Route::post("/delete/product", function($request){
         controller("Admin/ProductsController", "delete", $request);
+    });
+
+    Route::post("/delete/partner", function($request){
+        controller("Admin/PartnersController", "delete", $request);
     });
 
 })->prefix("/api/v1");

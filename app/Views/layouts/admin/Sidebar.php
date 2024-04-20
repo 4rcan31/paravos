@@ -19,8 +19,8 @@ function sidebar(){
         navItem('Categorias', 'fas fa-tags', '/admin/categories');
 
         divider();
-        HeadingNavItem('Parners');
-        navItem('Parners', 'fas fa-fw fa-users', '/admin/parners');
+        HeadingNavItem('Partners');
+        navItem('Parners', 'fas fa-fw fa-users', '/admin/partners');
 
 
         divider();

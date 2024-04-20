@@ -31,13 +31,13 @@ class CategoriesModel extends BaseModel{
         return $this->execute()->lastId();
     }
 
-    public function deleteById(string $idCategory) : int|string{
+    public function deleteById(string $idCategory) {
         $this->prepare();
         $this->delete("categories")->where(
             'id',
             $idCategory
         );
-        return $this->execute()->lastId();
+        return $this->execute();
     }
 
     public function getIdByName(string $name){

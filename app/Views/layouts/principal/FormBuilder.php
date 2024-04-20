@@ -27,8 +27,15 @@ class FormBuilder{
             'integer' => 'number',
             'img'  => 'img',
             'imagen' => 'file',
-            'file' => 'file'
+            'file' => 'file',
+            "date" => 'date',
+            'time' => 'time'
         ];
+
+        if($type == "numeric" || $type == "integer" || $type == "number"){
+            $attributes["step"] = "any";
+            $attributes['pattern'] = "[0-9]+";
+        }
         $attributeString = '';
         foreach ($attributes as $attribute => $attrValue) {
             $attributeString .= $attribute . '="' . $attrValue . '" ';

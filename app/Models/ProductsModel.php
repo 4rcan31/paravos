@@ -23,9 +23,8 @@ class ProductsModel extends BaseModel{
     }
     
 
-    public function getColumns(){
-        return array_column($this->query("SHOW COLUMNS FROM products;
-        ")->fetchAll(PDO::FETCH_ASSOC), "Field");
+    public function getColumnsPro(){
+        return $this->getColumns("products");
     }
     
 

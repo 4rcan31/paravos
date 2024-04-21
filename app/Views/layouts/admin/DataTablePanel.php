@@ -190,6 +190,22 @@ class DataTablePanel{
 
         }
     }
+
+    public function addColumWithRedirectionButton(string $columnName, string $buttonLabel, string $uri, array $atributes = []){
+            $atributes['type'] = $atributes['type'] ?? "button";
+            $atributes['class'] = $atributes['class'] ?? "btn btn-success";
+            $atribuesString = $this->buildAtributesStringByArray($atributes);
+            $chunkColumn = [];
+            foreach ($this->rows as $row) {
+                /* No entiendo por que hay que hacer este paso de variables aca xd, se puede solucionar haciendo de una vez
+                 esto  $button = "<a href='". $this->replaceVariables($uri, $row)."'><button $atribuesString>$buttonLabel</button></a>";*/
+                $resultUri = $uri;
+                $resultUri = $this->replaceVariables($uri, $row);
+                $button = "<a href='$resultUri'><button $atribuesString>$buttonLabel</button></a>";
+                $chunkColumn[] = $button;
+            }
+           $this->insertChunkColumnWithCell($columnName, $chunkColumn);
+    }
     
     public function addColumnWithModalButtons(string $nameColumn, string $buttonName, string $titleModal, string $action, string|array $htmlRender, array $keysToSend, int|string $position = 'last', array $atributes = []) {
         $positionColumn = $this->addColumn($nameColumn, $position);
@@ -291,26 +307,27 @@ class DataTablePanel{
         return $this->replaceVariables("{{".$field.".$function}}", $variables);
     }
 
-    public function replaceVariables(string $string, array $variables) : string {
+    public function replaceVariables(string $string, array $variables): string {
         $pattern = '/\{\{(\w+(\.\w+)*)\}\}/';
+        
         $result = preg_replace_callback($pattern, function($matches) use ($variables) {
             $variableName = $matches[1];
-            // Si el nombre de la variable contiene puntos, significa que es una funcion
+            // Si el nombre de la variable contiene puntos, significa que es una función
             if (strpos($variableName, '.') !== false) {
                 // Dividir el nombre de la variable en partes
                 $parts = explode('.', $variableName);
-                // El primer elemento sera el nombre de la variable
+                // El primer elemento será el nombre de la variable
                 $variable = $parts[0];
-                // El resto de los elementos seran solamente los metodos/funciones
+                // El resto de los elementos serán solamente los métodos/funciones
                 $functions = array_slice($parts, 1);
                 if (array_key_exists($variable, $variables)) {
                     $value = $variables[$variable];
                     foreach ($functions as $function) {
                         switch ($function) {
                             case 'type':
-                                if(is_numeric($value)){
+                                if (is_numeric($value)) {
                                     $value = "numeric";
-                                }else{
+                                } else {
                                     $value = gettype($value);
                                 }
                                 break;
@@ -334,7 +351,7 @@ class DataTablePanel{
                 }
             }
         }, $string);
-    
+        
         return $result;
     }
     
@@ -377,7 +394,12 @@ class DataTablePanel{
 
     public function loadIn(string $key, string $string, string $nameReplace = "{{element}}"){
         if (empty($this->rows)) {
-            throw new Exception("No rows found. Please load data before calling loadIn.");
+            /* 
+                Se quito esta exepcion por que una tabla cabe la posibilidad de que no tenga 
+                registros
+            */
+            return;
+            /* throw new Exception("No rows found. Please load data before calling loadIn."); */
         }
         foreach($this->rows as $index => &$row){
             if(!array_key_exists($key, $row)){

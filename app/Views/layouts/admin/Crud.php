@@ -217,6 +217,15 @@ class Crud{
             $positionInsert);
     }
 
+    public function addColumWithRedirectionButton(string $columnName, string $buttonLabel, string $uri, array $atributes = []){
+        $this->datatableCopy()->addColumWithRedirectionButton($columnName, $buttonLabel, $uri, $atributes);
+        $columnsCells = $this->dataTableCopyTempWithAllColumns->getChunkColumnWithCell();
+        $this->dataTableCopyTempWithAllColumns->removeChunkColumn();
+        $this->dataTable->insertChunkColumnWithCell(
+            $columnsCells['column'],
+            $columnsCells['rowCells']);
+    }
+
     public function addOneMoreInputInCreateModal(array $typos) {
         $form = new FormBuilder;
         $label = $typos['label'] ?? "No se especificó el Label";
@@ -292,6 +301,8 @@ class Crud{
     public function datatableCopy() : DataTablePanel{
         return $this->dataTableCopyTempWithAllColumns;
     }
+
+
 
     public function filterRowsByColumns(array $columns, array $rows): array {
         $filteredRows = [];

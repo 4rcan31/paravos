@@ -21,6 +21,19 @@ class ProductsModel extends BaseModel{
                             INNER JOIN partners pa ON p.partners_id = pa.id
                             ORDER BY c.name")->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getAllByPartnerId(string $id){
+        return $this->query("SELECT 
+        p.*,
+        c.name AS category_name,
+        pa.name AS partner_name
+    FROM products p 
+    INNER JOIN categories c ON p.category_id = c.id 
+    INNER JOIN partners pa ON p.partners_id = pa.id
+    WHERE partners_id = ?
+    ORDER BY c.name
+    ", [$id])->fetchAll(PDO::FETCH_ASSOC);
+    }
     
 
     public function getColumnsPro(){

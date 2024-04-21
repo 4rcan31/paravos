@@ -9,53 +9,76 @@ layout("admin/Topbar");
 layout("admin/Crud");
 $data = ViewData::get();
 $table = $data['table'];
+$categories = $data['categories'];
+$partners = $data['partners'];
 
 //config de la tabla
 $crud = new Crud($table);
 $crud->setColumnsShowInTable(
-    'name',
-    'description',
-    'img',
-    'latitude',
-    'longitude'
- ); 
-$crud->setViewDataColumnsTable("partners");
+   'name',
+   'category_name',
+   'price',
+   'partner_name',
+   'description_large',
+   'description_short',
+   'stock',
+   'url_img'
+); 
+$crud->setViewDataColumnsTable("Productos de este partner");
 $crud->setColumnForNumberRows();
 
 
- $crud->setLessInputInCreateButton([
-    'img'
- ]);
+
+//Config del boton edit y create
+$crud->setLessInputInCreateButton([
+   'category_name', 'url_img', 'partner_name' //son los inputs que no quiero poner
+]);
+$crud->addOneMoreInputInCreateModal([
+   "label" => "Categorias*",
+   'name' => "category",
+   'type' => 'select',
+   'input' => $categories
+]);
+
+$crud->addOneMoreInputInCreateModal([
+   "label" => "Elija el partner de este producto*",
+   'name' => "partner",
+   'type' => 'select',
+   'input' => $partners
+]);
+
+
+$crud->addOneMoreInputInCreateModal([
+   "label" => "Imagen del producto",
+   'name' => "img",
+   'type' => 'file'
+]);
 
 //config de la imagen
 $crud->loadIn(
-    'img',
-    '<img src="{{element}}" alt="Imagen de partner" class="img-thumbnail" style="max-width: 100px;">'
+    'url_img',
+    '<img src="{{element}}" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;">'
 );
-$crud->addOneMoreInputInCreateModal([
-    "label" => "Imagen del Socio",
-    'name' => "img",
-    'type' => 'file'
- ]);
+
 
 //Renderizado de botones
 $crud->setViewAllRowTheTableOriginalInModal();
 $crud->setCreateButton(
-   "Creando un nuevo partner",
-   "/api/v1/create/partner",
+   "Creando un nuevo producto",
+   "/api/v1/create/product",
+   false
 );
 $crud->setEditButton(
    "Editar",
-   "/api/v1/edit/partner",
-   "Editanto el partner {{name}}",
+   "/api/v1/edit/product",
+   "Editanto el producto {{name}}"
 );
 $crud->setCancelButton(
     "Eliminar",
-    "/api/v1/delete/partner",
-    "Seguro que deseas eliminar el partner {{name}}",
+    "/api/v1/delete/product",
+    "Seguro que deseas eliminar al usuario {{name}}",
     []
 );
-$crud->addColumWithRedirectionButton("Ir a ver", "Ver productos", "/admin/partner/{{id}}");
 $crud->build();
 ?>
 

@@ -77,4 +77,16 @@ class UsersModel extends BaseModel{
         ])->where("id", $id);
         return $this->execute()->lastId();
     }
+
+    public function get(){
+        $this->prepare();
+        $this->select(["*"])->from("users");
+        return $this->execute()->all('fetchAll');
+    }
+
+    public function updateFields(string $id, array $fields){
+        $this->prepare();
+        $this->update('users', $fields)->where('id', $id);
+        return $this->execute()->lastId();
+    }
 }

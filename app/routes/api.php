@@ -50,6 +50,10 @@ Route::group(function(){
         controller("Admin/PartnersController", "edit", $request);
     });
 
+    Route::post("/edit/user", function($request){
+        controller("Admin/UserController", "edit", $request);
+    });
+
 
     //creates
     Route::post("/create/category", function($request){
@@ -62,6 +66,10 @@ Route::group(function(){
 
     Route::post("/create/partner", function($request){
         controller("Admin/PartnersController", "create", $request);
+    });
+
+    Route::post("/create/user", function($request){
+        controller("Admin/UserController", "create", $request);
     });
 
 

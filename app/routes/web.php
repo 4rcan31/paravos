@@ -75,6 +75,10 @@ Route::group(function(){
         controller("Views/Admin/ShowProductsByPartners", "show", $request);
     });
 
+    Route::get("/users", function(){
+        controller("Views/Admin/UsersViewController", "show");
+    });
+
 })->prefix("/admin");
 
 /* 

@@ -322,6 +322,10 @@ class DataTablePanel{
                 $functions = array_slice($parts, 1);
                 if (array_key_exists($variable, $variables)) {
                     $value = $variables[$variable];
+                    //esto para saber si viene vacio para no ejecutar una funcion ahi
+                    // de una sola vez (esto ha sido un fix)
+                    $value = $value == null || empty($value) || $value == "" ?
+                            "null" :  $variables[$variable];
                     foreach ($functions as $function) {
                         switch ($function) {
                             case 'type':

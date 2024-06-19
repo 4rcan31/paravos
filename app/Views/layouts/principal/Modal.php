@@ -1,6 +1,5 @@
 <?php
 
-
 class Modal {
 
     private string $id;
@@ -55,6 +54,7 @@ class Modal {
     }
 
     public function modal(): string {
+        csrf();
         $submitButton = ($this->actionRute === $this->ruteWithOutAction) ? '' : '<button type="submit" class="btn btn-primary">' . $this->saveButtonName . '</button>';
         return '<div class="modal fade" id="' . $this->id . '" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="' . $this->id . 'Label" aria-hidden="true" style="z-index: 100000;">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="z-index: 100000;">
@@ -65,6 +65,7 @@ class Modal {
                     </div>
                     <div class="modal-body">
                         <form action="' . $this->actionRute . '" method="' . $this->method . '" enctype="multipart/form-data">
+                            '.TokenCsrf::getInput().'
                             ' . $this->htmlToRenderIntoModal . '
                             <div class="modal-footer">
                                 ' . $submitButton . '

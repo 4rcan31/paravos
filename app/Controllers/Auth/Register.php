@@ -6,26 +6,27 @@ class Register extends BaseController{
         return model("UsersModel");
     }
 
-    public function register($request){
-        $this->validateCsrfTokenWithRedirection($request, "/register"); 
+    public function register($request, $dataExtra = []){
+        $redirection = $dataExtra['redirection'] ?? "/register";
+        $this->validateCsrfTokenWithRedirection($request, $redirection); 
         $validate = validate($request);
         $validate->rule("required", ['email', 'password', "password_confirm", "name"]);
 
         $this->redirectWithBoolCondition(
             !$validate->validate(),
-            "/register",
+            $redirection,
             $validate->err()
         );
 
         $this->redirectWithBoolCondition(
             $validate->input("password") != $validate->input("password_confirm"),
-            "/register",
+            $redirection,
             ["Las contrasenas no coinciden"]
         );
 
         $this->redirectWithBoolCondition(
             $this->users()->existByEmail($validate->input("email")),
-            "/register",
+            $redirection,
             ['Lo sentimos ese email ya esta siendo ocupado!']
         );
         core('Encrypt/hasher.php', false);
@@ -37,6 +38,6 @@ class Register extends BaseController{
             Hasher::make($validate->input("password"))
         );
 
-        $this->redirectWithBoolCondition(true, "/login", ["Ahora ya puedes iniciar session!"]);
+        $this->redirectWithBoolCondition(true, $redirection == "/register" ? "/login" : $redirection, ["Ahora ya puedes iniciar session!"]);
     }
 }

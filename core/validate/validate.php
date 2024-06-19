@@ -33,8 +33,13 @@ class Validate{
             $otros === null ?
             array_push($this->validates, $this->validateTimes($fields)) :
             array_push($this->validates, $this->validateTimes($fields, $otros));  
+        }else if($rule === 'keyrequired'){
+            array_push(
+                $this->validates,
+                $this->keyExists($fields)
+            );
         }else{
-            res('Not validate named: '.$rule);
+            throw new Exception("Not validate named rule: $rule");
         }
     }
 
@@ -69,6 +74,16 @@ class Validate{
             return is_numeric($data);
         }
         return gettype($data) === $type;
+    }
+    
+    public function keyExists($fields){
+        foreach($fields as $field){
+            if(!isset($this->datos[$field])){
+                array_push($this->msg, "The field '$field' does not exist.");
+                return false;
+            }
+        }
+        return true;
     }
     
     

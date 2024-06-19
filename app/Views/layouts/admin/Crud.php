@@ -65,11 +65,11 @@ class Crud{
 
 
 
-    public function setCancelButton(string $name, string $action, string $htmlDinamic, array $filedDinamicToSend = [], string $titleModal = ''){
+    public function setCancelButton(string $name, string $action, string $htmlDinamic, array $filedDinamicToSend = [], string $titleModal = '', string $nameColumn = "Cancelar"){
         $send = array_merge($filedDinamicToSend, [$this->getIndentifier() . ":identifier"]);
         $positionInsert = 'last';
         $this->dataTableCopyTempWithAllColumns->addColumnWithModalButtons(
-            "Cancelar",
+            $nameColumn,
             $name,
             $titleModal == '' ? "Cancelando" : $titleModal,
             $action,

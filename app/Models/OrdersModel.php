@@ -75,4 +75,56 @@ class OrdersModel extends BaseModel{
         ])->where('tracking_number', $trackingNumber);
         return $this->execute()->lastId();
     }
+
+    public function get(){
+        $this->prepare();
+        $this->select(["*"])->from("orders");
+        return $this->execute()->all("fetchAll");
+    }
+
+    public function getAll() {
+        $this->prepare();
+        return $this->query("
+            SELECT 
+                orders.id,
+                orders.product_id,
+                products.name AS product_name,
+                products.description_large AS product_description_large,
+                products.description_short AS product_description_short,
+                products.url_img AS product_image,
+                products.stock AS product_stock,
+                products.price AS product_price,
+                orders.user_id,
+                users.email AS user_email,
+                users.name AS user_name,
+                users.user AS user_username,
+                users.is_client AS user_is_client,
+                orders.address,
+                orders.reference,
+                orders.approved_shipping,
+                orders.email AS order_email,
+                orders.phone AS order_phone,
+                orders.payment_status,
+                orders.tracking_number,
+                orders.shipping_date,
+                orders.delivery_time,
+                orders.notes,
+                orders.payment_method,
+                orders.order_status,
+                orders.created_at,
+                orders.delivery_providers_id,
+                delivery_providers.name AS name_delivery
+            FROM 
+                orders
+            JOIN 
+                products ON orders.product_id = products.id
+            JOIN 
+                users ON orders.user_id = users.id
+            JOIN 
+                delivery_providers ON orders.delivery_providers_id = delivery_providers.id
+            WHERE 
+                orders.approved_shipping = false
+        ")->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }

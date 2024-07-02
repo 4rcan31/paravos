@@ -14,9 +14,15 @@ function sidebar(){
         navItem('DashBoard', 'fas fa-fw fa-tachometer-alt', 'admin/home');
         divider();
         HeadingNavItem('Tienda');
-        navItem('Ordenes', 'fas fa-truck', '/admin/orders');
         navItem('Productos', 'fas fa-shopping-bag', '/admin/products');
         navItem('Categorias', 'fas fa-tags', '/admin/categories');
+
+
+        divider();
+        HeadingNavItem('Paqueteria');
+        navItem('Ordenes', 'fas fa-box', '/admin/orders');
+        navItem('Envios', 'fas fa-truck', '/admin/orders');
+
 
         divider();
         HeadingNavItem('Partners');
@@ -26,6 +32,8 @@ function sidebar(){
         divider();
         HeadingNavItem('Usuarios');
         navItem('Usuarios', 'fas fa-fw fa-user-friends', '/admin/users');
+
+      
 
 
         /* collapse("app name", 'Administración:', [

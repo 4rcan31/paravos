@@ -6,80 +6,82 @@ layout("admin/Footer");
 layout("admin/Logout");
 layout("admin/Sidebar");
 layout("admin/Topbar");
-
 layout("admin/Crud");
 $data = ViewData::get();
 $table = $data['table'];
-$categories = $data['categories'];
-$partners = $data['partners'];
+//prettyPrint($table); die;
 
 //config de la tabla
 $crud = new Crud($table);
 $crud->setColumnsShowInTable(
-   'name',
-   'category_name',
-   'price',
-   'partner_name',
-   'description_large',
-   'description_short',
-   'stock',
-   'url_img'
-); 
-$crud->setViewDataColumnsTable("Categorias");
+    'name_delivery',
+    'reference',
+    'address',
+    'approved_shipping',
+    'payment_status',
+    'tracking_number',
+    'shipping_date',
+    'delivery_time',
+    'product_name',
+    'product_image',
+    'product_price',
+    'notes',
+    'payment_method',
+    'order_email',
+    'user_email',
+    'user_is_client',
+    'order_phone',
+    'created_at'
+);
+
+$crud->setViewDataColumnsTable("partners");
 $crud->setColumnForNumberRows();
 
 
 
-//Config del boton edit y create
-$crud->setLessInputInCreateButton([
-   'category_name', 'url_img', 'partner_name' //son los inputs que no quiero poner
-]);
-$crud->addOneMoreInputInCreateModal([
-   "label" => "Categorias*",
-   'name' => "category",
-   'type' => 'select',
-   'input' => $categories
-]);
-
-$crud->addOneMoreInputInCreateModal([
-   "label" => "Elija el partner de este producto*",
-   'name' => "partner",
-   'type' => 'select',
-   'input' => $partners
-]);
-
-
-$crud->addOneMoreInputInCreateModal([
-   "label" => "Imagen del producto",
-   'name' => "img",
-   'type' => 'file'
-]);
-
 //config de la imagen
 $crud->loadIn(
-    'url_img',
+    'product_image',
     '<img src="{{element}}" alt="Imagen de producto" class="img-thumbnail" style="max-width: 100px;">'
+);
+
+$crud->loadIn(
+    "approved_shipping",
+    "{{element}}",
+    [
+        [
+            'if' => '$row["approved_shipping"] == 0',
+            'then' => 'Orden no aprobada'
+        ],
+        [
+            'if' => '$row["approved_shipping"] == 1',
+            'then' => 'Orden Aprobada'
+        ]
+    ]
 );
 
 
 //Renderizado de botones
 $crud->setViewAllRowTheTableOriginalInModal();
 $crud->setCreateButton(
-   "Creando un nuevo producto",
-   "/api/v1/create/product",
-   false
+   "Creando un nuevo partner",
+   "/api/v1/create/partner",
+   true
 );
 $crud->setEditButton(
    "Editar",
-   "/api/v1/edit/product",
-   "Editanto el producto {{name}}"
+   "/api/v1/edit/partner",
+   "Editanto el partner ",
+   true
 );
 $crud->setCancelButton(
     "Eliminar",
-    "/api/v1/delete/product",
-    "Seguro que deseas eliminar al usuario {{name}}",
+    "/api/v1/delete/partner",
+    "Seguro que deseas eliminar el partner ",
     []
 );
+$crud->addColumWithRedirectionButton("Activar", "Aprobar pedido", "/admin/partner/{{id}}");
+
 $crud->build();
 ?>
 

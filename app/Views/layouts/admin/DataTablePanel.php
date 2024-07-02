@@ -14,9 +14,12 @@ class DataTablePanel{
         $this->id = $this->id();
         $this->titleCard = $titleCard;
         $this->columns = is_object($columns) ? objectToArray($columns) : $columns;
-        $this->rows = is_object($rows) ? objectToArray($rows) : $rows;   
+        $this->rows = $this->sortRows(
+            is_object($rows) ? objectToArray($rows) : $rows,
+            $this->columns
+        );
     }
-    
+
     public function titleCard(){
         return '<div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">'.$this->titleCard.'</h6>
@@ -110,6 +113,30 @@ class DataTablePanel{
     public function getHtmlModal() : string{
         return $this->htmlModals;
     }
+
+    
+    public function sortRows($rows, $columns) {
+        foreach ($rows as $row) {
+            $diff = array_diff_key($row, array_flip($columns));
+            if (!empty($diff)) {
+                $key = key($diff);
+                throw new Exception("The key '{$key}' in the rows is not present in the columns array.");
+            }
+        }
+    
+        $sortedRows = [];
+        foreach ($rows as $row) {
+            $sortedRow = [];
+            foreach ($columns as $column) {
+                $sortedRow[$column] = array_key_exists($column, $row) ? $row[$column] : null;
+            }
+            $sortedRows[] = $sortedRow;
+        }
+    
+        return $sortedRows;
+    }
+    
+    
 
     public function addColumn(string $name, int|string $position = 'last') : int {
         return $position != "last" ? 
@@ -396,23 +423,39 @@ class DataTablePanel{
     }
 
 
-    public function loadIn(string $key, string $string, string $nameReplace = "{{element}}"){
+    public function loadIn(string $key, string $defaultString, array $conditions = [], string $nameReplace = "{{element}}"){
         if (empty($this->rows)) {
-            /* 
-                Se quito esta exepcion por que una tabla cabe la posibilidad de que no tenga 
-                registros
-            */
             return;
-            /* throw new Exception("No rows found. Please load data before calling loadIn."); */
         }
         foreach($this->rows as $index => &$row){
-            if(!array_key_exists($key, $row)){
+            if (!array_key_exists($key, $row)) {
                 throw new Exception("The key '$key' does not exist in the row when trying to load in.");
             }
-            if (!strpos($string, $nameReplace)) {
-                throw new Exception("The placeholder '$nameReplace' does not exist in the string '$string'.");
+    
+            // Procesar condiciones
+            $replacement = $defaultString;
+            foreach ($conditions as $condition) {
+                if (!isset($condition['if'], $condition['then'])) {
+                    continue;
+                }
+                $if = $condition['if'];
+                $then = $condition['then'];
+    
+                // Evaluar la condición usando la variable $row
+                if (eval("return {$if};")) {
+                    $replacement = str_replace($nameReplace, $row[$key], $then);
+                    break;
+                }
             }
-            $this->rows[$index][$key] = str_replace($nameReplace,$this->rows[$index][$key], $string);
+    
+            // Si no se cumplió ninguna condición, usar el string por defecto
+            if ($replacement === $defaultString) {
+                $replacement = str_replace($nameReplace, $row[$key], $defaultString);
+            }
+    
+            $row[$key] = $replacement;
         }
     }
+    
+    
 }

@@ -79,6 +79,10 @@ Route::group(function(){
         controller("Views/Admin/UsersViewController", "show");
     });
 
+    Route::get("/orders", function(){
+        controller("Views/Admin/OrdersViewController", "show");
+    });
+
 })->prefix("/admin");
 
 /* 

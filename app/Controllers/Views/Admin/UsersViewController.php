@@ -3,7 +3,7 @@
 class UsersViewController extends BaseController{
 
     public function users() : UsersModel{
-        return model("usersModel");
+        return model("UsersModel");
     }
 
     public function show(){

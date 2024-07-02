@@ -320,8 +320,8 @@ class Crud{
         return $filteredRows;
     }
 
-    public function loadIn(string $name, string $load){
-        $this->dataTable->loadIn($name, $load);
-        $this->dataTableCopyTempWithAllColumns->loadIn($name, $load);
+    public function loadIn(string $name, string $load, array $conditions = []){
+        $this->dataTable->loadIn($name, $load, $conditions);
+        $this->dataTableCopyTempWithAllColumns->loadIn($name, $load, $conditions);
     }
 }

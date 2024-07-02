@@ -8,8 +8,11 @@ class orders extends Migration {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 product_id INT NOT NULL,
                 user_id INT DEFAULT NULL, -- Uno por que el cliente por default sera "1"
+                -- el default es uno, por que es el interno, por el momento, sera asi
+                delivery_providers_id INT NOT NULL DEFAULT 1,
                 address TEXT NOT NULL,
                 reference TEXT DEFAULT NULL,
+                approved_shipping BOOLEAN DEFAULT FALSE,
                 email VARCHAR(255),
                 phone VARCHAR(20) NOT NULL,
                 payment_status VARCHAR(20), -- puede ser: Pendiente, Completado, Cancelado
@@ -21,7 +24,8 @@ class orders extends Migration {
                 order_status VARCHAR(20), -- Puede ser: Entregado, Pendiente, Cancelado
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (product_id) REFERENCES products(id),
-                FOREIGN KEY (user_id) REFERENCES users(id) -- Clave foránea para 
+                FOREIGN KEY (user_id) REFERENCES users(id), -- Clave foránea para 
+                FOREIGN KEY (delivery_providers_id) REFERENCES delivery_providers(id)
             )');
             /* 
                 Tanto user_id como client_id pueden ser nulos.

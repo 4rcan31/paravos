@@ -81,7 +81,16 @@ $crud->setCancelButton(
     []
 );
 $crud->addColumWithRedirectionButton("Activar", "Aprobar pedido", "/admin/partner/{{id}}");
-
+$crud->datatable()->addColumnWithModalButtons(
+    "name Column",
+    "button name",
+    "titlle modal",
+    "action",
+    "html?", 
+    [
+        'name_delivery'
+    ]
+    );
 $crud->build();
 ?>
 

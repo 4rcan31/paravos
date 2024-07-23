@@ -52,11 +52,10 @@
             $char = chr(ord($char) - ord($keychar));
             $return .= $char;
         }
-            if(is_numeric($return)) {
-                return intval($return);
-            } else {
-                return $return;
-            }
+
+        return is_numeric($return) ? 
+                intval($return) : 
+                $return;
     }
     //end decrypt
 } 

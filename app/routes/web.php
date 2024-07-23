@@ -83,7 +83,7 @@ Route::group(function(){
         controller("Views/Admin/OrdersViewController", "show");
     });
 
-})->prefix("/admin");
+})->prefix("/admin")->middlewares(['AuthMiddleware@sessionAsAdmin']);
 
 /* 
     Esto esta bien raro, ya que con php -S localhost functiona, pero
@@ -91,12 +91,12 @@ Route::group(function(){
 */
 Route::get("/profile", function(){
     controller("Views/ProfileViewController", "show");
-})->middlewares(['AuthMiddleware@session']);
+})->middlewares(['AuthMiddleware@sessionAsUser']);
 
 
 Route::get('/orders', function(){
     controller("Views/OrdersCardViewController", 'show');
-})->middlewares(['AuthMiddleware@session']);
+})->middlewares(['AuthMiddleware@sessionAsUser']);
 
 Route::get("/hola", function($request){
     view("index");

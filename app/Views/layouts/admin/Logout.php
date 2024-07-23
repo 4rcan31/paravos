@@ -14,7 +14,7 @@ function modalLogout(){
                 </div>
 
 
-                <form method="POST" action="<?php route('api/v1/auth/logout'); ?>">
+                <form method="GET" action="<?php route('api/v1/logout/admin'); ?>">
                     <?php TokenCsrf::input(); ?>
                     <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
                     <div class="modal-footer">

@@ -24,7 +24,7 @@ class DataBase extends Connection{
         return $this->query('SELECT DATABASE() AS dbname')->fetch()['dbname'];
     }
 
-    public function select($colums = [], $all = true){
+    public function select(array $colums = [], bool $all = true){
         empty($colums) ?  $query = 'SELECT ' : $query = 'SELECT '.implode(',', $colums);
         $this->query = $this->query." ".$query;
         return $this;

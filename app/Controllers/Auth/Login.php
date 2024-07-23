@@ -1,102 +1,140 @@
 <?php
+
 Form();
 core('Encrypt/hasher.php', false);
 
-class Login extends BaseController{
+class Login extends BaseController {
 
-    private array $roles = [
-        "admin", "user"
-    ];
+    private array $roles = ["admin", "user"];
 
-    private function user() : UsersModel{
+    private function user(): UsersModel {
         return model('UsersModel');
     }
 
+    private function staff(): StaffModel {
+        return model("StaffModel");
+    }
 
-    public function login($request){
+    /* 
+        La funcion login funciona de esta manera:
+
+        primero, verifica la sintaxis del correo que envio el usuario, si la sintaxis
+        es la siguiente:
+
+        {{email}}:admin
+
+        esto significa que ese usuario trata de iniciar session como administrador
+        por lo tanto, se buscara en la tabla de "staff"
+
+        si no tiene esta sintaxis, se buscara en la tabla de "users"
+    */
+    public function login($request) {
         $this->validateCsrfTokenWithRedirection($request, "/login");
+
         $validate = validate($request);
-        $validate->rule('required', ['email', 'password']); 
+        $validate->rule('required', ['email', 'password']);
         $validate->rule('email', ['email']);
+
         $this->redirectWithBoolCondition(
             !$validate->validate(),
             "/login",
             $validate->err()
         );
 
-        $explode = explode(":", $validate->input("email"));
-
-
         $email = $validate->input("email");
+        $password = $validate->input("password");
 
-        count($explode = explode(":", $email)) > 1 && $explode[1] === "admin" ?
-            $this->loginAsAdmin($explode[0], $validate->input("password")) :
-            $this->loginAsUser($email, $validate->input("password"));
-        
-
+        if (strpos($email, ':admin') !== false) {
+            list($email, $role) = explode(':', $email);
+            $this->loginAsAdmin($email, $password);
+        } else {
+            $this->loginAsUser($email, $password);
+        }
     }
 
-
-    public function logout($request){
+    public function logout($request) {
         $validate = validate($request);
         $validate->rule("required", [0]);
+
         $rol = $request[0];
-        if(!in_array($rol, $this->roles) || !$validate->validate()){
-            //se quiso explotar una vulnerabilidad poniendo otro rol para el cierre de session
+
+        if (!in_array($rol, $this->roles) || !$validate->validate()) {
             Sauth::logoutClient();
-            Form::send("/", ["Tu session expiro"], "Error");
+            Form::send("/", ["Tu sesión expiró"], "Error");
         }
-        if($rol == "user"){
+
+        if ($rol == "user") {
             $this->logoutClient();
-        }else if($rol == "admin"){
+        } else if ($rol == "admin") {
             $this->logoutAsAdmin();
         }
-        
-    }
-    
-
-    public function loginAsAdmin($email, $pasword){
-
     }
 
-    public function logoutAsAdmin(){
-        $idAdmin = $this->clientAuth()->id;
-        $rolAdmin = $this->clientAuth()->rol; // se espera que sea admin
-
-    }
-
-    public function loginAsUser($email, $pasword){
-        $exist = $this->user()->existByEmail($email);
-        if(!$exist){
-           Form::send("/login", ["Credenciales incorrectas no existe user"], "Error");
+    private function loginAsAdmin($email, $password) {
+        if (!$this->staff()->existByEmail($email)) {
+            Form::send("/login", ["Credenciales incorrectas: no existe usuario"], "Error");
         }
+
+        $row = $this->staff()->getByEmail($email);
+        if (!Hasher::verify($password, $row->password)) {
+            Form::send('/login', ['Credenciales incorrectas: contraseña incorrecta'], 'Error');
+        }
+
+        Sauth::NewAuthServerSave('staff', 'remember_token', $row->id);
+        Sauth::NewAuthClient([
+            'id' => $row->id,
+            'name' => $row->name,
+            "rol" => "admin"
+        ], $_ENV['APP_KEY']);
+
+        Form::send("/admin/home", ['Ha iniciado sesión correctamente!'], "Notice");
+    }
+
+    private function loginAsUser($email, $password) {
+        if (!$this->user()->existByEmail($email)) {
+            Form::send("/login", ["Credenciales incorrectas: no existe usuario"], "Error");
+        }
+
         $row = $this->user()->getByEmail($email);
-        if(!Hasher::verify($pasword, $row->password)){ 
-            Form::send('/login', ['Credenciales incorrectas password icorrecta'], 'Error'); 
+        if (!Hasher::verify($password, $row->password)) {
+            Form::send('/login', ['Credenciales incorrectas: contraseña incorrecta'], 'Error');
         }
+
         Sauth::NewAuthServerSave('users', 'remember_token', $row->id);
         Sauth::NewAuthClient([
             'id' => $row->id,
             'name' => $row->name,
-            "rol" => "user" //esto para identificar este token
-        ],$_ENV['APP_KEY']);
-        Form::send("/", ['Ha iniciado session correctamente!'], "Notice");
+            "rol" => "user"
+        ], $_ENV['APP_KEY']);
+
+        Form::send("/", ['Ha iniciado sesión correctamente!'], "Notice");
     }
 
-    public function logoutClient(){
+    private function logoutAsAdmin() {
+        $idAdmin = $this->clientAuth()->id;
+        $rolAdmin = $this->clientAuth()->rol;
+
+        if ($rolAdmin == "admin") {
+            Sauth::logoutClient();
+            Sauth::logoutServer('staff', 'remember_token', $idAdmin);
+            Form::send('/', ['Se cerró sesión correctamente'], 'Notice');
+        } else {
+            Sauth::logoutClient();
+            Form::send('/', ['Su sesión expiró'], 'Notice');
+        }
+    }
+
+    private function logoutClient() {
         $idUser = $this->clientAuth()->id;
         $rolUser = $this->clientAuth()->rol;
-        if($rolUser == "user"){
+
+        if ($rolUser == "user") {
             Sauth::logoutClient();
             Sauth::logoutServer('users', 'remember_token', $idUser);
-            Form::send('/', ['Se cerro session correctamente'], 'Notice');
-            return;
-        }else{
-            //si esto para es por que alguien quiere explotar una vulnerabilidad, quiere cerrar la session
-            // del usuario con un token authenticado
+            Form::send('/', ['Se cerró sesión correctamente'], 'Notice');
+        } else {
             Sauth::logoutClient();
-            Form::send('/', ['Su session expiro'], 'Notice');
+            Form::send('/', ['Su sesión expiró'], 'Notice');
         }
-
     }
 }

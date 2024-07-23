@@ -7,9 +7,6 @@ Route::group(function(){
         controller("Auth/Login", "login", $request);
     });
 
-    Route::get("/logout/%type", function($request){
-        controller("Auth/Login", "logout", $request);
-    });
 
     Route::post("/order", function($request){
        controller("Store/OrdersController", 'makeOrder', $request);
@@ -27,14 +24,22 @@ Route::group(function(){
         Route::post('/updateUser', function ($request){
             controller("User/ProfileController", "updateUser", $request);
         });
+                
+        /* 
+           TODO: Esto es urgente cambiarlo, hacer que 
+           a parte de estar iniciado session, solamente
+           puede cancelar la orden si esa orden es suya,
+           de lo contrario NO pudiera, ademas tambien
+           diferencias de sessiones entre el admin 
+           y el usuario
+        */
 
-        Route::post("/cancelar-pedido", function($request){
-           controller("Store/OrdersController", "cancelOrder", $request);
-        });
         
-    })->middlewares(['AuthMiddleware@session']);
+    })->middlewares(['AuthMiddleware@sessionAsUser']);
 
-
+    Route::get("/logout/%type", function($request){
+        controller("Auth/Login", "logout", $request);
+    });
 
 
     //Edits

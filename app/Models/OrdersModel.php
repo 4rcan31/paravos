@@ -32,6 +32,24 @@ class OrdersModel extends BaseModel{
         return $this->execute()->lastId();
     }
 
+    public function getProductIdByTrackingNumber(string $trakingNumber){
+        $this->prepare();
+        $this->select(['product_id'])->from('orders')->where("tracking_number", $trakingNumber);
+        return $this->execute()->all()->id ?? null;
+    }
+
+    public function getProductIdById(string $id){
+        $this->prepare();
+        $this->select(['product_id'])->from('orders')->where("id", $id);
+        return $this->execute()->all()->product_id ?? null;
+    }
+
+    public function existOrderById(string $id) : bool{
+        $this->prepare();
+        $this->select(['*'])->from("orders")->where("id", $id);
+        return $this->execute()->exists();
+    }
+
     public function countNumByUserId(string $id){
         $this->prepare();
         $this->select()->count()->from("orders")->where("user_id", $id);
@@ -76,6 +94,29 @@ class OrdersModel extends BaseModel{
         return $this->execute()->lastId();
     }
 
+    public function setCancelOrderByIdOrder(string $idOrder){
+        $this->prepare();
+        $this->update('orders', [
+            "payment_status" => "Cancelado",
+            "order_status" => 'Cancelado'
+        ])->where('id', $idOrder);
+        return $this->execute()->lastId();
+    }
+
+
+    public function getTrackingNumberById(string $id){
+        $this->prepare();
+        $this->select(["tracking_number"])->from("orders")->where("id", $id);
+        return $this->execute()->all();
+    }
+
+    public function getIdByTrackingNumber(string $trackingNumber){
+        $this->prepare();
+        $this->select(['id'])->from("orders")->where("tracking_number", $trackingNumber);
+        return $this->execute()->all();
+    }
+    
+
     public function get(){
         $this->prepare();
         $this->select(["*"])->from("orders");
@@ -107,8 +148,7 @@ class OrdersModel extends BaseModel{
                 orders.payment_status,
                 orders.tracking_number,
                 orders.shipping_date,
-                orders.delivery_time,
-                orders.notes,
+                orders.delivery_time,   
                 orders.payment_method,
                 orders.order_status,
                 orders.created_at,

@@ -39,6 +39,12 @@ class ProductsModel extends BaseModel{
     public function getColumnsPro(){
         return $this->getColumns("products");
     }
+
+    public function getPartherIdByIdProduct(string $productId){
+        $this->prepare();
+        $this->select(['partners_id'])->from('products')->where('id', $productId);
+        return $this->execute()->all()->id ?? null;
+    }
     
 
     public function getWithLimit($limit, $offset) {

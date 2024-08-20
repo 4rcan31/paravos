@@ -206,13 +206,21 @@ class DataBase extends Connection{
         ")->fetchAll(PDO::FETCH_ASSOC), "Field");
     }
 
-    public function execute(){
+    public function execute() : DataBase{
         try{
         $this->responseSQL = $this->query($this->query, $this->data);
         return $this;
         }catch (\Throwable $th) {
             echo "hubo un error";
             echo $th;
+            /* 
+                Esto en realidad no es tan necesario, pero 
+                si no me da error este intelephense(P1013)
+                luego voy a reescribir todo esto xd, he aprendido
+                mucho desde la ultima vez que escribi todo Sao xD
+                y quiza tengo mejores ideas
+            */
+            return $this;
         }
     }
 

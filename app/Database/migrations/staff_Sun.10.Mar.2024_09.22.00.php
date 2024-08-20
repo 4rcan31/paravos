@@ -16,7 +16,7 @@ class staff extends Migration {
             )');
             import('Encrypt/hasher.php', false, '/core');
             $this->insert('staff')->values([
-                'email' => 'Admin@test.com',
+                'email' => 'admin@test.com',
                 'password' => Hasher::make('123'),
                 'name' => 'Staff Default',
                 'user' => 'Staff Default'

@@ -7,17 +7,29 @@ class AuthMiddleware {
     public function sessionAsAdmin(): bool {
         return $this->sessionHasRole('staff', 'admin');
     }
-
+    
     public function sessionAsUser(): bool {
         return $this->sessionHasRole('users', 'user');
     }
 
-    private function sessionHasRole(string $table, string $role): bool {
-        return $this->session($table) && $this->getPayload('rol') === $role;
+    public function sessionAsParther(): bool {
+        return $this->sessionHasRole('partners', 'parther');
     }
 
-    private function session(string $table): bool {
-        return $this->middlewareAuthServerAndClient($table);
+    public function getIdsession() : string {
+        return $this->getPayload('id');
+    }
+
+    public function getRolSession() : string {
+        return $this->getPayload('rol');
+    }
+
+    public function getNameUserSession() : string {
+        return $this->getPayload('name');
+    }
+
+    private function sessionHasRole(string $table, string $role): bool {
+        return $this->middlewareAuthServerAndClient($table) && $this->getPayload('rol') === $role;
     }
 
     private function middlewareAuthServerAndClient(string $table): bool {

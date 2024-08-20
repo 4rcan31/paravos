@@ -19,9 +19,8 @@ class orders extends Migration {
                 tracking_number VARCHAR(255),
                 shipping_date DATE,
                 delivery_time TIME,
-                notes TEXT DEFAULT NULL,
                 payment_method VARCHAR(50) DEFAULT "Efectivo", -- por el momento todo sera efectivo xd
-                order_status VARCHAR(20), -- Puede ser: Entregado, Pendiente, Cancelado
+                order_status VARCHAR(20)  DEFAULT "Pendiente", -- Puede ser: Entregado, Pendiente, Cancelado
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (product_id) REFERENCES products(id),
                 FOREIGN KEY (user_id) REFERENCES users(id), -- Clave foránea para 

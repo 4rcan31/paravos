@@ -187,19 +187,37 @@ class DataBase extends Connection{
     }
 
     public function executeSql(String $query, $data){
+        $sanitizeData = function($data) use (&$sanitizeData) {
+            if (is_array($data)) {
+                return array_map($sanitizeData, $data);
+            }
+            if (is_string($data)) {
+                /* 
+                    Para evitar ataques
+                    de Cross-Site Scripting
+                */
+                return htmlspecialchars(strip_tags($data));
+            }
+            // Si no es string (ej. número, booleano, etc.), lo dejamos intacto
+            return $data;
+        };
+        
+        $sanitizedData = $sanitizeData($data);
         $responseSQL = $this->connection()->prepare($query);
+        
         if($responseSQL){
-            if($responseSQL->execute($data)){
+            if($responseSQL->execute($sanitizedData)){
                 return $responseSQL;
             }else{
-                throw New Exception("Unable to do execute statement: " . $query." and the data: ". json_encode($data));
+                throw new Exception("Unable to execute statement: " . $query." and the data: ". json_encode($sanitizedData));
                 return false;
             }
         }else{
-            throw New Exception("Unable to do prepared statement: " . $query);
+            throw new Exception("Unable to prepare statement: " . $query);
             return false;
         }
     }
+    
 
     public function getColumns(string $table) : array{
         return array_column($this->query("SHOW COLUMNS FROM $table;
